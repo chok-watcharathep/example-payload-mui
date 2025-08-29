@@ -23,7 +23,14 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    components: {},
+    components: {
+      logout: {
+        Button: {
+          path: '@/payload/components',
+          exportName: 'LogoutButton',
+        },
+      },
+    },
   },
   collections: [Users, Media, Products, Categories],
   editor: lexicalEditor(),
