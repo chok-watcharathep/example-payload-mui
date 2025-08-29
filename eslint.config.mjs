@@ -14,6 +14,7 @@ const eslintConfig = [
       '**/.next/**',
       '**/coverage/**',
       '**/src/migrations/**',
+      '**/src/app/(payload)/admin/importMap.js',
     ],
     languageOptions: {
       ecmaVersion: 2022,

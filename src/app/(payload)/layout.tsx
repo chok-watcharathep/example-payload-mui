@@ -9,7 +9,7 @@ import config from '@payload-config'
 
 import { importMap } from './admin/importMap.js'
 import '@payloadcms/next/css'
-import './custom.scss'
+import '@/payload/theme/index.scss'
 
 type Args = {
   children: React.ReactNode
