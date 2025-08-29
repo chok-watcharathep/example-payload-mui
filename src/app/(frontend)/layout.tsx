@@ -1,4 +1,7 @@
 import React from 'react'
+
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
+
 import './styles.scss'
 
 export const metadata = {
@@ -12,7 +15,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <main>
+          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+            {children}
+          </AppRouterCacheProvider>
+        </main>
       </body>
     </html>
   )

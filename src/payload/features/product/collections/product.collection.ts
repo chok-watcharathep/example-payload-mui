@@ -40,7 +40,7 @@ const Products: CollectionConfig = {
       admin: {
         components: {
           Cell: {
-            path: '@/components/payload',
+            path: '@/payload/components',
             exportName: 'PriceCell',
           },
         },

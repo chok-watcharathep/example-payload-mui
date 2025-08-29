@@ -1,4 +1,4 @@
-import { DefaultCellComponentProps } from 'payload'
+import type { DefaultCellComponentProps } from 'payload'
 
 const PriceCell = ({ cellData }: DefaultCellComponentProps) => {
   if (typeof cellData === 'number') {

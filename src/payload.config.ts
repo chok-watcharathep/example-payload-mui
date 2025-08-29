@@ -10,6 +10,7 @@ import sharp from 'sharp'
 import { Users } from './payload/features/user/collections'
 import { Media } from './payload/features/media/collections'
 import { Products } from './payload/features/product/collections'
+
 import { Categories } from './payload/features/category/collections'
 
 const filename = fileURLToPath(import.meta.url)

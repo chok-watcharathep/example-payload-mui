@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { exampleUtil } from './example.util'
 
 describe('exampleUtil', () => {
