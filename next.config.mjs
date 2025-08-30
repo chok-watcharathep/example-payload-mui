@@ -15,6 +15,8 @@ const nextConfig = {
   },
 }
 
-const withNextIntl = createNextIntlPlugin()
+const withNextIntl = createNextIntlPlugin({
+  requestConfig: './src/frontend/i18n/request.ts',
+})
 
 export default withPayload(withNextIntl(nextConfig), { devBundleServerPackages: false })
