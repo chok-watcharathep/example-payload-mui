@@ -14,11 +14,12 @@ declare module '@mui/material/styles' {
 // Our design system breakpoints is using mobile, tablet, laptop, desktop
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
-    xs: false
-    sm: false
-    md: false
-    lg: false
-    xl: false
+    // Keep the default breakpoints to prevent break the existing code
+    xs: true
+    sm: true
+    md: true
+    lg: true
+    xl: true
     mobile: true
     tablet: true
     desktop: true

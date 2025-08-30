@@ -3,6 +3,10 @@
 import { createTheme } from '@mui/material'
 import { Noto_Sans_Thai } from 'next/font/google'
 
+import baseTheme from './base.theme'
+import buttonTheme from './button.theme'
+import containerTheme from './container.theme'
+
 // TODO: Change to real font
 const notoSansThai = Noto_Sans_Thai({
   subsets: ['thai', 'latin'],
@@ -11,149 +15,20 @@ const notoSansThai = Noto_Sans_Thai({
   variable: '--font-noto-sans-thai',
 })
 
-const baseTheme = createTheme({
-  breakpoints: {
-    values: {
-      mobile: 0,
-      tablet: 768,
-      desktop: 1025,
-    },
-  },
-})
-
 const theme = createTheme({
   typography: {
     fontFamily: notoSansThai.style.fontFamily,
     h1: {},
   },
   breakpoints: baseTheme.breakpoints,
-  palette: {
-    mode: 'light',
-    common: {
-      black: '#000',
-      white: '#fff',
-    },
-    primary: {
-      100: '#e7f0f7',
-      200: '#c9deee',
-      300: '#99c3e0',
-      400: '#529bc9',
-      500: '#3e89b9',
-      600: '#2d6d9c',
-      700: '#26587e',
-      800: '#234b69',
-      900: '#214059',
-      main: '#529bc9',
-    },
-    secondary: {
-      100: '#EDE5D8',
-      200: '#DAC8AD',
-      300: '#C6A983',
-      400: '#B99266',
-      500: '#AD7A53',
-      600: '#986247',
-      700: '#7C4B3C',
-      800: '#694037',
-      900: '#58362F',
-      main: '#7C4B3C',
-    },
-    tertiary: {
-      100: '#DBF0F2',
-      200: '#BCE1E5',
-      300: '#C6A983',
-      400: '#57ADB9',
-      500: '#3C919E',
-      600: '#357887',
-      700: '#30626E',
-      800: '#2E525C',
-      900: '#2A454F',
-      main: '#357887',
-    },
-    error: {
-      100: '#FBE9EB',
-      200: '#FECACA',
-      300: '#FCA5A5',
-      400: '#F87171',
-      500: '#EF4444',
-      600: '#DC2626',
-      700: '#B91C1C',
-      800: '#991B1B',
-      900: '#7F1D1D',
-    },
-    success: {
-      100: '#D1FAE5',
-      200: '#A7F3D0',
-      300: '#6EE7B7',
-      400: '#34D399',
-      500: '#10B981',
-      600: '#059669',
-      700: '#047857',
-      800: '#065F46',
-      900: '#064E3B',
-    },
-    warning: {
-      100: '#FEF9C3',
-      200: '#FEF08A',
-      300: '#FDE047',
-      400: '#FACC15',
-      500: '#EAB308',
-      600: '#CA8A04',
-      700: '#A16200',
-      800: '#854D0E',
-      900: '#713F12',
-    },
-    info: {
-      100: '#D6EDFF',
-      200: '#99D1FF',
-      300: '#57B3FF',
-      400: '#1A98FF',
-      500: '#0076D6',
-      600: '#0062B3',
-      700: '#004C8A',
-      800: '#003866',
-      900: '#00223D',
-    },
-    grey: {
-      100: '#F3F4F6',
-      200: '#E5E7EB',
-      300: '#D1D5DC',
-      400: '#99A1AF',
-      500: '#6A7282',
-      600: '#4A5565',
-      700: '#364153',
-      800: '#1E2939',
-      900: '#101828',
-    },
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  spacing: 8,
+  palette: baseTheme.palette,
+  shape: baseTheme.shape,
+  spacing: baseTheme.spacing,
 })
 
 theme.components = {
-  MuiButton: {
-    defaultProps: {
-      disableElevation: true,
-    },
-    styleOverrides: {
-      root: {
-        minWidth: 80,
-      },
-      sizeSmall: {
-        height: 28,
-        padding: theme.spacing(0, 1),
-      },
-      sizeMedium: {
-        height: 36,
-        padding: theme.spacing(0, 1.5),
-      },
-      sizeLarge: {
-        height: 48,
-        padding: theme.spacing(0, 1.5),
-      },
-    },
-  },
+  MuiContainer: containerTheme,
+  MuiButton: buttonTheme,
 }
 
 export default theme
