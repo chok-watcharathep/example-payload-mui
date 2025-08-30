@@ -1,1 +1,2 @@
-export { default as ExampleLanguage } from './ExampleLanguage'
+export * from './icons'
+export * from './ui'
