@@ -11,10 +11,22 @@ const notoSansThai = Noto_Sans_Thai({
   variable: '--font-noto-sans-thai',
 })
 
+const baseTheme = createTheme({
+  breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 768,
+      desktop: 1025,
+    },
+  },
+})
+
 const theme = createTheme({
   typography: {
     fontFamily: notoSansThai.style.fontFamily,
+    h1: {},
   },
+  breakpoints: baseTheme.breakpoints,
   palette: {
     mode: 'light',
     common: {
