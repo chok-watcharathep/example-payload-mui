@@ -9,6 +9,7 @@ const buttonTheme: Components['MuiButton'] = {
   styleOverrides: {
     root: {
       minWidth: 80,
+      textTransform: 'none',
     },
     sizeSmall: {
       height: 28,

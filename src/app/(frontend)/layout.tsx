@@ -3,6 +3,7 @@ import React from 'react'
 import { ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import { Noto_Sans_Thai } from 'next/font/google'
+import { NextIntlClientProvider } from 'next-intl'
 
 import theme from '@/frontend/theme'
 
@@ -27,9 +28,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body className={notoSansThai.className} suppressHydrationWarning>
         <main>
-          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
-          </AppRouterCacheProvider>
+          <NextIntlClientProvider>
+            <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+              <ThemeProvider theme={theme}>{children}</ThemeProvider>
+            </AppRouterCacheProvider>
+          </NextIntlClientProvider>
         </main>
       </body>
     </html>

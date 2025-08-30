@@ -1,0 +1,14 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "home": {
+    "goToAdminPanel": "Go to admin panel"
+  }
+}

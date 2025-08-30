@@ -23,6 +23,7 @@ const Products: CollectionConfig = {
       admin: {
         components: {},
       },
+      localized: true,
     },
     {
       name: 'slug',
@@ -32,6 +33,7 @@ const Products: CollectionConfig = {
     {
       name: 'description',
       type: 'richText',
+      localized: true,
     },
     {
       name: 'price',

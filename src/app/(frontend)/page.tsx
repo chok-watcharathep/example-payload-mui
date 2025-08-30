@@ -1,13 +1,17 @@
-import { Button } from '@mui/material'
+import { Button, Container } from '@mui/material'
+import { getTranslations } from 'next-intl/server'
 
+import { ExampleLanguage } from '@/frontend/components'
 import config from '@/payload.config'
+
 import './styles.scss'
 
 export default async function HomePage() {
   const payloadConfig = await config
+  const t = await getTranslations('home')
 
   return (
-    <div>
+    <Container>
       <Button
         variant="contained"
         color="primary"
@@ -15,8 +19,9 @@ export default async function HomePage() {
         rel="noopener noreferrer"
         target="_blank"
       >
-        Go to admin panel
+        {t('goToAdminPanel')}
       </Button>
-    </div>
+      <ExampleLanguage />
+    </Container>
   )
 }

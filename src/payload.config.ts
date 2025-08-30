@@ -48,4 +48,17 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'ไทย',
+        code: 'th',
+      },
+    ],
+    defaultLocale: 'en',
+  },
 })

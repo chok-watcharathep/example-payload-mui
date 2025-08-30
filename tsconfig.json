@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/frontend/types/theme.d.ts"
+    "src/frontend/types/theme.d.ts",
+    "src/frontend/types/i18n.d.ts"
   ],
   "exclude": ["node_modules"]
 }
