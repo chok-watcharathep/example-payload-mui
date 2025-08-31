@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Grid, Typography } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
 import ProductCard from '@/frontend/features/product/components/ProductCard'
 import { useGetProductList } from '@/frontend/features/product/hooks'
@@ -13,6 +14,7 @@ interface ProductListProps {
 
 const ProductList = ({ categoryId }: ProductListProps) => {
   const urlQueryStateHook = useUrlQueryState()
+  const tCommon = useTranslations('common')
 
   const getProductListHook = useGetProductList({
     categoryId,
@@ -23,7 +25,7 @@ const ProductList = ({ categoryId }: ProductListProps) => {
 
   return (
     <Box>
-      <Typography variant="h1">Products</Typography>
+      <Typography variant="h1">{tCommon('products')}</Typography>
       <Grid container spacing={2}>
         {productList.map((product) => (
           <Grid

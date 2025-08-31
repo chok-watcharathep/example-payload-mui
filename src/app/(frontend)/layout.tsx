@@ -2,10 +2,12 @@ import React from 'react'
 
 import { ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
+import { Metadata } from 'next'
 import { Noto_Sans_Thai } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 
+import environmentConfig from '@/environment.config'
 import { TheMainLayout, QueryClientProvider, RuntimeEnv } from '@/frontend/components'
 import theme from '@/frontend/theme'
 import { getPublicEnv } from '@/utils'
@@ -19,9 +21,23 @@ const notoSansThai = Noto_Sans_Thai({
   variable: '--font-noto-sans-thai',
 })
 
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
+export const metadata: Metadata = {
   title: 'Payload Blank Template',
+  description: 'A blank template using Payload in a Next.js app.',
+  metadataBase: new URL(environmentConfig.NEXT_PUBLIC_APP_BASE_URL),
+  openGraph: {
+    title: 'Payload Blank Template',
+    description: 'A blank template using Payload in a Next.js app.',
+    type: 'website',
+    images: [
+      {
+        url: `${environmentConfig.NEXT_PUBLIC_APP_BASE_URL}/images/hero.png`,
+        width: 800,
+        height: 600,
+        alt: 'Payload Blank Template',
+      },
+    ],
+  },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

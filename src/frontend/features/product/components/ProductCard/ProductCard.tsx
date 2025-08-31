@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import Link from 'next/link'
@@ -5,6 +7,8 @@ import Link from 'next/link'
 import { RichText } from '@/frontend/components'
 import { Route } from '@/frontend/enums/route.enum'
 import { Product } from '@/payload-types'
+
+import useStyles from './ProductCard.style'
 
 interface ProductCardProps {
   name: string
@@ -15,16 +19,14 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ name, slug, description, price, imageUrl }: ProductCardProps) => {
+  const styles = useStyles()
+
   return (
-    <Card>
+    <Card variant="outlined">
       <CardActionArea component={Link} href={`${Route.PRODUCTS}/${slug}`}>
         <CardMedia
           component="img"
-          sx={{
-            width: '100%',
-            aspectRatio: '1 / 1',
-            objectFit: 'cover',
-          }}
+          sx={styles.image}
           image={imageUrl || '/images/placeholder.png'}
           alt={name}
         />

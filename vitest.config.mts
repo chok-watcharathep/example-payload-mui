@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -7,9 +7,23 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
-    include: ['src/utils/*.spec.ts', 'src/frontend/hooks/*.spec.ts'],
+    exclude: [...configDefaults.exclude, 'e2e/*', '**/*{.,-}{type}.?ts'],
     coverage: {
-      include: ['src/utils/*.ts', 'src/frontend/hooks/*.ts'],
+      include: [
+        // global
+        'src/utils/*.ts',
+        'src/transforms/*.ts',
+        // frontend
+        'src/frontend/hooks/*.ts',
+        'src/frontend/utils/*.ts',
+        'src/frontend/transforms/*.ts',
+        'src/frontend/features/**/services/*.ts',
+        'src/frontend/features/**/utils/*.ts',
+        'src/frontend/features/**/transforms/*.ts',
+        // payload
+        'src/payload/features/**/utils/*.ts',
+      ],
+      exclude: ['**/*.style.ts', '**/*.stories.ts', '**/*{.,-}{type}.?ts'],
     },
   },
 })

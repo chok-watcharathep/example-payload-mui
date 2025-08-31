@@ -9,6 +9,12 @@
   "home": {
     "goToAdminPanel": "Go to admin panel"
   },
+  "category": {
+    "metadata": {
+      "title": "Products in {name}",
+      "description": "Browse all {name} available on our store."
+    }
+  },
   "footer": {
     "copyright": "Copyright © The Website {year}."
   }
