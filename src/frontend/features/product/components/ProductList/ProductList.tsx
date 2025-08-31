@@ -32,8 +32,8 @@ const ProductList = ({ categoryId }: ProductListProps) => {
             key={product.id}
             size={{
               mobile: 12,
-              tablet: 6,
-              desktop: 4,
+              tablet: 4,
+              desktop: 3,
             }}
           >
             <ProductCard
