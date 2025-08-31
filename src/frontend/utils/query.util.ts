@@ -1,9 +1,19 @@
 import { DEFAUlT_PAGE, DEFAUlT_PAGE_SIZE } from '@/frontend/constants'
 import type { BaseSearchRequest } from '@/frontend/interfaces'
 
-export const getUrlQueryState = (searchParams: BaseSearchRequest) => {
-  const page = Number(searchParams.page?.toString() ?? DEFAUlT_PAGE)
-  const pageSize = Number(searchParams.limit?.toString() ?? DEFAUlT_PAGE_SIZE)
+interface GetUrlQueryStateOptions {
+  defaultPage?: string
+  defaultPageSize?: string
+}
+
+export const getUrlQueryState = (
+  searchParams: BaseSearchRequest,
+  options?: GetUrlQueryStateOptions,
+) => {
+  const page = Number(searchParams.page?.toString() ?? options?.defaultPage ?? DEFAUlT_PAGE)
+  const pageSize = Number(
+    searchParams.limit?.toString() ?? options?.defaultPageSize ?? DEFAUlT_PAGE_SIZE,
+  )
   const search = searchParams.search ?? ''
 
   return {

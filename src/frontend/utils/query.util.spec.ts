@@ -72,4 +72,45 @@ describe('getUrlQueryState', () => {
 
     expect(result.search).toBe('')
   })
+
+  it('should use options.defaultPage when page is missing', () => {
+    const params = {} as BaseSearchRequest
+    const result = getUrlQueryState(params, { defaultPage: '7' })
+
+    expect(result.page).toBe(7)
+    expect(result.pageSize).toBe(Number(DEFAUlT_PAGE_SIZE))
+  })
+
+  it('should use options.defaultPageSize when limit is missing', () => {
+    const params = {} as BaseSearchRequest
+    const result = getUrlQueryState(params, { defaultPageSize: '25' })
+
+    expect(result.page).toBe(Number(DEFAUlT_PAGE))
+    expect(result.pageSize).toBe(25)
+  })
+
+  it('should prefer params over options when both are provided', () => {
+    const params: BaseSearchRequest = {
+      page: 2,
+      limit: 15,
+    }
+    const result = getUrlQueryState(params, {
+      defaultPage: '8',
+      defaultPageSize: '99',
+    })
+
+    expect(result.page).toBe(2)
+    expect(result.pageSize).toBe(15)
+  })
+
+  it('should convert options.defaultPage and options.defaultPageSize to numbers', () => {
+    const params = {} as BaseSearchRequest
+    const result = getUrlQueryState(params, {
+      defaultPage: '12',
+      defaultPageSize: '30',
+    })
+
+    expect(result.page).toBe(12)
+    expect(result.pageSize).toBe(30)
+  })
 })

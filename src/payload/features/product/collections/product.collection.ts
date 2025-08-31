@@ -32,6 +32,7 @@ const Products: CollectionConfig = {
       name: 'slug',
       type: 'text',
       required: true,
+      unique: true,
     },
     {
       name: 'description',

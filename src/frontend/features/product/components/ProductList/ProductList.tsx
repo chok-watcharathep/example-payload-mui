@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid, Pagination, Stack, Typography } from '@mui/material'
 import { useTranslations } from 'next-intl'
 
 import ProductCard from '@/frontend/features/product/components/ProductCard'
@@ -13,7 +13,10 @@ interface ProductListProps {
 }
 
 const ProductList = ({ categoryId }: ProductListProps) => {
-  const urlQueryStateHook = useUrlQueryState()
+  const urlQueryStateHook = useUrlQueryState({
+    defaultPage: '1',
+    defaultLimit: '12',
+  })
   const tCommon = useTranslations('common')
 
   const getProductListHook = useGetProductList({
@@ -22,6 +25,11 @@ const ProductList = ({ categoryId }: ProductListProps) => {
     limit: urlQueryStateHook.pagination.limit,
   })
   const productList = getProductListHook.data?.docs ?? []
+  const totalPages = getProductListHook.data?.totalPages ?? 1
+
+  const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
+    urlQueryStateHook.pagination.onPageChange(newPage)
+  }
 
   return (
     <Box>
@@ -43,6 +51,19 @@ const ProductList = ({ categoryId }: ProductListProps) => {
           </Grid>
         ))}
       </Grid>
+      {totalPages > 1 && (
+        <Stack mt={2} alignItems="flex-end">
+          <Pagination
+            count={totalPages}
+            page={urlQueryStateHook.pagination.page}
+            onChange={handlePageChange}
+            color="primary"
+            showFirstButton
+            showLastButton
+            size="large"
+          />
+        </Stack>
+      )}
     </Box>
   )
 }

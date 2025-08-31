@@ -75,7 +75,10 @@ const CategoryPage = async ({
   const searchParams = await searchParamsPromise
   const queryClient = getQueryClient()
 
-  const urlQueryState = getUrlQueryState(searchParams)
+  const urlQueryState = getUrlQueryState(searchParams, {
+    defaultPage: '1',
+    defaultPageSize: '12',
+  })
   const request: GetProductListRequest = {
     categoryId: category.id,
     page: urlQueryState.page,
