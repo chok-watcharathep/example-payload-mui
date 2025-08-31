@@ -6,6 +6,7 @@ import {
   mockedAxiosError,
   mockErrorResponseData,
 } from '@/frontend/__mock__'
+import { GetProductListRequest } from '@/frontend/features/product/interfaces'
 import { getProductDetail, getProductList } from '@/frontend/features/product/services'
 
 import { mockProductDetail, mockProductList } from './__mock__'
@@ -28,21 +29,31 @@ describe('Product Service', () => {
     it('should get product list without categoryId', async () => {
       const mockData = getPaginatedDocsMock(mockProductList)
       mockAxiosInstance.get.mockResolvedValueOnce({ data: mockData })
+      const request: GetProductListRequest = {
+        page: 1,
+        limit: 10,
+      }
 
-      const result = await getProductList({ page: 1, limit: 10 })
+      const result = await getProductList(request)
 
-      expect(mockAxiosInstance.get).toHaveBeenCalledWith('/products', { params: {} })
+      expect(mockAxiosInstance.get).toHaveBeenCalledWith('/products', { params: request })
       expect(result).toEqual(mockData)
     })
 
     it('should get product list with categoryId', async () => {
       const mockData = getPaginatedDocsMock(mockProductList)
       mockAxiosInstance.get.mockResolvedValueOnce({ data: mockData })
+      const request: GetProductListRequest = {
+        page: 1,
+        limit: 10,
+        categoryId: 2,
+      }
 
-      const result = await getProductList({ page: 1, limit: 10, categoryId: 2 })
+      const result = await getProductList(request)
 
       expect(mockAxiosInstance.get).toHaveBeenCalledWith('/products', {
         params: {
+          ...request,
           where: {
             and: [{ category: { equals: 2 } }],
           },

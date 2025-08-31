@@ -25,9 +25,10 @@ export const getProductList = async (request: GetProductListRequest) => {
     const { data } = await axiosInstance.get<GetProductListResponse>('/products', {
       params: request.categoryId
         ? {
+            ...request,
             where,
           }
-        : {},
+        : request,
     })
     return data
   } catch (error) {
