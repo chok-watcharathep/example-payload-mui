@@ -29,7 +29,7 @@ describe('Product Service', () => {
       const mockData = getPaginatedDocsMock(mockProductList)
       mockAxiosInstance.get.mockResolvedValueOnce({ data: mockData })
 
-      const result = await getProductList({ page: 1, limit: 10, categoryId: 1 })
+      const result = await getProductList({ page: 1, limit: 10 })
 
       expect(mockAxiosInstance.get).toHaveBeenCalledWith('/products', { params: {} })
       expect(result).toEqual(mockData)
