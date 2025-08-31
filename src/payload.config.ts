@@ -17,7 +17,7 @@ import environmentConfig from './environment.config'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export default buildConfig({
+const config = buildConfig({
   admin: {
     theme: 'light',
     user: Users.slug,
@@ -63,3 +63,5 @@ export default buildConfig({
     defaultLocale: 'en',
   },
 })
+
+export default config

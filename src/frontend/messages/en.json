@@ -1,7 +1,10 @@
 {
   "common": {
     "home": "Home",
-    "logo": "LOGO"
+    "logo": "LOGO",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
   },
   "home": {
     "goToAdminPanel": "Go to admin panel"

@@ -10,8 +10,15 @@ const useStyles = () => {
     cursor: 'pointer',
   }
 
+  const navLinks: SxProps = {
+    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+  }
+
   return {
     logo,
+    navLinks,
   }
 }
 
