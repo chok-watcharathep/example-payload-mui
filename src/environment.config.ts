@@ -10,7 +10,7 @@ const environmentSchema = z.object({
 })
 
 const environmentConfig = (() => {
-  const env = process.env
+  const env = typeof window === 'undefined' ? process.env : window.__ENV
 
   return environmentSchema.safeParse(env).data || ({} as EnvironmentConfig)
 })()

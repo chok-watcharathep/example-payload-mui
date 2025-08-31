@@ -1,7 +1,6 @@
 import { Button, Container } from '@mui/material'
 import { getTranslations } from 'next-intl/server'
 
-import { ExampleLanguage } from '@/frontend/components'
 import config from '@/payload.config'
 
 import './styles.scss'
@@ -21,7 +20,6 @@ export default async function HomePage() {
       >
         {tHome('goToAdminPanel')}
       </Button>
-      <ExampleLanguage />
     </Container>
   )
 }

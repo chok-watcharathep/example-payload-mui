@@ -1,6 +1,7 @@
 import { isAxiosError } from 'axios'
+import type { Where } from 'payload'
 
-import {
+import type {
   GetProductListRequest,
   GetProductListResponse,
   GetProductDetailRequest,
@@ -9,9 +10,24 @@ import {
 import { axiosInstance } from '@/frontend/libs'
 
 export const getProductList = async (request: GetProductListRequest) => {
+  // TODO: Remove (where) when integrate with real API
+  const where: Where = {
+    and: [
+      {
+        category: {
+          equals: request.categoryId,
+        },
+      },
+    ],
+  }
+
   try {
     const { data } = await axiosInstance.get<GetProductListResponse>('/products', {
-      params: request,
+      params: request.categoryId
+        ? {
+            where,
+          }
+        : {},
     })
     return data
   } catch (error) {
@@ -25,9 +41,7 @@ export const getProductList = async (request: GetProductListRequest) => {
 
 export const getProductDetail = async (request: GetProductDetailRequest) => {
   try {
-    const { data } = await axiosInstance.get<GetProductDetailResponse>(
-      `/products/slugs/${request.slug}`,
-    )
+    const { data } = await axiosInstance.get<GetProductDetailResponse>(`/products/${request.slug}`)
     return data
   } catch (error) {
     if (isAxiosError(error)) {

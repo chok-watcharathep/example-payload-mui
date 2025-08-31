@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { exampleUtil } from './example.util'
+import { exampleUtil } from '@/utils'
 
 describe('exampleUtil', () => {
   it('should return the number times 2', () => {

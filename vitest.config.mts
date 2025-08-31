@@ -7,9 +7,9 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
-    include: ['src/utils/*.ts'],
+    include: ['src/utils/*.spec.ts', 'src/frontend/hooks/*.spec.ts'],
     coverage: {
-      include: ['src/utils/*.ts'],
+      include: ['src/utils/*.ts', 'src/frontend/hooks/*.ts'],
     },
   },
 })

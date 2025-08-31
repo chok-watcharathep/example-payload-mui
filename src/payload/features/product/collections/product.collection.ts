@@ -10,6 +10,9 @@ const Products: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'price', 'category'],
   },
+  access: {
+    read: () => true,
+  },
   versions: {
     drafts: {
       schedulePublish: true,

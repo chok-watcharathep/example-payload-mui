@@ -4,10 +4,11 @@ import { ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import { Noto_Sans_Thai } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
+import { getLocale } from 'next-intl/server'
 
-import { TheMainLayout } from '@/frontend/components'
-import { AppQueryClientProvider } from '@/frontend/libs'
+import { TheMainLayout, QueryClientProvider, RuntimeEnv } from '@/frontend/components'
 import theme from '@/frontend/theme'
+import { getPublicEnv } from '@/utils'
 
 import './styles.scss'
 
@@ -25,19 +26,24 @@ export const metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
+  const locale = await getLocale()
+  const publicEnv = getPublicEnv(process.env)
 
   return (
-    <html lang="en">
+    <html lang={locale}>
+      <head>
+        <RuntimeEnv env={publicEnv} />
+      </head>
       <body className={notoSansThai.className} suppressHydrationWarning>
         <main>
           <NextIntlClientProvider>
-            <AppQueryClientProvider>
+            <QueryClientProvider>
               <AppRouterCacheProvider options={{ enableCssLayer: true }}>
                 <ThemeProvider theme={theme}>
                   <TheMainLayout>{children}</TheMainLayout>
                 </ThemeProvider>
               </AppRouterCacheProvider>
-            </AppQueryClientProvider>
+            </QueryClientProvider>
           </NextIntlClientProvider>
         </main>
       </body>
