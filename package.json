@@ -15,7 +15,9 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
     "test:coverage": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts --coverage",
-    "type-check": "tsc --noEmit"
+    "type-check": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
+    "format": "cross-env NODE_OPTIONS=--no-deprecation prettier --write .",
+    "prepare": "cross-env NODE_OPTIONS=--no-deprecation husky"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -59,6 +61,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
+    "husky": "^9.1.7",
     "jsdom": "26.1.0",
     "playwright": "1.54.1",
     "playwright-core": "1.54.1",
