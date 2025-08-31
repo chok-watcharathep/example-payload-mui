@@ -19,9 +19,9 @@ const useUrlQueryState = ({
   const router = useRouter()
   const pathname = usePathname()
 
-  const page = parseInt(searchParams.get('page') ?? defaultPage)
-  const limit = parseInt(searchParams.get('limit') ?? defaultLimit)
-  const searchKeyword = searchParams.get('searchKeyword') ?? ''
+  const page = Number(searchParams.get('page') ?? defaultPage)
+  const limit = Number(searchParams.get('limit') ?? defaultLimit)
+  const search = searchParams.get('search') ?? ''
 
   const onPageChange = useCallback(
     (page: number) => {
@@ -46,11 +46,11 @@ const useUrlQueryState = ({
   )
 
   const onSearch = useCallback(
-    ({ searchBy, searchKeyword }: { searchBy: string; searchKeyword: string }) => {
+    ({ searchBy, search }: { searchBy: string; search: string }) => {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', '1') // Reset to first page
       params.set('searchBy', searchBy)
-      params.set('searchKeyword', searchKeyword ?? '')
+      params.set('search', search ?? '')
 
       router.push(`${pathname}?${params.toString()}`, { scroll: scrollToTop })
     },
@@ -89,7 +89,7 @@ const useUrlQueryState = ({
       onLimitChange,
     },
     search: {
-      searchKeyword,
+      search,
       onSearch,
     },
     filter: {

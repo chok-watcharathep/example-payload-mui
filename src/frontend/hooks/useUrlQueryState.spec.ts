@@ -27,19 +27,19 @@ describe('useUrlQueryState', () => {
 
     expect(result.current.pagination.page).toBe(1)
     expect(result.current.pagination.limit).toBe(20)
-    expect(result.current.search.searchKeyword).toBe('')
+    expect(result.current.search.search).toBe('')
   })
 
   it('should use provided searchParams values', () => {
     useSearchParamsMock.mockReturnValue(
-      new URLSearchParams({ page: '3', limit: '50', searchKeyword: 'hello' }),
+      new URLSearchParams({ page: '3', limit: '50', search: 'hello' }),
     )
 
     const { result } = renderHook(() => useUrlQueryState())
 
     expect(result.current.pagination.page).toBe(3)
     expect(result.current.pagination.limit).toBe(50)
-    expect(result.current.search.searchKeyword).toBe('hello')
+    expect(result.current.search.search).toBe('hello')
   })
 
   it('should call router.push onPageChange', () => {
@@ -66,10 +66,10 @@ describe('useUrlQueryState', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.search.onSearch({ searchBy: 'name', searchKeyword: 'john' })
+      result.current.search.onSearch({ searchBy: 'name', search: 'john' })
     })
 
-    expect(pushMock).toHaveBeenCalledWith('/test-path?page=1&searchBy=name&searchKeyword=john', {
+    expect(pushMock).toHaveBeenCalledWith('/test-path?page=1&searchBy=name&search=john', {
       scroll: true,
     })
   })

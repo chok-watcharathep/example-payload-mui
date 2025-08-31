@@ -9,6 +9,7 @@ import { GetProductListRequest } from '@/frontend/features/product/interfaces'
 import { getProductList } from '@/frontend/features/product/services'
 import { BaseSearchRequest } from '@/frontend/interfaces'
 import { getQueryClient } from '@/frontend/libs'
+import { getUrlQueryState } from '@/frontend/utils'
 import { findOneCategoryBySlug } from '@/payload/features/category/services'
 import config from '@/payload.config'
 
@@ -33,10 +34,11 @@ const CategoryPage = async ({
   const searchParams = await searchParamsPromise
   const queryClient = getQueryClient()
 
+  const urlQueryState = getUrlQueryState(searchParams)
   const request: GetProductListRequest = {
     categoryId: category.id,
-    page: searchParams.page,
-    limit: searchParams.limit,
+    page: urlQueryState.pagination.page,
+    limit: urlQueryState.pagination.pageSize,
   }
 
   await queryClient.prefetchQuery({

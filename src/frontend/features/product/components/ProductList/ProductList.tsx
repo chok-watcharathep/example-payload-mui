@@ -5,6 +5,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import ProductCard from '@/frontend/features/product/components/ProductCard'
 import { useGetProductList } from '@/frontend/features/product/hooks'
 import { useUrlQueryState } from '@/frontend/hooks'
+import { isMedia } from '@/utils'
 
 interface ProductListProps {
   categoryId?: number
@@ -33,7 +34,10 @@ const ProductList = ({ categoryId }: ProductListProps) => {
               desktop: 4,
             }}
           >
-            <ProductCard {...product} />
+            <ProductCard
+              {...product}
+              imageUrl={isMedia(product.image) ? (product.image.url ?? '') : undefined}
+            />
           </Grid>
         ))}
       </Grid>

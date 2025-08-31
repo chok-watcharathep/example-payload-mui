@@ -1,6 +1,7 @@
 'use client'
 
 import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { getQueryClient } from '@/frontend/libs'
 
@@ -11,7 +12,12 @@ const AppQueryClientProvider = ({ children }: { children: React.ReactNode }) => 
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient()
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
 }
 
 export default AppQueryClientProvider

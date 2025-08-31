@@ -16,23 +16,8 @@ interface ProductCardProps {
 
 const ProductCard = ({ name, slug, description, price, imageUrl }: ProductCardProps) => {
   return (
-    <Card
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        boxShadow: 3,
-        transition: 'transform 0.2s',
-        '&:hover': {
-          transform: 'scale(1.02)',
-        },
-      }}
-    >
-      <CardActionArea
-        component={Link}
-        href={`${Route.PRODUCTS}/${slug}`}
-        sx={{ display: 'flex', flexDirection: 'column' }}
-      >
+    <Card>
+      <CardActionArea component={Link} href={`${Route.PRODUCTS}/${slug}`}>
         <CardMedia
           component="img"
           sx={{
@@ -43,24 +28,15 @@ const ProductCard = ({ name, slug, description, price, imageUrl }: ProductCardPr
           image={imageUrl || '/images/placeholder.png'}
           alt={name}
         />
-        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%' }}>
-          <CardContent sx={{ flexGrow: 1 }}>
+        <Box width="100%">
+          <CardContent>
             <Typography gutterBottom variant="h5">
               {name}
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+            <Typography variant="body1" color="text.secondary">
               ${price.toFixed(2)}
             </Typography>
-            {description && (
-              <Box
-                sx={{
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                <RichText data={description as SerializedEditorState} />
-              </Box>
-            )}
+            {description && <RichText data={description as SerializedEditorState} />}
           </CardContent>
         </Box>
       </CardActionArea>
