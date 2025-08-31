@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Grid, Pagination, Stack, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, Pagination, Stack, Typography } from '@mui/material'
 import { useTranslations } from 'next-intl'
 
 import ProductCard from '@/frontend/features/product/components/ProductCard'
@@ -26,6 +26,7 @@ const ProductList = ({ categoryId }: ProductListProps) => {
   })
   const productList = getProductListHook.data?.docs ?? []
   const totalPages = getProductListHook.data?.totalPages ?? 1
+  const isLoading = getProductListHook.isLoading
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     urlQueryStateHook.pagination.onPageChange(newPage)
@@ -35,6 +36,7 @@ const ProductList = ({ categoryId }: ProductListProps) => {
     <Box>
       <Typography variant="h1">{tCommon('products')}</Typography>
       <Grid container spacing={2}>
+        {isLoading && <CircularProgress />}
         {productList.map((product) => (
           <Grid
             key={product.id}

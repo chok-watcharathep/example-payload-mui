@@ -7,9 +7,6 @@ const axiosInstance = axios.create({
   adapter: 'fetch',
   fetchOptions: {
     cache: 'no-store',
-    next: {
-      revalidate: 60,
-    },
   },
 })
 
