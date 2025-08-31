@@ -15,6 +15,7 @@ const eslintConfig = [
       '**/coverage/**',
       '**/src/migrations/**',
       '**/src/app/(payload)/admin/importMap.js',
+      '**/src/payload-types.ts',
     ],
     languageOptions: {
       ecmaVersion: 2022,

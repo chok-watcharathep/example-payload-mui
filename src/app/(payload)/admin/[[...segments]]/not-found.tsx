@@ -7,7 +7,6 @@ import config from '@payload-config'
 
 import { importMap } from '../importMap'
 
-
 type Args = {
   params: Promise<{
     segments: string[]

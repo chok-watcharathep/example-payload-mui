@@ -1,0 +1,18 @@
+# Ignore files managed by package manager
+pnpm-lock.yaml
+
+# Ignore build and output directories
+/build
+/dist
+/.next
+/out
+
+# Ignore specific file types
+*.png
+*.jpg
+*.jpeg
+
+# Ignore payload generated files
+/src/migrations
+/src/app/(payload)/admin/importMap.js
+/src/payload-types.ts
