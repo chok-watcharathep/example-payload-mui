@@ -3,11 +3,11 @@
 import { useTranslations } from 'next-intl'
 
 const ExampleLanguage = () => {
-  const t = useTranslations('home')
+  const tHome = useTranslations('home')
 
   return (
     <div>
-      <h1>{t('goToAdminPanel')}</h1>
+      <h1>{tHome('goToAdminPanel')}</h1>
     </div>
   )
 }

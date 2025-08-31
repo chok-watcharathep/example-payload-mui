@@ -50,6 +50,40 @@ const theme = createTheme({
         fontSize: 20,
       },
     },
+    // *Note: h4, h5, h6 are not included in our design system
+    h4: {
+      lineHeight: 1.5,
+      fontWeight: 600,
+
+      [baseTheme.breakpoints.up('mobile')]: {
+        fontSize: 16,
+      },
+      [baseTheme.breakpoints.up('tablet')]: {
+        fontSize: 18,
+      },
+    },
+    h5: {
+      lineHeight: 1.5,
+      fontWeight: 600,
+
+      [baseTheme.breakpoints.up('mobile')]: {
+        fontSize: 14,
+      },
+      [baseTheme.breakpoints.up('tablet')]: {
+        fontSize: 16,
+      },
+    },
+    h6: {
+      lineHeight: 1.5,
+      fontWeight: 600,
+
+      [baseTheme.breakpoints.up('mobile')]: {
+        fontSize: 12,
+      },
+      [baseTheme.breakpoints.up('tablet')]: {
+        fontSize: 14,
+      },
+    },
     subtitle1: {
       lineHeight: 1.5,
       fontWeight: 400,
@@ -84,6 +118,7 @@ const theme = createTheme({
       lineHeight: 1.5,
       fontWeight: 600,
       fontSize: 16,
+      textTransform: 'none',
     },
   },
   breakpoints: baseTheme.breakpoints,

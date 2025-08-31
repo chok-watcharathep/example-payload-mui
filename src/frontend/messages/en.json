@@ -1,14 +1,12 @@
 {
   "common": {
     "home": "Home",
-    "about": "About",
-    "aboutUs": "About Us",
-    "contact": "Contact",
-    "contactUs": "Contact Us",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "logo": "LOGO"
   },
   "home": {
     "goToAdminPanel": "Go to admin panel"
+  },
+  "footer": {
+    "copyright": "Copyright © The Website {year}."
   }
 }

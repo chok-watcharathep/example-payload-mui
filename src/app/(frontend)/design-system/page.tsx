@@ -25,7 +25,9 @@ const DesignSystemPage = () => {
           <Typography variant="body1">Body 1</Typography>
           <Typography variant="body2">Body 2</Typography>
           <Typography variant="button">Button</Typography>
+          <br />
           <Typography variant="caption">Caption</Typography>
+          <br />
           <Typography variant="overline">Overline</Typography>
         </Grid>
 

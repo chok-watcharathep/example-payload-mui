@@ -12,6 +12,7 @@ import { Media } from './payload/features/media/collections'
 import { Products } from './payload/features/product/collections'
 
 import { Categories } from './payload/features/category/collections'
+import environmentConfig from './environment.config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,13 +35,13 @@ export default buildConfig({
   },
   collections: [Users, Media, Products, Categories],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: environmentConfig.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: environmentConfig.DATABASE_URI || '',
     },
   }),
   sharp,

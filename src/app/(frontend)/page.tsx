@@ -8,7 +8,7 @@ import './styles.scss'
 
 export default async function HomePage() {
   const payloadConfig = await config
-  const t = await getTranslations('home')
+  const tHome = await getTranslations('home')
 
   return (
     <Container>
@@ -19,7 +19,7 @@ export default async function HomePage() {
         rel="noopener noreferrer"
         target="_blank"
       >
-        {t('goToAdminPanel')}
+        {tHome('goToAdminPanel')}
       </Button>
       <ExampleLanguage />
     </Container>
