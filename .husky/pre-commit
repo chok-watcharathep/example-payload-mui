@@ -3,7 +3,7 @@ pnpm run type-check
 
 # Run linting
 
-pnpm run lint --fix
+pnpm run lint
 
 # Run code formatting
 
