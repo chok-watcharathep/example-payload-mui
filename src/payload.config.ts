@@ -15,6 +15,7 @@ import { Products } from './payload/features/product/collections'
 
 import { Categories } from './payload/features/category/collections'
 import environmentConfig from './environment.config'
+import { Configs } from './payload/features/master-data/collections'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -41,7 +42,7 @@ const config = buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Products, Categories],
+  collections: [Users, Media, Products, Categories, Configs],
   editor: lexicalEditor(),
   secret: environmentConfig.PAYLOAD_SECRET || '',
   typescript: {

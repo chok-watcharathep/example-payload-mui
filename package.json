@@ -20,7 +20,8 @@
     "prepare": "cross-env NODE_OPTIONS=--no-deprecation husky",
     "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
     "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
-    "migrate:down": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:down"
+    "migrate:down": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:down",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed/index.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -36,7 +37,7 @@
     "@payloadcms/storage-vercel-blob": "3.53.0",
     "@payloadcms/translations": "3.53.0",
     "@payloadcms/ui": "3.53.0",
-    "@tanstack/react-query": "^5.85.5",
+    "@tanstack/react-query": "^5.85.6",
     "axios": "^1.11.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
@@ -72,9 +73,11 @@
     "playwright": "1.54.1",
     "playwright-core": "1.54.1",
     "prettier": "^3.4.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.5",
     "typescript": "5.7.3",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.2.3"
+    "vitest": "3.2.4"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0",
