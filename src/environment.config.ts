@@ -7,6 +7,7 @@ const environmentSchema = z.object({
   // private
   DATABASE_URI: z.string().optional().readonly(),
   PAYLOAD_SECRET: z.string().optional().readonly(),
+  BLOB_READ_WRITE_TOKEN: z.string().optional().readonly(),
 })
 
 const environmentConfig = (() => {
