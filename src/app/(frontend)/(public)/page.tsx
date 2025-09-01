@@ -3,8 +3,6 @@ import { getTranslations } from 'next-intl/server'
 
 import config from '@/payload.config'
 
-import './styles.scss'
-
 export default async function HomePage() {
   const payloadConfig = await config
   const tHome = await getTranslations('home')
