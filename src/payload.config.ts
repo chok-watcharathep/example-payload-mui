@@ -35,13 +35,13 @@ const config = buildConfig({
   },
   collections: [Users, Media, Products, Categories],
   editor: lexicalEditor(),
-  secret: environmentConfig.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: environmentConfig.DATABASE_URI || '',
+      connectionString: process.env.DATABASE_URI || '',
     },
   }),
   sharp,
