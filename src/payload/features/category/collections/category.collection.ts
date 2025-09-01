@@ -20,6 +20,7 @@ const Categories: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
+      maxLength: 100,
     },
     {
       name: 'slug',
@@ -27,6 +28,7 @@ const Categories: CollectionConfig = {
       unique: true,
       required: true,
       localized: true,
+      maxLength: 100,
     },
     {
       name: 'image',
