@@ -5,8 +5,14 @@ import { findOneCategoryById, findOneCategoryBySlug } from '@/shared/features/ca
 const Categories: CollectionConfig = {
   slug: 'categories',
   labels: {
-    singular: 'Category',
-    plural: 'Categories',
+    singular: {
+      th: 'หมวดหมู่',
+      en: 'Category',
+    },
+    plural: {
+      th: 'หมวดหมู่',
+      en: 'Categories',
+    },
   },
   admin: {
     useAsTitle: 'name',

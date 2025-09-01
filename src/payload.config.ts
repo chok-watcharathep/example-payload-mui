@@ -3,6 +3,7 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { seoPlugin } from '@payloadcms/plugin-seo'
+import { th } from '@payloadcms/translations/languages/th'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -32,6 +33,12 @@ const config = buildConfig({
           exportName: 'LogoutButton',
         },
       },
+      providers: [
+        {
+          path: '@/payload/components',
+          exportName: 'FontProvider',
+        },
+      ],
     },
   },
   collections: [Users, Media, Products, Categories],
@@ -77,6 +84,11 @@ const config = buildConfig({
       },
     ],
     defaultLocale: 'en',
+  },
+  i18n: {
+    supportedLanguages: {
+      th,
+    },
   },
 })
 

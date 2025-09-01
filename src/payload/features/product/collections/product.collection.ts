@@ -3,8 +3,14 @@ import type { CollectionConfig } from 'payload'
 const Products: CollectionConfig = {
   slug: 'products',
   labels: {
-    singular: 'Product',
-    plural: 'Products',
+    singular: {
+      th: 'สินค้า',
+      en: 'Product',
+    },
+    plural: {
+      th: 'สินค้า',
+      en: 'Products',
+    },
   },
   admin: {
     useAsTitle: 'name',

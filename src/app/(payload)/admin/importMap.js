@@ -28,6 +28,7 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { LogoutButton as LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
+import { FontProvider as FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 export const importMap = {
@@ -61,5 +62,6 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/payload/components#LogoutButton": LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1,
+  "@/payload/components#FontProvider": FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

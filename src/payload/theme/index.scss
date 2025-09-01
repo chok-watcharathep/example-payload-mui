@@ -2,6 +2,9 @@
 
 @layer payload-default {
   :root {
+    --font-body: 'Noto Sans Thai', 'Noto Sans Thai Fallback', sans-serif;
+    --font-serif: 'Noto Sans Thai', 'Noto Sans Thai Fallback', sans-serif;
+
     --color-base-0: #f7f9fb;
     --color-base-50: #f3f6fa;
     --color-base-100: #e7f0f7;
