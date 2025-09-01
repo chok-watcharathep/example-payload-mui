@@ -17,7 +17,10 @@
     "test:coverage": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts --coverage",
     "type-check": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
     "format": "cross-env NODE_OPTIONS=--no-deprecation prettier --write .",
-    "prepare": "cross-env NODE_OPTIONS=--no-deprecation husky"
+    "prepare": "cross-env NODE_OPTIONS=--no-deprecation husky",
+    "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
+    "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
+    "migrate:down": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:down"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

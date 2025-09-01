@@ -7,6 +7,7 @@ export const mockCategoryList: Category[] = [
     slug: 'category-1',
     updatedAt: '2025-08-30T07:50:48.076Z',
     createdAt: '2025-08-29T07:44:52.071Z',
+    image: 1,
   },
   {
     id: 2,
@@ -14,5 +15,6 @@ export const mockCategoryList: Category[] = [
     slug: 'category-2',
     updatedAt: '2025-08-30T07:50:48.076Z',
     createdAt: '2025-08-29T07:44:52.071Z',
+    image: 2,
   },
 ]

@@ -19,17 +19,20 @@ const Categories: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
       type: 'text',
       unique: true,
       required: true,
+      localized: true,
     },
     {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+      required: true,
     },
   ],
   endpoints: [
