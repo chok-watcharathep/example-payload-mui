@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import ProductCard from '@/frontend/features/product/components/ProductCard'
 import { useGetProductList } from '@/frontend/features/product/hooks'
 import { useUrlQueryState } from '@/frontend/hooks'
-import { isMedia } from '@/utils'
+import { isMedia } from '@/shared/utils'
 
 interface ProductListProps {
   categoryId?: number

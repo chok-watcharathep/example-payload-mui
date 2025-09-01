@@ -10,7 +10,7 @@ import { getLocale } from 'next-intl/server'
 import environmentConfig from '@/environment.config'
 import { TheMainLayout, QueryClientProvider, RuntimeEnv } from '@/frontend/components'
 import theme from '@/frontend/theme'
-import { getPublicEnv } from '@/utils'
+import { getPublicEnv } from '@/shared/utils'
 
 import './styles.scss'
 

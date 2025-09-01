@@ -11,8 +11,8 @@ export default defineConfig({
     coverage: {
       include: [
         // global
-        'src/utils/*.ts',
-        'src/transforms/*.ts',
+        'src/shared/utils/*.ts',
+        'src/shared/transforms/*.ts',
         // frontend
         'src/frontend/hooks/*.ts',
         'src/frontend/utils/*.ts',

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { findOneCategoryById, findOneCategoryBySlug } from '@/payload/features/category/services'
+import { findOneCategoryById, findOneCategoryBySlug } from '@/shared/features/category/services'
 
 const Categories: CollectionConfig = {
   slug: 'categories',

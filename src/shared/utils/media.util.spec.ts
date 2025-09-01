@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import type { Media } from '@/payload-types'
-import { isMedia } from '@/utils'
+import { isMedia } from '@/shared/utils'
 
 describe('isMedia', () => {
   it('should return true when image is a Media object with url', () => {

@@ -21,6 +21,7 @@ const theme = createTheme({
       lineHeight: 1.5,
       fontWeight: 600,
 
+      // Try to use mobile first
       [baseTheme.breakpoints.up('mobile')]: {
         fontSize: 28,
       },

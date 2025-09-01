@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 
 import type { EnvironmentConfig } from '@/environment.config'
-import { getPublicEnv } from '@/utils'
+import { getPublicEnv } from '@/shared/utils'
 
 describe('getPublicEnv', () => {
   it('should return only keys starting with NEXT_PUBLIC_', () => {

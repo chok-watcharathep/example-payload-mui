@@ -14,9 +14,9 @@ import { getProductList } from '@/frontend/features/product/services'
 import type { BaseSearchRequest } from '@/frontend/interfaces'
 import { getQueryClient } from '@/frontend/libs'
 import { getUrlQueryState } from '@/frontend/utils'
-import { findOneCategoryBySlug } from '@/payload/features/category/services'
 import config from '@/payload.config'
-import { isMedia } from '@/utils'
+import { findOneCategoryBySlug } from '@/shared/features/category/services'
+import { isMedia } from '@/shared/utils'
 
 interface CategoryPageProps {
   params: Promise<{ categorySlug: string }>
