@@ -1,7 +1,8 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import type { UseQueryOptions } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { ProductQueryKey } from '@/frontend/enums'
-import {
+import type {
   GetProductListRequest,
   GetProductListResponse,
 } from '@/frontend/features/product/interfaces'

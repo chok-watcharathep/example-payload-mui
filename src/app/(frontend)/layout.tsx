@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Noto_Sans_Thai } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'

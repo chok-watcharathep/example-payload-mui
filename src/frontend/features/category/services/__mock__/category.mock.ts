@@ -1,4 +1,4 @@
-import { Category } from '@/payload-types'
+import type { Category } from '@/payload-types'
 
 export const mockCategoryList: Category[] = [
   {

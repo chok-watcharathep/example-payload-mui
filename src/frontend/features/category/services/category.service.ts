@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios'
 
-import {
+import type {
   GetCategoryListRequest,
   GetCategoryListResponse,
 } from '@/frontend/features/category/interfaces'

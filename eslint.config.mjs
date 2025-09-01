@@ -44,6 +44,7 @@ const eslintConfig = [
       'no-console': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/consistent-type-imports': 'error',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'jsx-a11y/anchor-is-valid': 'off',

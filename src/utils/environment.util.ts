@@ -1,4 +1,4 @@
-import { EnvironmentConfig } from '@/environment.config'
+import type { EnvironmentConfig } from '@/environment.config'
 
 export const getPublicEnv = (env: EnvironmentConfig) => {
   const runtimeEnv = Object.keys(env)

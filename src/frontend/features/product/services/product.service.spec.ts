@@ -6,7 +6,7 @@ import {
   mockedAxiosError,
   mockErrorResponseData,
 } from '@/frontend/__mock__'
-import { GetProductListRequest } from '@/frontend/features/product/interfaces'
+import type { GetProductListRequest } from '@/frontend/features/product/interfaces'
 import { getProductDetail, getProductList } from '@/frontend/features/product/services'
 
 import { mockProductDetail, mockProductList } from './__mock__'

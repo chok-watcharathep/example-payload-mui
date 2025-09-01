@@ -1,4 +1,4 @@
-import { EnvironmentConfig } from '@/environment.config'
+import type { EnvironmentConfig } from '@/environment.config'
 
 declare global {
   interface Window {

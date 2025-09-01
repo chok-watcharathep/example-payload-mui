@@ -6,7 +6,7 @@ import {
   mockErrorResponseData,
   getPaginatedDocsMock,
 } from '@/frontend/__mock__'
-import { GetCategoryListRequest } from '@/frontend/features/category/interfaces'
+import type { GetCategoryListRequest } from '@/frontend/features/category/interfaces'
 import { getCategoryList } from '@/frontend/features/category/services'
 
 import { mockCategoryList } from './__mock__'

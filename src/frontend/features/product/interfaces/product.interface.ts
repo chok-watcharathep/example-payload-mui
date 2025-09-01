@@ -1,7 +1,7 @@
 import type { PaginatedDocs } from 'payload'
 
-import { BaseSearchRequest } from '@/frontend/interfaces'
-import { Product } from '@/payload-types'
+import type { BaseSearchRequest } from '@/frontend/interfaces'
+import type { Product } from '@/payload-types'
 
 export interface GetProductListRequest extends BaseSearchRequest {
   categoryId?: number
