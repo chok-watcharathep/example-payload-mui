@@ -1,11 +1,3 @@
-# Payload Blank Template
-
-This template comes configured with the bare minimum to get started on anything you need.
-
-## Quick start
-
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
-
 ## Quick Start - local setup
 
 To spin up this template locally, you'll need to follow these steps. This guide assumes you're using `pnpm run dev` for the application and Docker for your PostgreSQL database.
@@ -17,7 +9,7 @@ After you click the `Deploy` button above, you'll want to have a standalone copy
 ### Development
 
 1.  First [clone the repo](#clone) if you have not done so already
-2.  `cd my-project`
+2.  `cd mhesi-credit-port-portal`
 3.  `cp .env.example .env` to copy the example environment variables.
 4.  Update the `DATABASE_URI` in your new `.env` file to connect to the PostgreSQL database running in Docker. The URI should look something like this:
     ```
