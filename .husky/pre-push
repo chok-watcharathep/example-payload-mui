@@ -10,9 +10,9 @@ BRANCH_NAME=$(git symbolic-ref --short HEAD)
 pnpm run test
 
 
-# TODO: Remove temporary branch main 
-# Allow branch main for temporary
-if [[ ! $BRANCH_NAME =~ $BRANCH_REGEX && $BRANCH_NAME != "main" ]]; then
+# TODO: Remove temporary branch main, dev
+# Allow branch main, dev for temporary
+if [[ ! $BRANCH_NAME =~ $BRANCH_REGEX && $BRANCH_NAME != "main" && $BRANCH_NAME != "dev" ]]; then
     echo "Error: Branch name '$BRANCH_NAME' does not follow the naming convention."
     echo "Please use one of the following prefixes: feature/, bugfix/, hotfix/, release/, dev/, setup/, base/, refactor/, story/"
     exit 1
