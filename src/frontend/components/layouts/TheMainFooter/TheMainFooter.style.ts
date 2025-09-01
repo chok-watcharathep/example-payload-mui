@@ -1,10 +1,12 @@
-import type { SxProps } from '@mui/material'
+import { useTheme, type SxProps } from '@mui/material'
 
 const useStyles = () => {
+  const theme = useTheme()
+
   const container: SxProps = {
     py: 2,
     mt: 'auto',
-    backgroundColor: 'grey.200',
+    borderTop: `1px solid ${theme.palette.grey[200]}`,
   }
 
   return {

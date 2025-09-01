@@ -66,7 +66,7 @@ const CategoryPage = async ({
   const params = await paramsPromise
   const payload = await getPayload({ config })
 
-  const category = await findOneCategoryBySlug(payload, params.categorySlug)
+  const category = await findOneCategoryBySlug(payload, decodeURIComponent(params.categorySlug))
 
   if (!category) {
     notFound()

@@ -1,24 +1,45 @@
 import type { SxProps } from '@mui/material'
+import { useTheme } from '@mui/material'
 
 const useStyles = () => {
+  const theme = useTheme()
+
   const logo: SxProps = {
-    mr: 2,
     fontWeight: 700,
-    letterSpacing: '.3rem',
     color: 'inherit',
     textDecoration: 'none',
     cursor: 'pointer',
   }
 
   const navLinks: SxProps = {
-    flexGrow: 1,
     display: 'flex',
-    justifyContent: 'flex-end',
+    gap: 1.5,
+    ml: 'auto',
+  }
+
+  const navLink = (isActive: boolean): SxProps => {
+    return {
+      fontWeight: 400,
+      color: 'text.primary',
+      textAlign: 'center',
+      borderRadius: 1.5,
+      justifyContent: 'center',
+      padding: theme.spacing(1, 1.5),
+
+      ...(isActive
+        ? {
+            fontWeight: 600,
+            color: 'primary.main',
+            backgroundColor: `${theme.palette.primary.light} !important`,
+          }
+        : {}),
+    }
   }
 
   return {
     logo,
     navLinks,
+    navLink,
   }
 }
 

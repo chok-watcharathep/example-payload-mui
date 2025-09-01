@@ -31,7 +31,9 @@ const baseTheme = createTheme({
       700: '#26587e',
       800: '#234b69',
       900: '#214059',
-      main: '#529bc9',
+      main: '#2D6D9C',
+      light: '#e7f0f7',
+      dark: '#214059',
     },
     secondary: {
       100: '#EDE5D8',
