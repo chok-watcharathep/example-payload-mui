@@ -21,6 +21,16 @@ After you click the `Deploy` button above, you'll want to have a standalone copy
 
 That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
 
+### Database Migrations
+
+When you make changes to a collection (e.g., adding a new field or a new collection), you must generate a new database migration file to apply those changes to your database. This is a crucial step for both local development and deployment.
+
+- To **generate** a new migration, run `pnpm migrate:create <migration-name>`.
+  - Replace `<migration-name>` with a descriptive name for your change (e.g., `add-products-collection` or `update-user-fields`).
+  - This command will create a new migration file in the `src/migrations` folder.
+- The new migration is automatically applied in **development mode**.
+- For **deployment**, you must run `pnpm migrate` to apply all pending migrations.
+
 ### How it works
 
 This setup uses `pnpm` for the application and `Docker` to manage the database. This approach helps standardize the development environment
