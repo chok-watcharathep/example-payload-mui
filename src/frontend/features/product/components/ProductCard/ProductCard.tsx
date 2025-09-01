@@ -5,7 +5,7 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 import Link from 'next/link'
 
 import { RichText } from '@/frontend/components'
-import { Route } from '@/frontend/enums/route.enum'
+import { Route } from '@/frontend/enums'
 import type { Product } from '@/payload-types'
 
 import useStyles from './ProductCard.style'
