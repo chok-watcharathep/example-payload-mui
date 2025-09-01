@@ -2,7 +2,6 @@ import { Container, Typography } from '@mui/material'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
 import { getPayload } from 'payload'
 
 import environmentConfig from '@/environment.config'
@@ -30,27 +29,25 @@ export async function generateMetadata({
   const payload = await getPayload({ config })
 
   const category = await findOneCategoryBySlug(payload, params.categorySlug)
-  const tCategory = await getTranslations('category')
 
   if (!category) {
     return { title: 'Category Not Found' }
   }
 
-  // TODO: Confirm with the team will use meta title and description from payload or not
   return {
-    title: tCategory('metadata.title', { name: category.name }),
-    description: tCategory('metadata.description', { name: category.name }),
+    title: category.meta?.title || category.name,
+    description: category.meta?.description || category.name,
     openGraph: {
-      title: tCategory('metadata.title', { name: category.name }),
-      description: tCategory('metadata.description', { name: category.name }),
+      title: category.meta?.title || category.name,
+      description: category.meta?.description || category.name,
       type: 'website',
       url: `${environmentConfig.NEXT_PUBLIC_APP_BASE_URL}/${Route.CATEGORIES}/${category.slug}`,
-      images: isMedia(category.image)
+      images: isMedia(category.meta?.image)
         ? [
             {
-              url: category.image.url || '',
-              width: category.image.width || 800,
-              height: category.image.height || 600,
+              url: category.meta?.image.url || '',
+              width: category.meta?.image.width || 800,
+              height: category.meta?.image.height || 600,
               alt: category.name,
             },
           ]

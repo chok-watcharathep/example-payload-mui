@@ -59,9 +59,9 @@ const config = buildConfig({
       collections: ['categories', 'products'],
       uploadsCollection: 'media',
       // TODO: Change generateTitle and generateDescription when we have real data
-      generateTitle: ({ doc }) => `Website.com — ${doc.name} | The Ultimate Collection`,
+      generateTitle: ({ doc }) => `Credit Port — ${doc.name} | The Ultimate Collection`,
       generateDescription: ({ doc }) =>
-        `Discover our expertly curated collection of ${doc.name}. Find your next favorite item and elevate your style with our premium quality and unique designs.`,
+        `Discover our expertly curated collection of ${doc.name}. Find your next favorite item and elevate your style with our premium quality and unique.`,
       generateImage: ({ doc }) => doc.image,
     }),
   ],
