@@ -1,5 +1,5 @@
-import { PUBLIC_ENV_KEY } from '@/constants'
 import type { EnvironmentConfig } from '@/environment.config'
+import { PUBLIC_ENV_KEY } from '@/shared/constants'
 
 interface RuntimeEnvProps {
   env: EnvironmentConfig
