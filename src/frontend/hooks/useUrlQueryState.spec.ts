@@ -42,31 +42,31 @@ describe('useUrlQueryState', () => {
     expect(result.current.search.search).toBe('hello')
   })
 
-  it('should call router.push onPageChange', () => {
+  it('should call router.push handlePageChange', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.pagination.onPageChange(5)
+      result.current.pagination.handlePageChange(5)
     })
 
     expect(pushMock).toHaveBeenCalledWith('/test-path?page=5&limit=20', { scroll: true })
   })
 
-  it('should reset page and call router.push onLimitChange', () => {
+  it('should reset page and call router.push handleLimitChange', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.pagination.onLimitChange(100)
+      result.current.pagination.handleLimitChange(100)
     })
 
     expect(pushMock).toHaveBeenCalledWith('/test-path?page=1&limit=100', { scroll: true })
   })
 
-  it('should reset page and call router.push onSearch', () => {
+  it('should reset page and call router.push handleSearch', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.search.onSearch({ searchBy: 'name', search: 'john' })
+      result.current.search.handleSearch({ searchBy: 'name', search: 'john' })
     })
 
     expect(pushMock).toHaveBeenCalledWith('/test-path?page=1&searchBy=name&search=john', {
@@ -78,7 +78,7 @@ describe('useUrlQueryState', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.filter.onApplyFilter({ category: 'books', price: '10' })
+      result.current.filter.handleApplyFilter({ category: 'books', price: '10' })
     })
 
     expect(pushMock).toHaveBeenCalledWith('/test-path?page=1&category=books&price=10', {
@@ -93,7 +93,7 @@ describe('useUrlQueryState', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.filter.onApplyFilter({ category: '' }) // category cleared
+      result.current.filter.handleApplyFilter({ category: '' }) // category cleared
     })
 
     // Expect "category" removed, but "price" stays
@@ -104,7 +104,7 @@ describe('useUrlQueryState', () => {
     const { result } = renderHook(() => useUrlQueryState())
 
     act(() => {
-      result.current.filter.onClearFilter()
+      result.current.filter.handleClearFilter()
     })
 
     expect(pushMock).toHaveBeenCalledWith('/test-path', { scroll: true })

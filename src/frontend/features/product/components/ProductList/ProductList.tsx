@@ -29,7 +29,7 @@ const ProductList = ({ categoryId }: ProductListProps) => {
   const isLoading = getProductListHook.isLoading
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
-    urlQueryStateHook.pagination.onPageChange(newPage)
+    urlQueryStateHook.pagination.handlePageChange(newPage)
   }
 
   return (

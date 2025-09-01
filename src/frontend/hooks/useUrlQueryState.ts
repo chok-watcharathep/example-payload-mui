@@ -23,7 +23,7 @@ const useUrlQueryState = ({
   const limit = Number(searchParams.get('limit') ?? defaultLimit)
   const search = searchParams.get('search') ?? ''
 
-  const onPageChange = useCallback(
+  const handlePageChange = useCallback(
     (page: number) => {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', page.toString())
@@ -34,7 +34,7 @@ const useUrlQueryState = ({
     [searchParams, router],
   )
 
-  const onLimitChange = useCallback(
+  const handleLimitChange = useCallback(
     (limit: number) => {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', '1') // Reset to first page
@@ -45,7 +45,7 @@ const useUrlQueryState = ({
     [searchParams, router],
   )
 
-  const onSearch = useCallback(
+  const handleSearch = useCallback(
     ({ searchBy, search }: { searchBy: string; search: string }) => {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', '1') // Reset to first page
@@ -57,7 +57,7 @@ const useUrlQueryState = ({
     [searchParams, router],
   )
 
-  const onApplyFilter = useCallback(
+  const handleApplyFilter = useCallback(
     (fieldValues: Record<string, string>) => {
       const params = new URLSearchParams(searchParams.toString())
       params.set('page', '1') // Reset to first page
@@ -77,7 +77,7 @@ const useUrlQueryState = ({
     [searchParams, router],
   )
 
-  const onClearFilter = useCallback(() => {
+  const handleClearFilter = useCallback(() => {
     router.push(pathname, { scroll: scrollToTop })
   }, [pathname, router])
 
@@ -85,16 +85,16 @@ const useUrlQueryState = ({
     pagination: {
       page,
       limit,
-      onPageChange,
-      onLimitChange,
+      handlePageChange,
+      handleLimitChange,
     },
     search: {
       search,
-      onSearch,
+      handleSearch,
     },
     filter: {
-      onApplyFilter,
-      onClearFilter,
+      handleApplyFilter,
+      handleClearFilter,
     },
   }
 }
