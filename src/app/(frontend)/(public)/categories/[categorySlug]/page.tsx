@@ -31,7 +31,8 @@ export async function generateMetadata({
   const category = await findOneCategoryBySlug(payload, params.categorySlug)
 
   if (!category) {
-    return { title: 'Category Not Found' }
+    // use default metadata
+    return {}
   }
 
   return {

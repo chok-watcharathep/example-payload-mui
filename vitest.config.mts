@@ -22,6 +22,8 @@ export default defineConfig({
         'src/frontend/features/**/transforms/*.ts',
         // payload
         'src/payload/features/**/utils/*.ts',
+        // add test collection
+        'src/payload/features/**/collections/*.ts',
       ],
       exclude: ['**/*.style.ts', '**/*.stories.ts', '**/*{.,-}{type}.?ts'],
     },
