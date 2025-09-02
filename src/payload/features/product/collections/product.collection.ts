@@ -14,7 +14,6 @@ const Products: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'price', 'category'],
   },
   access: {
     read: () => true,
@@ -59,15 +58,36 @@ const Products: CollectionConfig = {
       },
     },
     {
-      name: 'category',
-      type: 'relationship',
-      relationTo: 'categories',
-      required: true,
-    },
-    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+    },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Category',
+          fields: [
+            {
+              name: 'category',
+              type: 'relationship',
+              relationTo: 'categories',
+              required: true,
+            },
+          ],
+        },
+        {
+          label: 'Comments',
+          fields: [
+            {
+              name: 'comments',
+              type: 'relationship',
+              relationTo: 'comments',
+              hasMany: true,
+            },
+          ],
+        },
+      ],
     },
   ],
 }

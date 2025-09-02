@@ -11,7 +11,7 @@ import sharp from 'sharp'
 
 import { Users } from './payload/features/user/collections'
 import { Media } from './payload/features/media/collections'
-import { Products } from './payload/features/product/collections'
+import { Comments, Products } from './payload/features/product/collections'
 
 import { Categories } from './payload/features/category/collections'
 import environmentConfig from './environment.config'
@@ -39,10 +39,14 @@ const config = buildConfig({
           path: '@/payload/components',
           exportName: 'FontProvider',
         },
+        {
+          path: '@/shared/components',
+          exportName: 'ThemeProvider',
+        },
       ],
     },
   },
-  collections: [Users, Media, Products, Categories, Configs],
+  collections: [Users, Media, Products, Categories, Configs, Comments],
   editor: lexicalEditor(),
   secret: environmentConfig.PAYLOAD_SECRET || '',
   typescript: {

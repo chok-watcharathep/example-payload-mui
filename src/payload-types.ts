@@ -72,6 +72,7 @@ export interface Config {
     products: Product;
     categories: Category;
     configs: Config1;
+    comments: Comment;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     products: ProductsSelect<false> | ProductsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     configs: ConfigsSelect<false> | ConfigsSelect<true>;
+    comments: CommentsSelect<false> | CommentsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -194,8 +196,9 @@ export interface Product {
     [k: string]: unknown;
   } | null;
   price: number;
-  category: number | Category;
   image?: (number | null) | Media;
+  category: number | Category;
+  comments?: (number | Comment)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -225,6 +228,34 @@ export interface Category {
      */
     image?: (number | null) | Media;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments".
+ */
+export interface Comment {
+  id: number;
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  authorName: string;
+  authorImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -359,6 +390,10 @@ export interface PayloadLockedDocument {
         value: number | Config1;
       } | null)
     | ({
+        relationTo: 'comments';
+        value: number | Comment;
+      } | null)
+    | ({
         relationTo: 'payload-jobs';
         value: number | PayloadJob;
       } | null);
@@ -453,8 +488,9 @@ export interface ProductsSelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   price?: T;
-  category?: T;
   image?: T;
+  category?: T;
+  comments?: T;
   meta?:
     | T
     | {
@@ -491,6 +527,19 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface ConfigsSelect<T extends boolean = true> {
   key?: T;
   value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments_select".
+ */
+export interface CommentsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  authorName?: T;
+  authorImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }

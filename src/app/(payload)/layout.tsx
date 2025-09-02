@@ -9,8 +9,9 @@ import config from '@payload-config'
 
 import { importMap } from './admin/importMap.js'
 
-import '@/payload/theme/index.scss'
 import '@payloadcms/next/css'
+// *Note: Important for override payload theme the @/payload/theme/index.scss must be imported after @payloadcms/next/css
+import '@/payload/theme/index.scss'
 
 type Args = {
   children: React.ReactNode

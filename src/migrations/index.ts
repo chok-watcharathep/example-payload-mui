@@ -4,6 +4,7 @@ import * as migration_20250901_053626_support_localization from './20250901_0536
 import * as migration_20250901_065422_add_locale_to_category from './20250901_065422_add_locale_to_category';
 import * as migration_20250901_150330_add_seo_collection from './20250901_150330_add_seo_collection';
 import * as migration_20250902_032258_add_configs_collection from './20250902_032258_add_configs_collection';
+import * as migration_20250902_045159_add_many_relationship from './20250902_045159_add_many_relationship';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20250902_032258_add_configs_collection.up,
     down: migration_20250902_032258_add_configs_collection.down,
-    name: '20250902_032258_add_configs_collection'
+    name: '20250902_032258_add_configs_collection',
+  },
+  {
+    up: migration_20250902_045159_add_many_relationship.up,
+    down: migration_20250902_045159_add_many_relationship.down,
+    name: '20250902_045159_add_many_relationship'
   },
 ];

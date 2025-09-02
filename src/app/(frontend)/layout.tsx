@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import type { Metadata } from 'next'
 import { Noto_Sans_Thai } from 'next/font/google'
@@ -9,7 +8,7 @@ import { getLocale } from 'next-intl/server'
 
 import environmentConfig from '@/environment.config'
 import { TheMainLayout, QueryClientProvider, RuntimeEnv } from '@/frontend/components'
-import theme from '@/frontend/theme'
+import { ThemeProvider } from '@/shared/components'
 import { getPublicEnv } from '@/shared/utils'
 
 import './styles.scss'
@@ -55,7 +54,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <NextIntlClientProvider>
             <QueryClientProvider>
               <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider>
                   <TheMainLayout>{children}</TheMainLayout>
                 </ThemeProvider>
               </AppRouterCacheProvider>
