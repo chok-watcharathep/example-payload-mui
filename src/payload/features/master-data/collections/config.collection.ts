@@ -13,10 +13,7 @@ const Configs: CollectionConfig = {
     },
   },
   admin: {
-    group: {
-      th: 'ข้อมูลหลัก',
-      en: 'Master Data',
-    },
+    group: 'Example',
   },
   fields: [
     {

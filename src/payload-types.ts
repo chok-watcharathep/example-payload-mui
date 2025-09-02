@@ -73,6 +73,9 @@ export interface Config {
     categories: Category;
     configs: Config1;
     comments: Comment;
+    majors: Major;
+    faculties: Faculty;
+    universities: University;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +89,9 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     configs: ConfigsSelect<false> | ConfigsSelect<true>;
     comments: CommentsSelect<false> | CommentsSelect<true>;
+    majors: MajorsSelect<false> | MajorsSelect<true>;
+    faculties: FacultiesSelect<false> | FacultiesSelect<true>;
+    universities: UniversitiesSelect<false> | UniversitiesSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -199,6 +205,17 @@ export interface Product {
   image?: (number | null) | Media;
   category: number | Category;
   comments?: (number | Comment)[] | null;
+  linkCurriculums: {
+    university: number | University;
+    faculties?:
+      | {
+          faculty: number | Faculty;
+          majors?: (number | Major)[] | null;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -256,6 +273,43 @@ export interface Comment {
   image?: (number | null) | Media;
   authorName: string;
   authorImage?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "universities".
+ */
+export interface University {
+  id: number;
+  name: string;
+  faculties: {
+    faculty: number | Faculty;
+    majors?: (number | Major)[] | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faculties".
+ */
+export interface Faculty {
+  id: number;
+  name: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "majors".
+ */
+export interface Major {
+  id: number;
+  name: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -394,6 +448,18 @@ export interface PayloadLockedDocument {
         value: number | Comment;
       } | null)
     | ({
+        relationTo: 'majors';
+        value: number | Major;
+      } | null)
+    | ({
+        relationTo: 'faculties';
+        value: number | Faculty;
+      } | null)
+    | ({
+        relationTo: 'universities';
+        value: number | University;
+      } | null)
+    | ({
         relationTo: 'payload-jobs';
         value: number | PayloadJob;
       } | null);
@@ -491,6 +557,19 @@ export interface ProductsSelect<T extends boolean = true> {
   image?: T;
   category?: T;
   comments?: T;
+  linkCurriculums?:
+    | T
+    | {
+        university?: T;
+        faculties?:
+          | T
+          | {
+              faculty?: T;
+              majors?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   meta?:
     | T
     | {
@@ -540,6 +619,42 @@ export interface CommentsSelect<T extends boolean = true> {
   image?: T;
   authorName?: T;
   authorImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "majors_select".
+ */
+export interface MajorsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faculties_select".
+ */
+export interface FacultiesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "universities_select".
+ */
+export interface UniversitiesSelect<T extends boolean = true> {
+  name?: T;
+  faculties?:
+    | T
+    | {
+        faculty?: T;
+        majors?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

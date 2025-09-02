@@ -16,6 +16,9 @@ import { Comments, Products } from './payload/features/product/collections'
 import { Categories } from './payload/features/category/collections'
 import environmentConfig from './environment.config'
 import { Configs } from './payload/features/master-data/collections'
+import Majors from './payload/features/product/collections/major.collection'
+import Faculties from './payload/features/product/collections/faculty.collection'
+import Universities from './payload/features/product/collections/university.collection'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -46,7 +49,17 @@ const config = buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Products, Categories, Configs, Comments],
+  collections: [
+    Users,
+    Media,
+    Products,
+    Categories,
+    Configs,
+    Comments,
+    Majors,
+    Faculties,
+    Universities,
+  ],
   editor: lexicalEditor(),
   secret: environmentConfig.PAYLOAD_SECRET || '',
   typescript: {

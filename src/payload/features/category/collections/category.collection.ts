@@ -16,6 +16,7 @@ const Categories: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    group: 'Example',
   },
   access: {
     read: () => true,

@@ -14,6 +14,7 @@ const Products: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    group: 'Example',
   },
   access: {
     read: () => true,
@@ -66,7 +67,7 @@ const Products: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Category',
+          label: 'หมวดหมู่',
           fields: [
             {
               name: 'category',
@@ -77,13 +78,146 @@ const Products: CollectionConfig = {
           ],
         },
         {
-          label: 'Comments',
+          label: 'ความคิดเห็น',
           fields: [
             {
               name: 'comments',
               type: 'relationship',
               relationTo: 'comments',
               hasMany: true,
+              admin: {
+                isSortable: true,
+              },
+            },
+          ],
+        },
+        {
+          label: 'เชื่อมโยงหลักสูตร',
+          fields: [
+            {
+              label: 'เลือกหลักสูตร',
+              labels: {
+                plural: {
+                  th: 'หลักสูตร',
+                  en: 'Curriculum',
+                },
+                singular: {
+                  th: 'หลักสูตร',
+                  en: 'Curriculum',
+                },
+              },
+              name: 'linkCurriculums',
+              type: 'array',
+              required: true,
+              fields: [
+                {
+                  label: 'มหาวิทยาลัย',
+                  name: 'university',
+                  type: 'relationship',
+                  relationTo: 'universities',
+                  required: true,
+                },
+                {
+                  type: 'array',
+                  label: 'เลือกคณะ',
+                  name: 'faculties',
+                  required: true,
+                  admin: {
+                    // show when university is selected
+                    condition: (_, { university }) => !!university,
+                  },
+                  fields: [
+                    {
+                      label: 'คณะ',
+                      name: 'faculty',
+                      type: 'relationship',
+                      relationTo: 'faculties',
+
+                      required: true,
+                      filterOptions: async ({ data, siblingData, req }) => {
+                        const currentLinkCurriculum = data.linkCurriculums.find(
+                          (linkCurriculum: { id: string; faculties: { id: string }[] }) =>
+                            linkCurriculum.faculties.find(
+                              (faculty) => faculty.id === (siblingData as { id: string }).id,
+                            ),
+                        )
+                        const userUniversityId = currentLinkCurriculum?.university
+
+                        if (!userUniversityId) {
+                          return true
+                        }
+
+                        const university = await req.payload.findByID({
+                          collection: 'universities',
+                          id: userUniversityId,
+                        })
+
+                        const facultyIds = university?.faculties.map((facultyRelation) =>
+                          typeof facultyRelation.faculty === 'number'
+                            ? facultyRelation.faculty
+                            : facultyRelation.faculty.id,
+                        )
+
+                        return {
+                          id: {
+                            in: facultyIds,
+                          },
+                        }
+                      },
+                    },
+                    {
+                      label: 'สาขา',
+                      name: 'majors',
+                      type: 'relationship',
+                      relationTo: 'majors',
+                      hasMany: true,
+                      required: true,
+                      admin: {
+                        condition: (_, { faculty }) => !!faculty,
+                      },
+                      filterOptions: async ({ data, siblingData, req }) => {
+                        const currentLinkCurriculum = data.linkCurriculums.find(
+                          (linkCurriculum: { id: string; faculties: { id: string }[] }) =>
+                            linkCurriculum.faculties.find(
+                              (faculty) => faculty.id === (siblingData as { id: string }).id,
+                            ),
+                        )
+                        const userUniversityId = currentLinkCurriculum?.university
+
+                        if (!userUniversityId) {
+                          return true
+                        }
+
+                        const university = await req.payload.findByID({
+                          collection: 'universities',
+                          id: userUniversityId,
+                        })
+
+                        const selectedFacultyId = (siblingData as { faculty: number }).faculty
+                        const selectedFaculty = university.faculties.find((facultyRelation) =>
+                          typeof facultyRelation.faculty === 'number'
+                            ? facultyRelation.faculty
+                            : facultyRelation.faculty.id === selectedFacultyId,
+                        )
+
+                        if (!selectedFaculty) {
+                          return true
+                        }
+
+                        const majorIds = selectedFaculty.majors?.map((major) =>
+                          typeof major === 'number' ? major : major.id,
+                        )
+
+                        return {
+                          id: {
+                            in: majorIds,
+                          },
+                        }
+                      },
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },

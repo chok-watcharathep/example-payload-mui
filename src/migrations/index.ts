@@ -5,6 +5,7 @@ import * as migration_20250901_065422_add_locale_to_category from './20250901_06
 import * as migration_20250901_150330_add_seo_collection from './20250901_150330_add_seo_collection';
 import * as migration_20250902_032258_add_configs_collection from './20250902_032258_add_configs_collection';
 import * as migration_20250902_045159_add_many_relationship from './20250902_045159_add_many_relationship';
+import * as migration_20250902_155640_add_example_relation_collection from './20250902_155640_add_example_relation_collection';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20250902_045159_add_many_relationship.up,
     down: migration_20250902_045159_add_many_relationship.down,
-    name: '20250902_045159_add_many_relationship'
+    name: '20250902_045159_add_many_relationship',
+  },
+  {
+    up: migration_20250902_155640_add_example_relation_collection.up,
+    down: migration_20250902_155640_add_example_relation_collection.down,
+    name: '20250902_155640_add_example_relation_collection'
   },
 ];

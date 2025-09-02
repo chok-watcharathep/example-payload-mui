@@ -1,5 +1,3 @@
-// src/collections/Comments.ts
-
 import type { CollectionConfig } from 'payload'
 
 const Comments: CollectionConfig = {
