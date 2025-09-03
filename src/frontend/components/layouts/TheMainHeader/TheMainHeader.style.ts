@@ -25,6 +25,7 @@ const useStyles = () => {
       borderRadius: 1.5,
       justifyContent: 'center',
       padding: theme.spacing(1, 1.5),
+      whiteSpace: 'nowrap',
 
       ...(isActive
         ? {
