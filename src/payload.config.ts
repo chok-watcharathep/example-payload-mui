@@ -65,6 +65,7 @@ const config = buildConfig({
     pool: {
       connectionString: environmentConfig.DATABASE_URI || '',
     },
+    migrationDir: path.resolve(dirname, 'payload/migrations'),
   }),
   sharp,
   plugins: [

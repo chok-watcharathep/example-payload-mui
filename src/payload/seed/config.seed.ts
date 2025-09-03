@@ -3,18 +3,21 @@ import type { Payload } from 'payload'
 
 import type { Config1 } from '@/payload-types'
 
-const configsToSeed: Pick<Config1, 'key' | 'value'>[] = [
+const configsToSeed: Pick<Config1, 'key' | 'value' | 'description'>[] = [
   {
     key: 'site-title',
     value: 'My Awesome Website',
+    description: 'The title of the website',
   },
   {
     key: 'contact-email',
     value: 'contact@example.com',
+    description: 'The email address to contact the website',
   },
   {
     key: 'items-per-page',
     value: '10',
+    description: 'The number of items to display per page',
   },
 ]
 
@@ -43,6 +46,7 @@ export async function seedConfigs(payload: Payload): Promise<void> {
         },
         data: {
           value: config.value,
+          description: config.description,
         },
       })
     } else {

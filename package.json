@@ -21,7 +21,7 @@
     "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
     "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
     "migrate:down": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:down",
-    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed/index.ts"
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx src/payload/seed/index.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

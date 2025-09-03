@@ -28,6 +28,11 @@ const Configs: CollectionConfig = {
       label: 'Value',
       type: 'text',
     },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'text',
+    },
   ],
 }
 

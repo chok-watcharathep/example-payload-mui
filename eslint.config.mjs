@@ -13,7 +13,7 @@ const eslintConfig = [
       '**/node_modules/**',
       '**/.next/**',
       '**/coverage/**',
-      '**/src/migrations/**',
+      '**/src/payload/migrations/**',
       '**/src/app/(payload)/admin/importMap.js',
       '**/src/payload-types.ts',
     ],

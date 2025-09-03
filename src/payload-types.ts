@@ -321,6 +321,7 @@ export interface Config1 {
   id: number;
   key: string;
   value?: string | null;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -606,6 +607,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface ConfigsSelect<T extends boolean = true> {
   key?: T;
   value?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
