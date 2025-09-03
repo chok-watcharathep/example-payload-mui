@@ -14,6 +14,11 @@ const Categories: CollectionConfig = {
       en: 'Categories',
     },
   },
+  versions: {
+    drafts: {
+      schedulePublish: true,
+    },
+  },
   admin: {
     useAsTitle: 'name',
     group: 'Example',
