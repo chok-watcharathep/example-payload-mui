@@ -285,7 +285,7 @@ export interface University {
   name: string;
   faculties: {
     faculty: number | Faculty;
-    majors?: (number | Major)[] | null;
+    majors: (number | Major)[];
     id?: string | null;
   }[];
   updatedAt: string;

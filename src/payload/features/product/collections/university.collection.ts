@@ -18,26 +18,38 @@ const Universities: CollectionConfig = {
   fields: [
     {
       name: 'name',
+      label: 'มหาวิทยาลัย',
       type: 'text',
       required: true,
     },
     {
       name: 'faculties',
       type: 'array',
-      label: 'คณะ',
+      label: 'คณะและสาขา',
+      labels: {
+        singular: {
+          th: 'คณะและสาขา',
+        },
+        plural: {
+          th: 'คณะและสาขา',
+        },
+      },
       required: true,
       fields: [
         {
           name: 'faculty',
+          label: 'คณะ',
           type: 'relationship',
           relationTo: 'faculties',
           required: true,
         },
         {
           name: 'majors',
+          label: 'สาขา',
           type: 'relationship',
           relationTo: 'majors',
           hasMany: true,
+          required: true,
         },
       ],
     },

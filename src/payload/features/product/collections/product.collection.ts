@@ -118,9 +118,19 @@ const Products: CollectionConfig = {
                   required: true,
                 },
                 {
-                  type: 'array',
-                  label: 'เลือกคณะ',
+                  label: 'เลือกคณะและสาขา',
+                  labels: {
+                    plural: {
+                      th: 'คณะและสาขา',
+                      en: 'Faculty and Major',
+                    },
+                    singular: {
+                      th: 'คณะและสาขา',
+                      en: 'Faculty and Major',
+                    },
+                  },
                   name: 'faculties',
+                  type: 'array',
                   required: true,
                   admin: {
                     // show when university is selected
@@ -135,7 +145,7 @@ const Products: CollectionConfig = {
 
                       required: true,
                       filterOptions: async ({ data, siblingData, req }) => {
-                        const currentLinkCurriculum = data.linkCurriculums.find(
+                        const currentLinkCurriculum = data?.linkCurriculums?.find(
                           (linkCurriculum: { id: string; faculties: { id: string }[] }) =>
                             linkCurriculum.faculties.find(
                               (faculty) => faculty.id === (siblingData as { id: string }).id,
@@ -176,7 +186,7 @@ const Products: CollectionConfig = {
                         condition: (_, { faculty }) => !!faculty,
                       },
                       filterOptions: async ({ data, siblingData, req }) => {
-                        const currentLinkCurriculum = data.linkCurriculums.find(
+                        const currentLinkCurriculum = data?.linkCurriculums?.find(
                           (linkCurriculum: { id: string; faculties: { id: string }[] }) =>
                             linkCurriculum.faculties.find(
                               (faculty) => faculty.id === (siblingData as { id: string }).id,
@@ -218,6 +228,19 @@ const Products: CollectionConfig = {
                   ],
                 },
               ],
+            },
+            {
+              type: 'ui',
+              name: 'summary',
+              admin: {
+                condition: (_, { linkCurriculums }) => !!linkCurriculums?.length,
+                components: {
+                  Field: {
+                    path: '@/payload/features/product/components',
+                    exportName: 'LinkCurriculumSummaryUiField',
+                  },
+                },
+              },
             },
           ],
         },
