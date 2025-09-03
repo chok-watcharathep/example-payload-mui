@@ -15,8 +15,6 @@ const ProductDetailPage = () => {
     id: paramsHook.segments?.[2] as string,
   })
 
-  console.log('productDetail', productDetail)
-
   if (isLoading) {
     return (
       <Gutter>
