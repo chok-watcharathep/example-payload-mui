@@ -261,6 +261,10 @@ const Products: CollectionConfig = {
               name: 'actions',
               admin: {
                 components: {
+                  Field: {
+                    path: '@/payload/components',
+                    exportName: 'AfterChangeField',
+                  },
                   Cell: {
                     path: '@/payload/components',
                     exportName: 'LinkToView',
