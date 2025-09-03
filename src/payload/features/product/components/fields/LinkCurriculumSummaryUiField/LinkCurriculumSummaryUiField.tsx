@@ -7,6 +7,7 @@ const LinkCurriculumSummaryUiField = () => {
 
   return (
     <Collapsible header="Summary">
+      We can fetch data from payload and custom any UI here
       {allFormFields.map((field) => field.name).join(', ')}
       <Collapsible header="Sub Summary">
         {allFormFields.map((field) => field.name).join(', ')}
