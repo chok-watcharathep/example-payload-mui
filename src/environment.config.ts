@@ -4,6 +4,7 @@ const environmentSchema = z.object({
   // public
   NEXT_PUBLIC_APP_BASE_URL: z.string().readonly(),
   NEXT_PUBLIC_API_ENDPOINT: z.string().readonly(),
+  NEXT_PUBLIC_PAYLOAD_API_ENDPOINT: z.string().readonly(),
   // private
   DATABASE_URI: z.string().optional().readonly(),
   PAYLOAD_SECRET: z.string().optional().readonly(),

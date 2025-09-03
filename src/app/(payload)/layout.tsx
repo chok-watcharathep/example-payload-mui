@@ -5,6 +5,7 @@ import React from 'react'
 import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 import type { ServerFunctionClient } from 'payload'
 
+import { RuntimeEnv } from '@/shared/components'
 import config from '@payload-config'
 
 import { importMap } from './admin/importMap.js'
@@ -29,6 +30,8 @@ const serverFunction: ServerFunctionClient = async function (args) {
 const Layout = ({ children }: Args) => (
   <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
     {children}
+    {/* TODO: Recheck script placement this might cause load env issue */}
+    <RuntimeEnv />
   </RootLayout>
 )
 

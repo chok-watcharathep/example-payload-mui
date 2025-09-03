@@ -8,9 +8,9 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 
 import environmentConfig from '@/environment.config'
-import { TheMainLayout, QueryClientProvider, RuntimeEnv } from '@/frontend/components'
+import { QueryClientProvider, TheMainLayout } from '@/frontend/components'
 import theme from '@/frontend/theme'
-import { getPublicEnv } from '@/shared/utils'
+import { RuntimeEnv } from '@/shared/components'
 
 import './styles.scss'
 
@@ -43,12 +43,11 @@ export const metadata: Metadata = {
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
   const locale = await getLocale()
-  const publicEnv = getPublicEnv(process.env)
 
   return (
     <html lang={locale}>
       <head>
-        <RuntimeEnv env={publicEnv} />
+        <RuntimeEnv />
       </head>
       <body className={notoSansThai.className} suppressHydrationWarning>
         <main>
