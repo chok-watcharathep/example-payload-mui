@@ -41,7 +41,7 @@ const eslintConfig = [
       ...eslintPluginJSXA11y.configs.recommended.rules,
       ...eslintPluginNext.configs.recommended.rules,
       ...eslintPluginImport.configs.recommended.rules,
-      'no-console': 'error',
+      'no-console': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',

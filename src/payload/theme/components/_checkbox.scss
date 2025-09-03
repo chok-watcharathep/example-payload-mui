@@ -1,0 +1,17 @@
+// Checkbox component overrides
+@layer payload-default {
+  .checkbox-input {
+    &:not(.checkbox-input--read-only) {
+      &:active,
+      &:focus-within,
+      &:focus {
+        .checkbox-input__input,
+        input[type='checkbox'] {
+          outline: 0;
+          box-shadow: var(--checkbox-focus-shadow);
+          border: var(--checkbox-focus-border);
+        }
+      }
+    }
+  }
+}

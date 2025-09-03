@@ -1,4 +1,6 @@
-@import 'override.scss';
+@import 'config/variables';
+@import 'components';
+@import 'utilities';
 
 @layer payload-default {
   :root {
