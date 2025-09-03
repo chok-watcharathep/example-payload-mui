@@ -1,0 +1,10 @@
+// Relationship component overrides
+@layer payload-default {
+  .relationship--multi-value-label {
+    &:not(.relationship--multi-value-label--read-only) {
+      .relationship--multi-value-label__content {
+        max-width: var(--relationship-label-max-width);
+      }
+    }
+  }
+}
