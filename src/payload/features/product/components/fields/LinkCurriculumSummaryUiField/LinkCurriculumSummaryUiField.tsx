@@ -1,11 +1,18 @@
 'use client'
 
-import { useAllFormFields } from '@payloadcms/ui'
+import { Collapsible, useAllFormFields } from '@payloadcms/ui'
 
 const LinkCurriculumSummaryUiField = () => {
   const allFormFields = useAllFormFields()
 
-  return <div>{allFormFields.map((field) => field.name).join(', ')}</div>
+  return (
+    <Collapsible header="Summary">
+      {allFormFields.map((field) => field.name).join(', ')}
+      <Collapsible header="Sub Summary">
+        {allFormFields.map((field) => field.name).join(', ')}
+      </Collapsible>
+    </Collapsible>
+  )
 }
 
 export default LinkCurriculumSummaryUiField

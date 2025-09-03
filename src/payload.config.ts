@@ -42,10 +42,6 @@ const config = buildConfig({
           path: '@/payload/components',
           exportName: 'FontProvider',
         },
-        {
-          path: '@/shared/components',
-          exportName: 'ThemeProvider',
-        },
       ],
     },
   },
