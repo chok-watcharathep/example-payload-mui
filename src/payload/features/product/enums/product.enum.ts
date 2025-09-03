@@ -1,3 +1,3 @@
-export enum ProductQueryKeys {
-  GET_PRODUCT_CURRICULUM_SUMMARY = 'getProductCurriculumSummary',
+export enum ProductQueryKey {
+  ADMIN_GET_PRODUCT_DETAIL = 'adminGetProductDetail',
 }

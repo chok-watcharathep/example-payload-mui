@@ -19,11 +19,15 @@ import { Configs } from './payload/features/master-data/collections'
 import Majors from './payload/features/product/collections/major.collection'
 import Faculties from './payload/features/product/collections/faculty.collection'
 import Universities from './payload/features/product/collections/university.collection'
+import { ADMIN_URL } from './shared/constants'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const config = buildConfig({
+  routes: {
+    admin: ADMIN_URL,
+  },
   admin: {
     theme: 'light',
     user: Users.slug,

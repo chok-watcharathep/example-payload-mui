@@ -15,6 +15,19 @@ const Products: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: 'Example',
+    components: {
+      views: {
+        edit: {
+          customView: {
+            path: '/detail',
+            Component: {
+              path: '@/payload/features/product/pages',
+              exportName: 'ProductDetailPage',
+            },
+          },
+        },
+      },
+    },
   },
   access: {
     read: () => true,
@@ -24,6 +37,7 @@ const Products: CollectionConfig = {
       schedulePublish: true,
     },
   },
+  hooks: {},
   fields: [
     {
       name: 'name',
@@ -238,6 +252,18 @@ const Products: CollectionConfig = {
                   Field: {
                     path: '@/payload/features/product/components',
                     exportName: 'LinkCurriculumSummaryUiField',
+                  },
+                },
+              },
+            },
+            {
+              type: 'ui',
+              name: 'actions',
+              admin: {
+                components: {
+                  Cell: {
+                    path: '@/payload/components',
+                    exportName: 'LinkToView',
                   },
                 },
               },

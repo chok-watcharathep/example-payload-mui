@@ -23,13 +23,16 @@ import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { PriceCell as PriceCell_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { LinkCurriculumSummaryUiField as LinkCurriculumSummaryUiField_7bcf24e6fefd56863a80d31ef37b045b } from '@/payload/features/product/components'
+import { LinkToView as LinkToView_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { OverviewComponent as OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaTitleComponent as MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
+import { ProductDetailPage as ProductDetailPage_809704ea6bde94a708d91c6528dc6105 } from '@/payload/features/product/pages'
 import { LogoutButton as LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { FontProvider as FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
+import { QueryClientProvider as QueryClientProvider_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 export const importMap = {
@@ -58,12 +61,15 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/payload/components#PriceCell": PriceCell_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/features/product/components#LinkCurriculumSummaryUiField": LinkCurriculumSummaryUiField_7bcf24e6fefd56863a80d31ef37b045b,
+  "@/payload/components#LinkToView": LinkToView_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@/payload/features/product/pages#ProductDetailPage": ProductDetailPage_809704ea6bde94a708d91c6528dc6105,
   "@/payload/components#LogoutButton": LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/components#FontProvider": FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1,
+  "@/payload/components#QueryClientProvider": QueryClientProvider_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

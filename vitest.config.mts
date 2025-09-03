@@ -22,6 +22,8 @@ export default defineConfig({
         'src/frontend/features/**/transforms/*.ts',
         // payload
         'src/payload/features/**/utils/*.ts',
+        'src/payload/features/**/services/*.ts',
+        'src/payload/features/**/interfaces/*.ts',
         // add test collection
         'src/payload/features/**/collections/*.ts',
       ],
