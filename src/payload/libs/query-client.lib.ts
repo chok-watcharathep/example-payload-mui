@@ -15,7 +15,7 @@ function makeQueryClient() {
 
 let browserQueryClient: QueryClient | undefined = undefined
 
-export function getQueryClient() {
+export function getAdminQueryClient() {
   if (isServer) {
     // Server: always make a new query client
     return makeQueryClient()

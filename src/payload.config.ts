@@ -42,6 +42,10 @@ const config = buildConfig({
           path: '@/payload/components',
           exportName: 'FontProvider',
         },
+        {
+          path: '@/payload/components',
+          exportName: 'QueryClientProvider',
+        },
       ],
     },
   },

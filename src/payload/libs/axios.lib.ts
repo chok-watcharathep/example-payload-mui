@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import environmentConfig from '@/environment.config'
 
-const axiosInstance = axios.create({
+const adminAxiosInstance = axios.create({
   baseURL: environmentConfig.NEXT_PUBLIC_PAYLOAD_API_ENDPOINT,
   adapter: 'fetch',
   fetchOptions: {
@@ -10,4 +10,4 @@ const axiosInstance = axios.create({
   },
 })
 
-export default axiosInstance
+export default adminAxiosInstance
