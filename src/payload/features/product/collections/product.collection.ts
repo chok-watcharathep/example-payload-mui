@@ -24,6 +24,11 @@ const Products: CollectionConfig = {
               path: '@/payload/features/product/pages',
               exportName: 'ProductDetailPage',
             },
+            tab: {
+              label: 'รายละเอียด',
+              href: '/detail',
+              order: 1,
+            },
           },
         },
       },
@@ -43,9 +48,6 @@ const Products: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
-      admin: {
-        components: {},
-      },
       localized: true,
     },
     {

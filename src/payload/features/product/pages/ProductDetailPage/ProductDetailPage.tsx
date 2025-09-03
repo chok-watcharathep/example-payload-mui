@@ -1,8 +1,11 @@
 'use client'
 
-import { Collapsible, Gutter, LoadingOverlay } from '@payloadcms/ui'
+import { useEffect } from 'react'
+
+import { Collapsible, Gutter, LoadingOverlay, useStepNav } from '@payloadcms/ui'
 import { notFound, useParams } from 'next/navigation'
 
+import { ADMIN_URL_COLLECTION } from '@/payload/constants'
 import { useAdminGetProductDetail } from '@/payload/features/product/hooks'
 import type { Faculty, Major, University } from '@/payload-types'
 import { isCollection } from '@/shared/utils'
@@ -11,9 +14,29 @@ import './ProductDetailPage.scss'
 
 const ProductDetailPage = () => {
   const paramsHook = useParams()
+  const stepNavHook = useStepNav()
   const { data: productDetail, isLoading } = useAdminGetProductDetail({
     id: paramsHook.segments?.[2] as string,
   })
+
+  useEffect(() => {
+    if (!productDetail) {
+      return
+    }
+    stepNavHook.setStepNav([
+      {
+        label: 'สินค้า',
+        url: `${ADMIN_URL_COLLECTION}/products`,
+      },
+      {
+        label: productDetail.name,
+        url: `${ADMIN_URL_COLLECTION}/products/${productDetail.id}`,
+      },
+      {
+        label: 'รายละเอียด',
+      },
+    ])
+  }, [productDetail?.id])
 
   if (isLoading) {
     return (
