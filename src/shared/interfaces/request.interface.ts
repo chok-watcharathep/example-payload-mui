@@ -11,12 +11,12 @@
  * where - specifies advanced filters to use to query documents
  * joins - specifies the custom request for each join field by name of the field
  */
-import type { JoinQuery, PopulateType, Where } from 'payload'
+import type { JoinQuery, PopulateType, TypedLocale, Where } from 'payload'
 
 export interface BaseAdminRequest<TJoinQuery extends JoinQuery, TSelect> {
   depth?: number
-  locale?: string
-  fallbackLocale?: string
+  locale?: TypedLocale | 'all'
+  fallbackLocale?: TypedLocale
   select?: TSelect
   populate?: PopulateType
   limit?: number

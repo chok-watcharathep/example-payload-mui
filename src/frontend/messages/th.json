@@ -1,10 +1,19 @@
 {
   "common": {
     "home": "หน้าแรก",
-    "logo": "LOGO"
+    "logo": "LOGO",
+    "products": "สินค้า",
+    "about": "เกี่ยวกับเรา",
+    "contact": "ติดต่อเรา"
   },
   "home": {
     "goToAdminPanel": "ไปยังหน้าแอดมิน"
+  },
+  "category": {
+    "metadata": {
+      "title": "สินค้าใน {name}",
+      "description": "ดูสินค้าทั้งหมดที่มีอยู่ใน {name}"
+    }
   },
   "footer": {
     "copyright": "Copyright © The Website {year}."

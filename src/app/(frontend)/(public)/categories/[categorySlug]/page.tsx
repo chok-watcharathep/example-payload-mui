@@ -2,6 +2,7 @@ import { Container, Typography } from '@mui/material'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { getLocale } from 'next-intl/server'
 import { getPayload } from 'payload'
 
 import environmentConfig from '@/environment.config'
@@ -27,8 +28,11 @@ export async function generateMetadata({
 }: CategoryPageProps): Promise<Metadata> {
   const params = await paramsPromise
   const payload = await getPayload({ config })
+  const locale = await getLocale()
 
-  const category = await findOneCategoryBySlug(payload, params.categorySlug)
+  const category = await findOneCategoryBySlug(payload, params.categorySlug, {
+    locale,
+  })
 
   if (!category) {
     // use default metadata
@@ -63,8 +67,11 @@ const CategoryPage = async ({
 }: CategoryPageProps) => {
   const params = await paramsPromise
   const payload = await getPayload({ config })
+  const locale = await getLocale()
 
-  const category = await findOneCategoryBySlug(payload, decodeURIComponent(params.categorySlug))
+  const category = await findOneCategoryBySlug(payload, decodeURIComponent(params.categorySlug), {
+    locale,
+  })
 
   if (!category) {
     notFound()

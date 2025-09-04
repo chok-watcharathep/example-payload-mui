@@ -1,8 +1,10 @@
-import type { PaginatedDocs } from 'payload'
+import type { PaginatedDocs, JoinQuery } from 'payload'
 
-import type { BaseSearchRequest } from '@/frontend/interfaces'
-import type { Category } from '@/payload-types'
+import type { CategoriesSelect, Category } from '@/payload-types'
+import type { BaseAdminRequest } from '@/shared/interfaces'
 
-export interface GetCategoryListRequest extends BaseSearchRequest {}
+// TODO: Change BaseAdminRequest to BaseSearchRequest when call core api
+export interface GetCategoryListRequest
+  extends BaseAdminRequest<JoinQuery<'categories'>, CategoriesSelect> {}
 
 export interface GetCategoryListResponse extends PaginatedDocs<Category> {}

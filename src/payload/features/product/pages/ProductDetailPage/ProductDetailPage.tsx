@@ -19,8 +19,6 @@ const ProductDetailPage = () => {
 
   const locale = useLocale()
 
-  console.log('locale', locale)
-
   const { data: productDetail, isLoading } = useAdminGetProductDetail({
     id: paramsHook.segments?.[2] as string,
     locale,

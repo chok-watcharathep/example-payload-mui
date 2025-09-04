@@ -56,13 +56,17 @@ const Categories: CollectionConfig = {
       handler: async (req) => {
         const idOrSlug = req.routeParams?.idOrSlug as string
 
-        const categoryById = await findOneCategoryById(req.payload, idOrSlug)
+        const categoryById = await findOneCategoryById(req.payload, idOrSlug, {
+          locale: req.locale,
+        })
 
         if (categoryById) {
           return Response.json(categoryById)
         }
 
-        const categoryBySlug = await findOneCategoryBySlug(req.payload, idOrSlug)
+        const categoryBySlug = await findOneCategoryBySlug(req.payload, idOrSlug, {
+          locale: req.locale,
+        })
 
         if (categoryBySlug) {
           return Response.json(categoryBySlug)
