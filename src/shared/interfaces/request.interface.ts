@@ -11,18 +11,17 @@
  * where - specifies advanced filters to use to query documents
  * joins - specifies the custom request for each join field by name of the field
  */
-import type { JoinParams } from 'node_modules/payload/dist/utilities/sanitizeJoinParams'
-import type { PopulateType, SelectType, Where } from 'payload'
+import type { JoinQuery, PopulateType, Where } from 'payload'
 
-export interface BaseAdminRequest {
+export interface BaseAdminRequest<TJoinQuery extends JoinQuery, TSelect> {
   depth?: number
   locale?: string
   fallbackLocale?: string
-  select?: SelectType
+  select?: TSelect
   populate?: PopulateType
   limit?: number
   page?: number
   sort?: string[]
   where?: Where
-  joins?: JoinParams
+  joins?: TJoinQuery
 }

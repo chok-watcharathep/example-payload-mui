@@ -1,7 +1,10 @@
-import type { BaseAdminRequest } from '@/payload/interfaces'
-import type { Product } from '@/payload-types'
+import type { JoinQuery } from 'payload'
 
-export interface AdminGetProductDetailRequest extends BaseAdminRequest {
+import type { Product, ProductsSelect } from '@/payload-types'
+import type { BaseAdminRequest } from '@/shared/interfaces'
+
+export interface AdminGetProductDetailRequest
+  extends BaseAdminRequest<JoinQuery<'products'>, ProductsSelect> {
   id: string
 }
 
