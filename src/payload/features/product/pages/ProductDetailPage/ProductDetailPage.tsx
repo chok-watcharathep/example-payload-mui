@@ -18,6 +18,7 @@ const ProductDetailPage = () => {
 
   const { data: productDetail, isLoading } = useAdminGetProductDetail({
     id: paramsHook.segments?.[2] as string,
+    draft: true,
   })
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const ProductDetailPage = () => {
         label: 'รายละเอียด',
       },
     ])
-  }, [productDetail?.id])
+  }, [productDetail])
 
   if (isLoading) {
     return (

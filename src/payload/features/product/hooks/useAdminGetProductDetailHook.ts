@@ -22,6 +22,7 @@ const useAdminGetProductDetail = (
   return useQuery<AdminGetProductDetailResponse, Error>({
     queryKey: [ProductQueryKey.ADMIN_GET_PRODUCT_DETAIL, requestWithLocale],
     queryFn: () => adminGetProductDetail(requestWithLocale),
+    staleTime: 3000,
     ...options,
   })
 }
