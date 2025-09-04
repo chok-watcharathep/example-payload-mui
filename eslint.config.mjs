@@ -91,6 +91,8 @@ const eslintConfig = [
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
       },
+      // Sine: next-intl has issue with eslint when import useLocale need to ignore it
+      'import/ignore': ['next-intl'],
     },
   },
   {

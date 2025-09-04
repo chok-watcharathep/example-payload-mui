@@ -69,6 +69,7 @@ const baseTheme = createTheme({
       700: '#B91C1C',
       800: '#991B1B',
       900: '#7F1D1D',
+      main: '#B91C1C',
     },
     success: {
       100: '#D1FAE5',
