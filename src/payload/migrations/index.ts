@@ -1,6 +1,7 @@
 import * as migration_20250903_021807_add_example_schema from './20250903_021807_add_example_schema';
 import * as migration_20250903_041444_update_config_schema from './20250903_041444_update_config_schema';
 import * as migration_20250903_090844_add_category_status from './20250903_090844_add_category_status';
+import * as migration_20250904_062642_add_updated_by_field_to_product from './20250904_062642_add_updated_by_field_to_product';
 
 export const migrations = [
   {
@@ -16,6 +17,11 @@ export const migrations = [
   {
     up: migration_20250903_090844_add_category_status.up,
     down: migration_20250903_090844_add_category_status.down,
-    name: '20250903_090844_add_category_status'
+    name: '20250903_090844_add_category_status',
+  },
+  {
+    up: migration_20250904_062642_add_updated_by_field_to_product.up,
+    down: migration_20250904_062642_add_updated_by_field_to_product.down,
+    name: '20250904_062642_add_updated_by_field_to_product'
   },
 ];

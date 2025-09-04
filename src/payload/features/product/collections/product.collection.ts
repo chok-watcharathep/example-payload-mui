@@ -33,6 +33,7 @@ const Products: CollectionConfig = {
         },
       },
     },
+    defaultColumns: ['name', 'slug', 'price', 'updatedAt', 'updatedBy', 'actions'],
   },
   access: {
     read: () => true,
@@ -42,7 +43,17 @@ const Products: CollectionConfig = {
       schedulePublish: true,
     },
   },
-  hooks: {},
+  hooks: {
+    beforeChange: [
+      ({ req, data }) => {
+        if (req.user) {
+          data.updatedBy = req.user.id
+        }
+
+        return data
+      },
+    ],
+  },
   fields: [
     {
       name: 'name',
@@ -258,6 +269,7 @@ const Products: CollectionConfig = {
                 },
               },
             },
+            // TODO: This is common field for all collections. Move to utils
             {
               type: 'ui',
               name: 'actions',
@@ -272,6 +284,16 @@ const Products: CollectionConfig = {
                     exportName: 'LinkToView',
                   },
                 },
+              },
+            },
+            {
+              name: 'updatedBy',
+              label: 'แก้ไขโดย',
+              type: 'relationship',
+              relationTo: 'users',
+              hasMany: false,
+              admin: {
+                readOnly: true,
               },
             },
           ],

@@ -216,6 +216,7 @@ export interface Product {
       | null;
     id?: string | null;
   }[];
+  updatedBy?: (number | null) | User;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -572,6 +573,7 @@ export interface ProductsSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedBy?: T;
   meta?:
     | T
     | {
