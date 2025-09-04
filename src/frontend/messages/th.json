@@ -1,10 +1,22 @@
 {
   "common": {
     "home": "หน้าแรก",
-    "logo": "LOGO",
-    "products": "สินค้า",
-    "about": "เกี่ยวกับเรา",
-    "contact": "ติดต่อเรา"
+    "logo": "Credit Port",
+    "products": "สินค้า"
+  },
+  "menu": {
+    "home": "หน้าแรก",
+    "profile": "โปรไฟล์ของฉัน",
+    "career": "แนะนำอาชีพ",
+    "e-learning": "e-Learning",
+    "jobs": "หางาน",
+    "e-portfolio": "e-Portfolio",
+    "files": "ไฟล์ของฉัน"
+  },
+  "settings": {
+    "profile": "โปรไฟล์ของฉัน",
+    "settings": "ตั้งค่าและการตั้งค่า",
+    "logout": "ออกจากระบบ"
   },
   "home": {
     "goToAdminPanel": "ไปยังหน้าแอดมิน"

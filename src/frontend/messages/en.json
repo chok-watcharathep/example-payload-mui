@@ -1,10 +1,22 @@
 {
   "common": {
     "home": "Home",
-    "logo": "LOGO",
-    "products": "Products",
-    "about": "About",
-    "contact": "Contact"
+    "logo": "Credit Port",
+    "products": "Products"
+  },
+  "menu": {
+    "home": "Home",
+    "profile": "My Profile",
+    "career": "Career",
+    "e-learning": "e-Learning",
+    "jobs": "Jobs",
+    "e-portfolio": "e-Portfolio",
+    "files": "Files"
+  },
+  "settings": {
+    "profile": "My Profile",
+    "settings": "Settings",
+    "logout": "Logout"
   },
   "home": {
     "goToAdminPanel": "Go to admin panel"

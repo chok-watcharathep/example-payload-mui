@@ -3,44 +3,75 @@ import { useTheme } from '@mui/material'
 
 const useStyles = () => {
   const theme = useTheme()
+  const { palette } = theme
 
   const logo: SxProps = {
-    fontWeight: 700,
+    display: { xs: 'none', md: 'flex' },
+    mr: 1,
+    fontSize: 48,
+  }
+
+  const textLogo: SxProps = {
+    fontWeight: 400,
     color: 'inherit',
     textDecoration: 'none',
     cursor: 'pointer',
+    fontSize: 20,
+    display: { xs: 'none', md: 'flex' },
+  }
+
+  const menu: SxProps = {
+    display: { xs: 'block', md: 'none' },
   }
 
   const navLinks: SxProps = {
     display: 'flex',
     gap: 1.5,
-    ml: 'auto',
+    p: 0,
+    mx: 'auto',
   }
 
   const navLink = (isActive: boolean): SxProps => {
     return {
+      display: { xs: 'none', md: 'flex' },
       fontWeight: 400,
-      color: 'text.primary',
+      color: palette.grey[900],
       textAlign: 'center',
       borderRadius: 1.5,
-      justifyContent: 'center',
       padding: theme.spacing(1, 1.5),
       whiteSpace: 'nowrap',
 
+      '&:hover': {
+        backgroundColor: palette.primary.light,
+        color: palette.primary.main,
+      },
+
       ...(isActive
         ? {
-            fontWeight: 600,
-            color: 'primary.main',
-            backgroundColor: `${theme.palette.primary.light} !important`,
+            backgroundColor: palette.primary.light,
+            color: palette.primary.main,
           }
         : {}),
     }
   }
 
+  const avatar: SxProps = {
+    width: 24,
+    height: 24,
+  }
+
+  const settingsArrow: SxProps = {
+    color: palette.grey[900],
+  }
+
   return {
     logo,
+    textLogo,
     navLinks,
     navLink,
+    menu,
+    avatar,
+    settingsArrow,
   }
 }
 
