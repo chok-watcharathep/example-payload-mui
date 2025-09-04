@@ -7,7 +7,7 @@ import { notFound, useParams } from 'next/navigation'
 
 import { ADMIN_URL_COLLECTION } from '@/payload/constants'
 import { useAdminGetProductDetail } from '@/payload/features/product/hooks'
-import { useLocale } from '@/payload/hooks'
+import { useAdminLocale } from '@/payload/hooks'
 import type { Faculty, Major, University } from '@/payload-types'
 import { isCollection } from '@/shared/utils'
 
@@ -17,7 +17,7 @@ const ProductDetailPage = () => {
   const paramsHook = useParams()
   const stepNavHook = useStepNav()
 
-  const locale = useLocale()
+  const locale = useAdminLocale()
 
   const { data: productDetail, isLoading } = useAdminGetProductDetail({
     id: paramsHook.segments?.[2] as string,

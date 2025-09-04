@@ -1,1 +1,1 @@
-export { default as useLocale } from './useLocale'
+export { default as useAdminLocale } from './useLocale'
