@@ -88,18 +88,21 @@ const theme = createTheme({
     subtitle1: {
       lineHeight: 1.5,
       fontWeight: 400,
-      fontSize: 16,
+      fontSize: 20,
     },
+    // subtitle 2 is not included in our design system
     subtitle2: {
       lineHeight: 1.5,
       fontWeight: 400,
       fontSize: 14,
     },
+    // body m
     body1: {
       lineHeight: 1.5,
       fontWeight: 400,
       fontSize: 16,
     },
+    // body s
     body2: {
       lineHeight: 1.5,
       fontWeight: 400,

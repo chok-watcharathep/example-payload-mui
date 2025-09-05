@@ -24,7 +24,9 @@ const notoSansThai = Noto_Sans_Thai({
 export const metadata: Metadata = {
   title: 'Payload Blank Template',
   description: 'A blank template using Payload in a Next.js app.',
-  metadataBase: new URL(environmentConfig.NEXT_PUBLIC_APP_BASE_URL),
+  metadataBase: environmentConfig.NEXT_PUBLIC_APP_BASE_URL
+    ? new URL(environmentConfig.NEXT_PUBLIC_APP_BASE_URL)
+    : undefined,
   openGraph: {
     title: 'Payload Blank Template',
     description: 'A blank template using Payload in a Next.js app.',
