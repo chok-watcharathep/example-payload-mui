@@ -30,10 +30,23 @@ const TheMainHeader = () => {
   const styles = useStyles()
   const tCommon = useTranslations('common')
   const tMenu = useTranslations('menu')
+  const tProfileSettings = useTranslations('profileSettings')
   const pathname = usePathname()
 
-  const pages = ['home', 'profile', 'career', 'e-learning', 'jobs', 'e-portfolio', 'files']
-  const settings = ['profile', 'settings', 'logout']
+  const pages = [
+    { title: tMenu('home') },
+    { title: tMenu('profile'), isAuthenticated: true },
+    { title: tMenu('career') },
+    { title: tMenu('e-learning') },
+    { title: tMenu('jobs') },
+    { title: tMenu('e-portfolio') },
+    { title: tMenu('files') },
+  ]
+  const settings = [
+    { title: tProfileSettings('profile') },
+    { title: tProfileSettings('settings') },
+    { title: tProfileSettings('logout') },
+  ]
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState<HTMLButtonElement | null>(null)
   const [anchorElUser, setAnchorElUser] = useState<HTMLButtonElement | null>(null)
@@ -56,14 +69,14 @@ const TheMainHeader = () => {
   }
 
   return (
-    <AppBar elevation={0} color="transparent" sx={{ py: 1 }} position="static">
-      <Container maxWidth="lg">
+    <AppBar elevation={0} color="transparent" sx={{ py: 1 }} position="static" component="div">
+      <Container maxWidth="desktop">
         <Toolbar disableGutters>
           <LogoDevIcon sx={styles.logo} />
           <Typography component={Link} href="/" sx={styles.textLogo}>
             {tCommon('logo')}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={styles.menuMobile}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -91,73 +104,49 @@ const TheMainHeader = () => {
               sx={styles.menu}
             >
               {pages.map((page) => {
-                const pageRoute = `/${page.toLowerCase().replace(/\s+/g, '-')}`
+                const pageRoute = `/${page.title.toLowerCase().replace(/\s+/g, '-')}`
                 return (
                   <MenuItem
                     LinkComponent={Link}
                     href={pageRoute}
-                    key={page}
+                    key={page.title}
                     onClick={handleCloseNavMenu}
                   >
-                    <Typography>
-                      {tMenu(
-                        page as
-                          | 'home'
-                          | 'profile'
-                          | 'career'
-                          | 'e-learning'
-                          | 'jobs'
-                          | 'e-portfolio'
-                          | 'files',
-                      )}
-                    </Typography>
+                    <Typography>{page.title}</Typography>
                   </MenuItem>
                 )
               })}
             </Menu>
           </Box>
-          <LogoDevIcon sx={{ ...styles.logo, display: { xs: 'flex', md: 'none' } }} />
+          <LogoDevIcon sx={styles.logoMobile} />
           <Typography
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
-            sx={{
-              ...styles.textLogo,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-            }}
+            sx={styles.textLogoMobile}
           >
             {tCommon('logo')}
           </Typography>
           <List sx={styles.navLinks}>
             {pages.map((page) => {
-              const pageRoute = `/${page.toLowerCase().replace(/\s+/g, '-')}`
+              const pageRoute = `/${page.title.toLowerCase().replace(/\s+/g, '-')}`
               const isActive = decodeURIComponent(pathname) === pageRoute
 
               return (
-                <ListItem key={page} disablePadding>
+                <ListItem key={page.title} disablePadding>
                   <ListItemButton
                     selected={isActive}
                     component={Link}
                     href={pageRoute}
                     sx={styles.navLink(isActive)}
                   >
-                    {tMenu(
-                      page as
-                        | 'home'
-                        | 'profile'
-                        | 'career'
-                        | 'e-learning'
-                        | 'jobs'
-                        | 'e-portfolio'
-                        | 'files',
-                    )}
+                    {page.title}
                   </ListItemButton>
                 </ListItem>
               )
             })}
           </List>
-          <Box sx={{ flexGrow: 0, alignItems: 'center', display: 'flex', gap: 1 }}>
+          <Box sx={styles.settings}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar sx={styles.avatar} alt="Remy Sharp" src="/images/avatar/2.png" />
@@ -170,7 +159,7 @@ const TheMainHeader = () => {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: 5.5 }}
               id="menu-settings"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -186,8 +175,8 @@ const TheMainHeader = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
+                  <Typography sx={{ textAlign: 'center' }}>{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

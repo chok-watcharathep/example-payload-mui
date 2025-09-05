@@ -13,9 +13,9 @@
     "e-portfolio": "e-Portfolio",
     "files": "ไฟล์ของฉัน"
   },
-  "settings": {
+  "profileSettings": {
     "profile": "โปรไฟล์ของฉัน",
-    "settings": "ตั้งค่าและการตั้งค่า",
+    "settings": "ตั้งค่า",
     "logout": "ออกจากระบบ"
   },
   "home": {
