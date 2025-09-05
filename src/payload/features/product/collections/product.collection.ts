@@ -279,7 +279,7 @@ const Products: CollectionConfig = {
                   },
                   Cell: {
                     path: '@/payload/components',
-                    exportName: 'LinkToView',
+                    exportName: 'LinkToViewCell',
                   },
                 },
               },
