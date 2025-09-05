@@ -735,6 +735,235 @@ const ProductDetailPage = () => {
 export default ProductDetailPage
 ```
 
+### 📂 Components (`/src/payload/components`)
+
+#### Structure & Purpose
+
+```
+components/
+├── icons/           # Icon components for admin UI
+├── layouts/         # Admin layout components
+├── providers/       # Admin context providers
+├── ui/             # Reusable admin UI components (cells, fields, etc.)
+└── index.ts        # Export barrel for easy imports
+```
+
+**Unit Folder Explanation:**
+
+- **`icons/`**: Contains admin-specific icon components
+- **`layouts/`**: Admin panel layout components (sidebars, headers, main layouts)
+- **`providers/`**: Admin context providers for state management
+- **`ui/`**: Reusable UI components for Payload admin (custom cells, fields, buttons)
+
+#### Example: Custom Cell Component
+
+**File Structure:**
+
+```
+components/ui/LinkToViewCell/
+├── LinkToViewCell.tsx
+├── LinkToViewCell.scss
+└── index.ts
+```
+
+**File**: `components/ui/LinkToViewCell/LinkToViewCell.tsx`
+
+```typescript
+'use client'
+
+import { Link } from '@payloadcms/ui'
+import type { DefaultCellComponentProps } from 'payload'
+
+import { navigateToDetailPage } from '@/payload/utils'
+import './LinkToViewCell.scss'
+
+const LinkToViewCell = ({ rowData, collectionSlug }: DefaultCellComponentProps) => {
+  return (
+    <div className="link-to-view-cell">
+      <Link href={navigateToDetailPage(collectionSlug, rowData.id)}>
+        รายละเอียด
+      </Link>
+    </div>
+  )
+}
+
+export default LinkToViewCell
+```
+
+**File**: `components/ui/LinkToViewCell/LinkToViewCell.scss`
+
+```scss
+.link-to-view-cell {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: var(--theme-elevation-800);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--theme-success-500);
+      text-decoration: underline;
+    }
+  }
+}
+```
+
+#### Example: Custom Field Component
+
+**File Structure:**
+
+```
+components/ui/RichTextField/
+├── RichTextField.tsx
+├── RichTextField.scss
+└── index.ts
+```
+
+**File**: `components/ui/RichTextField/RichTextField.tsx`
+
+```typescript
+'use client'
+
+import { useField } from '@payloadcms/ui'
+import type { RichTextFieldClientProps } from '@payloadcms/richtext-lexical'
+import { RichTextField as PayloadRichTextField } from '@payloadcms/richtext-lexical'
+
+import './RichTextField.scss'
+
+const RichTextField = (props: RichTextFieldClientProps) => {
+  const { path, validate } = props
+  const { value, setValue } = useField({ path, validate })
+
+  return (
+    <div className="rich-text-field">
+      <PayloadRichTextField
+        {...props}
+        value={value}
+        onChange={setValue}
+      />
+    </div>
+  )
+}
+
+export default RichTextField
+```
+
+#### Example: Status Cell Component
+
+**File Structure:**
+
+```
+components/ui/StatusCell/
+├── StatusCell.tsx
+├── StatusCell.scss
+└── index.ts
+```
+
+**File**: `components/ui/StatusCell/StatusCell.tsx`
+
+```typescript
+'use client'
+
+import type { DefaultCellComponentProps } from 'payload'
+import './StatusCell.scss'
+
+interface StatusCellProps extends DefaultCellComponentProps {
+  cellData: 'active' | 'inactive' | 'pending'
+}
+
+const StatusCell = ({ cellData }: StatusCellProps) => {
+  const getStatusClass = (status: string) => {
+    switch (status) {
+      case 'active':
+        return 'status-active'
+      case 'inactive':
+        return 'status-inactive'
+      case 'pending':
+        return 'status-pending'
+      default:
+        return 'status-default'
+    }
+  }
+
+  return (
+    <div className="status-cell">
+      <span className={`status-badge ${getStatusClass(cellData)}`}>
+        {cellData}
+      </span>
+    </div>
+  )
+}
+
+export default StatusCell
+```
+
+#### Example: Date Picker Field Component
+
+**File Structure:**
+
+```
+components/ui/DatePickerField/
+├── DatePickerField.tsx
+├── DatePickerField.scss
+└── index.ts
+```
+
+**File**: `components/ui/DatePickerField/DatePickerField.tsx`
+
+```typescript
+'use client'
+
+import { useField, DatePicker } from '@payloadcms/ui'
+import type { DateFieldClientProps } from 'payload'
+
+import './DatePickerField.scss'
+
+const DatePickerField = (props: DateFieldClientProps) => {
+  const { path, validate, admin } = props
+  const { value, setValue } = useField({ path, validate })
+
+  return (
+    <div className="date-picker-field">
+      <DatePicker
+        value={value}
+        onChange={setValue}
+        displayFormat={admin?.date?.displayFormat}
+        pickerAppearance={admin?.date?.pickerAppearance}
+        {...props}
+      />
+    </div>
+  )
+}
+
+export default DatePickerField
+```
+
+#### Index File Pattern
+
+**File**: `components/index.ts`
+
+```typescript
+export * from './icons'
+export * from './ui'
+export * from './layouts'
+export * from './providers'
+
+// Export specific components
+export { default as LinkToViewCell } from './ui/LinkToViewCell'
+export { default as StatusCell } from './ui/StatusCell'
+export { default as RichTextField } from './ui/RichTextField'
+export { default as DatePickerField } from './ui/DatePickerField'
+```
+
+**Payload Component Naming Conventions:**
+
+- **Custom Cells**: `{Purpose}Cell` (e.g., `LinkToViewCell`, `StatusCell`, `ImageCell`)
+- **Custom Fields**: `{Purpose}Field` (e.g., `RichTextField`, `DatePickerField`, `FileUploadField`)
+- **Layout Components**: `{Purpose}Layout` (e.g., `AdminLayout`, `DashboardLayout`)
+- **Provider Components**: `{Purpose}Provider` (e.g., `ThemeProvider`, `AuthProvider`)
+
 ### 📂 Hooks (`/src/payload/hooks`)
 
 #### Purpose & Structure
