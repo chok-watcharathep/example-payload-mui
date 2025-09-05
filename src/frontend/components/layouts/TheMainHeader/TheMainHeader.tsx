@@ -37,9 +37,9 @@ const TheMainHeader = () => {
     { title: tMenu('home'), href: '/' },
     { title: tMenu('profile'), href: '/profile', isAuthenticated: true },
     { title: tMenu('career'), href: '/career' },
-    { title: tMenu('e-learning'), href: '/e-learning' },
+    { title: tMenu('eLearning'), href: '/e-learning' },
     { title: tMenu('jobs'), href: '/jobs' },
-    { title: tMenu('e-portfolio'), href: '/e-portfolio' },
+    { title: tMenu('ePortfolio'), href: '/e-portfolio' },
     { title: tMenu('files'), href: '/files' },
   ]
   const settings = [
