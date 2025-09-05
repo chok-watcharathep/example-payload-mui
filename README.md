@@ -1,22 +1,37 @@
-## Quick Start - local setup
+## MHESI
 
-To spin up this template locally, you'll need to follow these steps. This guide assumes you're using `pnpm run dev` for the application and Docker for your PostgreSQL database.
+A Next.js and Payload CMS-based web application for MHESI (Ministry of Higher Education, Science, Research and Innovation) Credit Port management system.
 
-### Clone
+### Tech Stack
 
-After you click the `Deploy` button above, you'll want to have a standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+- [Payload CMS](https://payloadcms.com/)
+- [Next.js](https://nextjs.org/)
+- [MUI](https://mui.com/)
 
-### Development
+### Installation
 
-1.  First [clone the repo](#clone) if you have not done so already
-2.  `cd mhesi-credit-port-portal`
-3.  `cp .env.example .env` to copy the example environment variables.
+1.  First clone the repository if you have not done so already
+2.  Go to project folder
+    ```
+    cd mhesi-credit-port-portal
+    ```
+3.  Copy the example environment variables.
+
+    ```
+    cp .env.example .env
+    ```
+
 4.  Update the `DATABASE_URI` in your new `.env` file to connect to the PostgreSQL database running in Docker. The URI should look something like this:
     ```
     DATABASE_URI="postgresql://my_user:my_password@localhost:5432/my_database"
     ```
 5.  Start the PostgreSQL database with Docker: `docker-compose up -d`. This will run the database in the background.
-6.  `pnpm install && pnpm dev` to install dependencies and start the dev server
+6.  Install dependencies and start the dev server
+
+    ```
+    pnpm install && pnpm dev
+    ```
+
 7.  open `http://localhost:3000` to open the app in your browser
 
 That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
