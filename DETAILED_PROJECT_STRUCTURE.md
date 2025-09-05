@@ -453,11 +453,6 @@ export const getUrlQueryState = (
 ```typescript
 export const DEFAUlT_PAGE = '1'
 export const DEFAUlT_PAGE_SIZE = '10'
-export const FRONTEND_ROUTES = {
-  HOME: '/',
-  CATEGORIES: '/categories',
-  PRODUCTS: '/products',
-} as const
 ```
 
 #### `enums/` - Frontend Enums
