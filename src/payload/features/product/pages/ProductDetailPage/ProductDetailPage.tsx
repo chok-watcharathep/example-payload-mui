@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { Collapsible, Gutter, LoadingOverlay, useStepNav } from '@payloadcms/ui'
 import { notFound, useParams } from 'next/navigation'
 
-import { ADMIN_URL_COLLECTION } from '@/payload/constants'
+import { ADMIN_ROUTE_COLLECTION } from '@/payload/constants'
 import { useAdminGetProductDetail } from '@/payload/features/product/hooks'
 import type { Faculty, Major, University } from '@/payload-types'
 import { isCollection } from '@/shared/utils'
@@ -28,11 +28,11 @@ const ProductDetailPage = () => {
     stepNavHook.setStepNav([
       {
         label: 'สินค้า',
-        url: `${ADMIN_URL_COLLECTION}/products`,
+        url: `${ADMIN_ROUTE_COLLECTION}/products`,
       },
       {
         label: productDetail.name,
-        url: `${ADMIN_URL_COLLECTION}/products/${productDetail.id}`,
+        url: `${ADMIN_ROUTE_COLLECTION}/products/${productDetail.id}`,
       },
       {
         label: 'รายละเอียด',

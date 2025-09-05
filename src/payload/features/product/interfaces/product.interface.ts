@@ -5,7 +5,7 @@ import type { BaseAdminRequest } from '@/shared/interfaces'
 
 export interface AdminGetProductDetailRequest
   extends BaseAdminRequest<JoinQuery<'products'>, ProductsSelect> {
-  id: string
+  id: number
 }
 
 export interface AdminGetProductDetailResponse extends Product {}

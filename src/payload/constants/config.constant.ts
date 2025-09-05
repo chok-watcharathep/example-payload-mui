@@ -1,3 +1,3 @@
-export const ADMIN_URL = '/admin'
+export const ADMIN_ROUTE = '/admin'
 
-export const ADMIN_URL_COLLECTION = `${ADMIN_URL}/collections`
+export const ADMIN_ROUTE_COLLECTION = `${ADMIN_ROUTE}/collections`

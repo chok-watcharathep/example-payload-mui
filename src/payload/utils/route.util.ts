@@ -1,5 +1,5 @@
-import { ADMIN_URL } from '@/payload/constants'
+import { ADMIN_ROUTE } from '@/payload/constants'
 
 export const navigateToDetailPage = (collectionSlug: string, id: string) => {
-  return `${ADMIN_URL}/collections/${collectionSlug}/${id}/detail`
+  return `${ADMIN_ROUTE}/collections/${collectionSlug}/${id}/detail`
 }
