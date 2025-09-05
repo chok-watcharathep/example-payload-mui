@@ -6,6 +6,15 @@ BRANCH_REGEX="^(feature|bugfix|hotfix|release|dev|setup|base|refactor|story)\/[a
 # Get the current branch name
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 
+# Run typecheck
+pnpm run type-check
+
+# Run linting
+pnpm run lint
+
+# Run code formatting
+pnpm run format
+
 # Run testing
 pnpm run test
 

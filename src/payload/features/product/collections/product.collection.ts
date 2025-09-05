@@ -5,11 +5,9 @@ const Products: CollectionConfig = {
   labels: {
     singular: {
       th: 'สินค้า',
-      en: 'Product',
     },
     plural: {
       th: 'สินค้า',
-      en: 'Products',
     },
   },
   admin: {
@@ -269,7 +267,7 @@ const Products: CollectionConfig = {
                 },
               },
             },
-            // TODO: This is common field for all collections. Move to utils
+            // TODO: This is common field for all collections. Move to utils or constants
             {
               type: 'ui',
               name: 'actions',
@@ -277,7 +275,7 @@ const Products: CollectionConfig = {
                 components: {
                   Field: {
                     path: '@/payload/components',
-                    exportName: 'AfterChangeField',
+                    exportName: 'NavigationAfterChangeField',
                   },
                   Cell: {
                     path: '@/payload/components',

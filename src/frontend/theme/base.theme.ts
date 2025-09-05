@@ -4,11 +4,11 @@ const baseTheme = createTheme({
   breakpoints: {
     values: {
       // Keep the default breakpoints to prevent break the existing code
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
+      // xs: 0,
+      // sm: 600,
+      // md: 900,
+      // lg: 1200,
+      // xl: 1536,
       // *Note: Please use custom breakpoints instead of default breakpoints
       mobile: 0,
       tablet: 768,
@@ -69,6 +69,7 @@ const baseTheme = createTheme({
       700: '#B91C1C',
       800: '#991B1B',
       900: '#7F1D1D',
+      main: '#B91C1C',
     },
     success: {
       100: '#D1FAE5',

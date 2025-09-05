@@ -24,4 +24,5 @@ export interface BaseAdminRequest<TJoinQuery extends JoinQuery, TSelect> {
   sort?: string[]
   where?: Where
   joins?: TJoinQuery
+  draft?: boolean
 }
