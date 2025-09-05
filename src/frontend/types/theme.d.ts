@@ -41,11 +41,11 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     // Keep the default breakpoints to prevent break the existing code
-    xs: true
-    sm: true
-    md: true
-    lg: true
-    xl: true
+    xs: false
+    sm: false
+    md: false
+    lg: false
+    xl: false
     mobile: true
     tablet: true
     desktop: true

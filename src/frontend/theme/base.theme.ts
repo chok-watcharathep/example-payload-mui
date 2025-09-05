@@ -4,11 +4,11 @@ const baseTheme = createTheme({
   breakpoints: {
     values: {
       // Keep the default breakpoints to prevent break the existing code
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
+      // xs: 0,
+      // sm: 600,
+      // md: 900,
+      // lg: 1200,
+      // xl: 1536,
       // *Note: Please use custom breakpoints instead of default breakpoints
       mobile: 0,
       tablet: 768,
