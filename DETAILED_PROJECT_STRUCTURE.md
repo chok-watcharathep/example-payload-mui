@@ -1335,6 +1335,152 @@ export * from './product'
 export { default as useUrlQueryState } from './useUrlQueryState'
 ```
 
+#### Rule 5.1: Barrel Export Patterns
+
+**REQUIRED**: All exports must follow the file's export pattern to enable clean imports.
+
+##### ✅ Correct Export Patterns
+
+**For Default Exports:**
+
+```typescript
+// File: hooks/useGetCategoryList.ts
+const useGetCategoryList = () => {
+  /* ... */
+}
+export default useGetCategoryList
+
+// File: hooks/index.ts
+export { default as useGetCategoryList } from './useGetCategoryList'
+
+// Usage: ✅ CORRECT
+import { useGetCategoryList } from '@/frontend/hooks'
+```
+
+**For Named Exports:**
+
+```typescript
+// File: interfaces/category.interface.ts
+export interface GetCategoryListRequest {
+  /* ... */
+}
+export interface GetCategoryListResponse {
+  /* ... */
+}
+
+// File: interfaces/index.ts
+export * from './category.interface'
+
+// Usage: ✅ CORRECT
+import { GetCategoryListRequest, GetCategoryListResponse } from '@/frontend/interfaces'
+```
+
+**For Mixed Exports:**
+
+```typescript
+// File: utils/collection.util.ts
+export const isCollection = () => {
+  /* ... */
+}
+export const validateCollection = () => {
+  /* ... */
+}
+export default { isCollection, validateCollection }
+
+// File: utils/index.ts
+export * from './collection.util'
+export { default as collectionUtils } from './collection.util'
+
+// Usage: ✅ CORRECT
+import { isCollection, validateCollection } from '@/frontend/utils'
+import { collectionUtils } from '@/frontend/utils'
+```
+
+##### ❌ Forbidden Import Patterns
+
+```typescript
+// ❌ DON'T DO THIS - Direct file imports
+import useGetCategoryList from '@/frontend/hooks/useGetCategoryList'
+import { GetCategoryListRequest } from '@/frontend/interfaces/category.interface'
+
+// ❌ DON'T DO THIS - Wrong export pattern
+// If file exports as default, don't import as named
+import { useGetCategoryList } from '@/frontend/hooks' // Wrong if exported as default
+
+// ❌ DON'T DO THIS - Wrong export pattern
+// If file exports as named, don't import as default
+import useGetCategoryList from '@/frontend/hooks' // Wrong if exported as named
+```
+
+#### Rule 5.2: Directory-Level Export Rules
+
+**Feature Directories:**
+
+```typescript
+// File: features/category/index.ts
+export * from './components'
+export * from './hooks'
+export * from './interfaces'
+export * from './services'
+export * from './enums'
+export * from './utils'
+```
+
+**Domain-Level Exports:**
+
+```typescript
+// File: frontend/index.ts
+export * from './components'
+export * from './features'
+export * from './hooks'
+export * from './utils'
+export * from './constants'
+export * from './enums'
+export * from './interfaces'
+```
+
+**Component Directory Exports:**
+
+```typescript
+// File: components/ui/Button/index.ts
+export { default } from './Button'
+export type { ButtonProps } from './Button'
+
+// File: components/ui/index.ts
+export { default as Button } from './Button'
+export { default as TextField } from './TextField'
+export { default as Modal } from './Modal'
+
+// Usage: ✅ CORRECT
+import { Button, TextField, Modal } from '@/frontend/components/ui'
+```
+
+#### Rule 5.3: Import Path Standards
+
+**REQUIRED**: All imports must use the shortest possible barrel export path.
+
+| Import Type    | Correct Pattern         | Example                                                          |
+| -------------- | ----------------------- | ---------------------------------------------------------------- |
+| **Hooks**      | `@/{domain}/hooks`      | `import { useGetCategoryList } from '@/frontend/hooks'`          |
+| **Components** | `@/{domain}/components` | `import { CategoryCard } from '@/frontend/components'`           |
+| **Services**   | `@/{domain}/services`   | `import { getCategoryList } from '@/frontend/services'`          |
+| **Interfaces** | `@/{domain}/interfaces` | `import { GetCategoryListRequest } from '@/frontend/interfaces'` |
+| **Utils**      | `@/{domain}/utils`      | `import { isCollection } from '@/shared/utils'`                  |
+| **Constants**  | `@/{domain}/constants`  | `import { DEFAULT_PAGE_SIZE } from '@/frontend/constants'`       |
+| **Enums**      | `@/{domain}/enums`      | `import { CategoryQueryKey } from '@/frontend/enums'`            |
+
+#### Rule 5.4: Export Consistency Rules
+
+**REQUIRED**: Export patterns must be consistent within each file type.
+
+- **Hooks**: Always export as default, re-export as named in index
+- **Components**: Always export as default, re-export as named in index
+- **Services**: Always export as named functions
+- **Interfaces**: Always export as named exports
+- **Utils**: Always export as named functions
+- **Constants**: Always export as named constants
+- **Enums**: Always export as named enums
+
 #### Rule 6: Feature-Based Organization
 
 **REQUIRED**: Each feature must be self-contained with standardized folder structure.
@@ -1754,11 +1900,8 @@ const CategoryPage = ({ params }: { params: { slug: string } }) => {
 
   return <div>{category?.name}</div>
 }
-```
 
-#### Server Component with Client Component + React Query Prefetching - Good for SEO
-
-```typescript
+// ✅ Server Component with Client Component + React Query Prefetching - Good for SEO
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const payload = await getPayload({ config })
   const locale = await getLocale()
