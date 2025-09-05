@@ -17,7 +17,7 @@ const ProductDetailPage = () => {
   const stepNavHook = useStepNav()
 
   const { data: productDetail, isLoading } = useAdminGetProductDetail({
-    id: paramsHook.segments?.[2] as string,
+    id: Number(paramsHook.segments?.[2]),
     draft: true,
   })
 
