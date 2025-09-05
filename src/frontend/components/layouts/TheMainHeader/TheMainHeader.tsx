@@ -34,18 +34,18 @@ const TheMainHeader = () => {
   const pathname = usePathname()
 
   const pages = [
-    { title: tMenu('home') },
-    { title: tMenu('profile'), isAuthenticated: true },
-    { title: tMenu('career') },
-    { title: tMenu('e-learning') },
-    { title: tMenu('jobs') },
-    { title: tMenu('e-portfolio') },
-    { title: tMenu('files') },
+    { title: tMenu('home'), href: '/' },
+    { title: tMenu('profile'), href: '/profile', isAuthenticated: true },
+    { title: tMenu('career'), href: '/career' },
+    { title: tMenu('e-learning'), href: '/e-learning' },
+    { title: tMenu('jobs'), href: '/jobs' },
+    { title: tMenu('e-portfolio'), href: '/e-portfolio' },
+    { title: tMenu('files'), href: '/files' },
   ]
   const settings = [
-    { title: tProfileSettings('profile') },
-    { title: tProfileSettings('settings') },
-    { title: tProfileSettings('logout') },
+    { title: tProfileSettings('profile'), href: '/profile' },
+    { title: tProfileSettings('settings'), href: '/settings' },
+    { title: tProfileSettings('logout'), href: '/logout' },
   ]
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState<HTMLButtonElement | null>(null)
@@ -104,11 +104,10 @@ const TheMainHeader = () => {
               sx={styles.menu}
             >
               {pages.map((page) => {
-                const pageRoute = `/${page.title.toLowerCase().replace(/\s+/g, '-')}`
                 return (
                   <MenuItem
                     LinkComponent={Link}
-                    href={pageRoute}
+                    href={page.href}
                     key={page.title}
                     onClick={handleCloseNavMenu}
                   >
@@ -129,15 +128,14 @@ const TheMainHeader = () => {
           </Typography>
           <List sx={styles.navLinks}>
             {pages.map((page) => {
-              const pageRoute = `/${page.title.toLowerCase().replace(/\s+/g, '-')}`
-              const isActive = decodeURIComponent(pathname) === pageRoute
+              const isActive = decodeURIComponent(pathname) === page.href
 
               return (
                 <ListItem key={page.title} disablePadding>
                   <ListItemButton
                     selected={isActive}
                     component={Link}
-                    href={pageRoute}
+                    href={page.href}
                     sx={styles.navLink(isActive)}
                   >
                     {page.title}
