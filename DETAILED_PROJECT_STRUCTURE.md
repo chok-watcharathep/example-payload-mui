@@ -790,26 +790,6 @@ const LinkToViewCell = ({ rowData, collectionSlug }: DefaultCellComponentProps) 
 export default LinkToViewCell
 ```
 
-**File**: `components/ui/LinkToViewCell/LinkToViewCell.scss`
-
-```scss
-.link-to-view-cell {
-  display: flex;
-  align-items: center;
-
-  a {
-    color: var(--theme-elevation-800);
-    text-decoration: none;
-    font-weight: 500;
-
-    &:hover {
-      color: var(--theme-success-500);
-      text-decoration: underline;
-    }
-  }
-}
-```
-
 #### Example: Custom Field Component
 
 **File Structure:**
@@ -1517,3 +1497,382 @@ export interface UpdateUserRequest {
 
 export interface UpdateUserResponse extends User {}
 ```
+
+---
+
+## 🔍 SEO & Next.js App Router
+
+### 🎯 Purpose
+
+SEO optimization using Next.js App Router features for dynamic metadata generation, Open Graph tags, and search engine optimization.
+
+### 📂 App Router Structure
+
+```
+app/
+├── (frontend)/              # Frontend route group
+│   ├── (public)/           # Public pages (SEO optimized)
+│   │   ├── categories/
+│   │   │   └── [categorySlug]/
+│   │   │       └── page.tsx    # Dynamic category page with SEO
+│   │   ├── products/
+│   │   │   └── [productSlug]/
+│   │   │       └── page.tsx    # Dynamic product page with SEO
+│   │   └── page.tsx           # Homepage with SEO
+│   └── layout.tsx             # Frontend layout
+├── (payload)/               # Payload admin route group
+│   └── admin/
+```
+
+### 🔧 SEO Implementation Patterns
+
+#### Dynamic Metadata Generation
+
+**File**: `app/(frontend)/(public)/categories/[categorySlug]/page.tsx`
+
+```typescript
+import type { Metadata } from 'next'
+import { notFound, useParams } from 'next/navigation'
+import { getLocale } from 'next-intl/server'
+import { getPayload } from 'payload'
+
+import environmentConfig from '@/environment.config'
+import { Route } from '@/frontend/enums'
+import config from '@/payload.config'
+import { findOneCategoryBySlug } from '@/shared/features/category/services'
+import { isMedia } from '@/shared/utils'
+
+interface CategoryPageProps {
+  params: Promise<{ categorySlug: string }>
+  searchParams: Promise<BaseSearchRequest>
+}
+
+// ✅ REQUIRED: generateMetadata function for dynamic SEO
+export async function generateMetadata({
+  params: paramsPromise,
+}: CategoryPageProps): Promise<Metadata> {
+  const params = await paramsPromise
+  const payload = await getPayload({ config })
+  const locale = await getLocale()
+
+  // Fetch data for SEO
+  const category = await findOneCategoryBySlug(payload, params.categorySlug, {
+    locale,
+  })
+
+  if (!category) {
+    // Return default metadata for 404 cases
+    return {}
+  }
+
+  // Generate dynamic metadata
+  return {
+    title: category.meta?.title || category.name,
+    description: category.meta?.description || `Browse products in ${category.name}`,
+    keywords: category.meta?.keywords || [category.name, 'products', 'shop'],
+
+    // Open Graph for social media
+    openGraph: {
+      title: category.meta?.title || category.name,
+      description: category.meta?.description || `Browse products in ${category.name}`,
+      type: 'website',
+      url: `${environmentConfig.NEXT_PUBLIC_APP_BASE_URL}${Route.CATEGORIES}/${category.slug}`,
+      siteName: 'Your Site Name',
+      locale: locale,
+      images: isMedia(category.meta?.image)
+        ? [
+            {
+              url: category.meta?.image.url || '',
+              width: category.meta?.image.width || 1200,
+              height: category.meta?.image.height || 630,
+              alt: category.meta?.image.alt || category.name,
+              type: 'image/jpeg',
+            },
+          ]
+        : [
+            {
+              url: `${environmentConfig.NEXT_PUBLIC_APP_BASE_URL}/images/default-og.jpg`,
+              width: 1200,
+              height: 630,
+              alt: 'Default image',
+            },
+          ],
+    },
+
+    // Twitter Card
+    twitter: {
+      card: 'summary_large_image',
+      title: category.meta?.title || category.name,
+      description: category.meta?.description || `Browse products in ${category.name}`,
+      images: isMedia(category.meta?.image) ? [category.meta.image.url] : [],
+    },
+
+    // Canonical URL
+    alternates: {
+      canonical: `${environmentConfig.NEXT_PUBLIC_APP_BASE_URL}${Route.CATEGORIES}/${category.slug}`,
+    },
+
+    // Robots
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
+  }
+}
+
+const CategoryPage = async ({
+  params: paramsPromise,
+  searchParams: searchParamsPromise,
+}: CategoryPageProps) => {
+  const params = await paramsPromise
+  const payload = await getPayload({ config })
+  const locale = await getLocale()
+
+  const category = await findOneCategoryBySlug(payload, decodeURIComponent(params.categorySlug), {
+    locale,
+  })
+
+  if (!category) {
+    notFound() // This triggers 404 page
+  }
+
+  // Rest of component logic...
+  return (
+    <Container>
+      <Typography variant="h1">{category.name}</Typography>
+      {/* Page content */}
+    </Container>
+  )
+}
+
+export default CategoryPage
+```
+
+#### Static Metadata for Static Pages
+
+**File**: `app/(frontend)/(public)/page.tsx`
+
+```typescript
+import type { Metadata } from 'next'
+
+// ✅ Static metadata for homepage
+export const metadata: Metadata = {
+  title: 'Homepage - Your Site Name',
+  description: 'Welcome to our amazing e-commerce platform with great products.',
+  keywords: ['ecommerce', 'products', 'shop', 'online store'],
+
+  openGraph: {
+    title: 'Homepage - Your Site Name',
+    description: 'Welcome to our amazing e-commerce platform with great products.',
+    type: 'website',
+    url: 'https://yoursite.com',
+    siteName: 'Your Site Name',
+    images: [
+      {
+        url: 'https://yoursite.com/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Your Site Name',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Homepage - Your Site Name',
+    description: 'Welcome to our amazing e-commerce platform with great products.',
+  },
+
+  alternates: {
+    canonical: 'https://yoursite.com',
+  },
+}
+
+const HomePage = () => {
+  return (
+    <div>
+      <h1>Welcome to Our Store</h1>
+      {/* Page content */}
+    </div>
+  )
+}
+
+export default HomePage
+```
+
+### 🌐 Next.js App Router SEO Features
+
+#### Route Groups
+
+```
+app/
+├── (frontend)/     # Route group - doesn't affect URL
+├── (payload)/      # Route group - doesn't affect URL
+```
+
+**Benefits:**
+
+- Organize routes without affecting URL structure
+- Separate frontend and admin layouts
+- Better code organization
+
+#### Dynamic Routes with SEO
+
+```typescript
+// Dynamic route: [categorySlug]/page.tsx
+// URL: /categories/electronics
+// SEO: Dynamic metadata based on category data
+
+// Dynamic nested route: [categorySlug]/[productSlug]/page.tsx
+// URL: /categories/electronics/smartphone
+// SEO: Product-specific metadata with category context
+```
+
+#### Server Components for SEO
+
+```typescript
+// ✅ Server Component - Better for SEO
+const CategoryPage = async ({ params }: { params: { slug: string } }) => {
+  // Data fetching happens on server
+  const category = await fetchCategory(params.slug)
+
+  return <div>{category.name}</div>
+}
+
+// ❌ Client Component - Not ideal for SEO
+'use client'
+const CategoryPage = ({ params }: { params: { slug: string } }) => {
+  const [category, setCategory] = useState(null)
+
+  useEffect(() => {
+    fetchCategory(params.slug).then(setCategory)
+  }, [])
+
+  return <div>{category?.name}</div>
+}
+```
+
+#### Server Component with Client Component + React Query Prefetching - Good for SEO
+
+```typescript
+const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
+  const payload = await getPayload({ config })
+  const locale = await getLocale()
+
+  // Fetch data on server for SEO
+  const category = await findOneCategoryBySlug(payload, params.categorySlug, { locale })
+
+  if (!category) {
+    notFound()
+  }
+
+  // Prefetch data for client components
+  const queryClient = getQueryClient()
+  const urlQueryState = getUrlQueryState(searchParams, {
+    defaultPage: '1',
+    defaultPageSize: '12',
+  })
+
+  const request: GetProductListRequest = {
+    categoryId: category.id,
+    page: urlQueryState.page,
+    limit: urlQueryState.pageSize,
+  }
+
+  await queryClient.prefetchQuery({
+    queryKey: [ProductQueryKey.GET_PRODUCT_LIST, request],
+    queryFn: () => getProductList(request),
+  })
+
+  return (
+    <Container>
+      <Typography variant="h1">{category.name}</Typography>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <ProductList categoryId={category.id} />
+      </HydrationBoundary>
+    </Container>
+  )
+}
+```
+
+### 📋 SEO Best Practices
+
+#### Metadata Patterns
+
+| Page Type     | Title Pattern                             | Description Pattern          |
+| ------------- | ----------------------------------------- | ---------------------------- |
+| **Homepage**  | `Site Name - Tagline`                     | `Main value proposition`     |
+| **Category**  | `{Category Name} - Site Name`             | `Browse {category} products` |
+| **Product**   | `{Product Name} - {Category} - Site Name` | `{Product description}`      |
+| **Blog Post** | `{Post Title} - Blog - Site Name`         | `{Post excerpt}`             |
+
+#### Open Graph Image Guidelines
+
+- **Size**: 1200x630px (recommended)
+- **Format**: JPG or PNG
+- **Alt text**: Always provide descriptive alt text
+- **Fallback**: Always have a default image
+
+#### URL Structure
+
+```
+✅ Good URLs:
+/categories/electronics
+/categories/electronics/smartphones
+/products/iphone-15-pro
+
+❌ Bad URLs:
+/cat?id=123
+/p/12345
+/category/electronics%20and%20gadgets
+```
+
+#### Structured Data (JSON-LD)
+
+```typescript
+// Add to page component for rich snippets
+const productJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: product.description,
+  image: product.images?.map(img => img.url),
+  offers: {
+    '@type': 'Offer',
+    price: product.price,
+    priceCurrency: 'THB',
+    availability: 'https://schema.org/InStock',
+  },
+}
+
+return (
+  <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+    />
+    {/* Page content */}
+  </>
+)
+```
+
+### 🔧 SEO Utilities
+
+#### Environment Configuration
+
+**File**: `environment.config.ts`
+
+```typescript
+const environmentConfig = {
+  NEXT_PUBLIC_APP_BASE_URL: process.env.NEXT_PUBLIC_APP_BASE_URL || 'http://localhost:3000',
+  NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME || 'Your Site Name',
+} as const
+
+export default environmentConfig
+```
+
+This SEO implementation ensures your pages are optimized for search engines while leveraging Next.js App Router's powerful metadata API.

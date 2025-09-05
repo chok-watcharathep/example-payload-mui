@@ -42,6 +42,7 @@ export async function generateMetadata({
   return {
     title: category.meta?.title || category.name,
     description: category.meta?.description || category.name,
+    keywords: [category.name, 'products', 'shop'],
     openGraph: {
       title: category.meta?.title || category.name,
       description: category.meta?.description || category.name,
@@ -57,6 +58,29 @@ export async function generateMetadata({
             },
           ]
         : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: category.meta?.title || category.name,
+      description: category.meta?.description || category.name,
+      images: isMedia(category.meta?.image)
+        ? [
+            {
+              url: category.meta?.image.url || '',
+              width: category.meta?.image.width || 800,
+              height: category.meta?.image.height || 600,
+              alt: category.name,
+            },
+          ]
+        : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
   }
 }

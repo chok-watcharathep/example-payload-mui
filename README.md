@@ -2,6 +2,32 @@
 
 A Next.js and Payload CMS-based web application for MHESI (Ministry of Higher Education, Science, Research and Innovation) Credit Port management system.
 
+## 📚 Documentation
+
+- **[📋 Detailed Project Structure](./DETAILED_PROJECT_STRUCTURE.md)** - Comprehensive guide to project architecture, naming conventions, and development standards
+- **[🚀 Getting Started](#installation)** - Setup and installation instructions
+- **[🗄️ Database](#database-migrations)** - Migration and database management
+- **[📦 Collections](#collections)** - Payload CMS collections overview
+
+## 🏗️ Project Architecture
+
+This project follows a **domain-driven architecture** with clear separation between:
+
+- **Frontend** (`/src/frontend`) - Next.js public-facing application with MUI components
+- **Payload Admin** (`/src/payload`) - CMS admin interface with custom components
+- **Shared** (`/src/shared`) - Common utilities, types, and services
+
+For detailed information about:
+
+- 📁 **File organization and folder structure**
+- 🎯 **Naming conventions and coding standards**
+- 🔧 **Component patterns and best practices**
+- 🌐 **SEO optimization with Next.js App Router**
+- 🎨 **Styling guidelines (MUI vs Payload UI)**
+- 🔄 **API interface patterns (CRUD operations)**
+
+👉 **See the [Detailed Project Structure Guide](./DETAILED_PROJECT_STRUCTURE.md)**
+
 ### Tech Stack
 
 - [Payload CMS](https://payloadcms.com/)
