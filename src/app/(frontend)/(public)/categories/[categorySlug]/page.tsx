@@ -1,4 +1,3 @@
-import { Container, Typography } from '@mui/material'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -7,7 +6,7 @@ import { getPayload } from 'payload'
 
 import environmentConfig from '@/environment.config'
 import { Route } from '@/frontend/enums'
-import { ProductList } from '@/frontend/features/product/components'
+import { CategoryDetailPage } from '@/frontend/features/category/pages'
 import { ProductQueryKey } from '@/frontend/features/product/enums'
 import type { GetProductListRequest } from '@/frontend/features/product/interfaces'
 import { getProductList } from '@/frontend/features/product/services'
@@ -120,12 +119,9 @@ const CategoryPage = async ({
   })
 
   return (
-    <Container>
-      <Typography variant="h1">{category.name}</Typography>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductList categoryId={category.id} />
-      </HydrationBoundary>
-    </Container>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <CategoryDetailPage category={category} />
+    </HydrationBoundary>
   )
 }
 

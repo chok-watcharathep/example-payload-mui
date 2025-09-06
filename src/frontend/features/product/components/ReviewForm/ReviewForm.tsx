@@ -11,9 +11,10 @@ import ReviewInformationFields from './ReviewInformationFields'
 
 interface ReviewFormProps {
   defaultValues?: Partial<ReviewFormFields>
+  onSubmit: (formFields: ReviewFormFields) => void
 }
 
-const ReviewForm = ({ defaultValues }: ReviewFormProps) => {
+const ReviewForm = ({ defaultValues, onSubmit }: ReviewFormProps) => {
   const tReviewForm = useTranslations('product.reviewForm')
   const tCommon = useTranslations('common')
   const reviewFormSchemaHook = useReviewFormSchema()
@@ -28,13 +29,9 @@ const ReviewForm = ({ defaultValues }: ReviewFormProps) => {
     control: formHook.control,
   })
 
-  const handleSubmitReviewForm = (formFields: ReviewFormFields) => {
-    console.log(formFields)
-  }
-
   return (
     <FormProvider {...formHook}>
-      <Box component="form" noValidate onSubmit={formHook.handleSubmit(handleSubmitReviewForm)}>
+      <Box component="form" noValidate onSubmit={formHook.handleSubmit(onSubmit)}>
         <Stack gap={2}>
           <Typography variant="h3">{tReviewForm('title')}</Typography>
           <Typography variant="body1">{tReviewForm('description')}</Typography>

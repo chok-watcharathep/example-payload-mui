@@ -1787,12 +1787,9 @@ const CategoryPage = async ({
   }
 
   // Rest of component logic...
-  return (
-    <Container>
-      <Typography variant="h1">{category.name}</Typography>
-      {/* Page content */}
-    </Container>
-  )
+  return {
+    /* Page content */
+  }
 }
 
 export default CategoryPage
@@ -1931,14 +1928,11 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     queryFn: () => getProductList(request),
   })
 
-  return (
-    <Container>
-      <Typography variant="h1">{category.name}</Typography>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductList categoryId={category.id} />
-      </HydrationBoundary>
-    </Container>
-  )
+  return {
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <CategoryDetailPage category={category} />
+    </HydrationBoundary>
+  }
 }
 ```
 

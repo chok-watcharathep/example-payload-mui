@@ -25,7 +25,7 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { PriceCell as PriceCell_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { LinkCurriculumSummaryUiField as LinkCurriculumSummaryUiField_7bcf24e6fefd56863a80d31ef37b045b } from '@/payload/features/product/components'
 import { NavigationAfterChangeField as NavigationAfterChangeField_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
-import { LinkToView as LinkToView_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
+import { LinkToViewCell as LinkToViewCell_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { OverviewComponent as OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaTitleComponent as MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
@@ -65,7 +65,7 @@ export const importMap = {
   "@/payload/components#PriceCell": PriceCell_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/features/product/components#LinkCurriculumSummaryUiField": LinkCurriculumSummaryUiField_7bcf24e6fefd56863a80d31ef37b045b,
   "@/payload/components#NavigationAfterChangeField": NavigationAfterChangeField_7b44fae237f1bb4a85c9f128ec7ca6c1,
-  "@/payload/components#LinkToView": LinkToView_7b44fae237f1bb4a85c9f128ec7ca6c1,
+  "@/payload/components#LinkToViewCell": LinkToViewCell_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
