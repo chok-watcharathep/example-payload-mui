@@ -181,7 +181,6 @@ features/
 │   ├── services/       # Category-specific API calls
 │   ├── enums/         # Category-specific enums
 │   ├── pages/         # Category page components (client components)
-│   └── index.ts       # Feature exports
 ├── product/
 │   ├── components/      # Product-specific components
 │   ├── hooks/          # Product-specific hooks
@@ -189,8 +188,6 @@ features/
 │   ├── services/       # Product-specific API calls
 │   ├── enums/         # Product-specific enums
 │   ├── pages/         # Product page components (client components)
-│   └── index.ts       # Feature exports
-└── index.ts           # All features export
 ```
 
 **Unit Folder Explanation:**
@@ -201,7 +198,6 @@ features/
 - **`services/`**: Pure functions that handle API calls and data transformation for this feature
 - **`enums/`**: Enumeration constants specific to this feature (query keys, status values, etc.)
 - **`pages/`**: **Client components** that represent complete pages for the feature
-- **`index.ts`**: Barrel exports for the entire feature
 
 #### Example: Feature Interface
 
@@ -438,17 +434,6 @@ export default CategoryDetailPage
 ```typescript
 export { default as ProductDetailPage } from './ProductDetailPage'
 export { default as ProductListPage } from './ProductListPage'
-```
-
-**File**: `features/product/index.ts`
-
-```typescript
-export * from './components'
-export * from './hooks'
-export * from './interfaces'
-export * from './services'
-export * from './enums'
-export * from './pages'
 ```
 
 ### 📂 Hooks (`/src/frontend/hooks`)
