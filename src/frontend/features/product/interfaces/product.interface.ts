@@ -16,3 +16,9 @@ export interface GetProductDetailRequest {
 }
 
 export interface GetProductDetailResponse extends Product {}
+
+export interface ReviewFormFields {
+  name: string
+  email: string
+  message: string
+}

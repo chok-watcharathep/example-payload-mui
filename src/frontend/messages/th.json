@@ -2,7 +2,15 @@
   "common": {
     "home": "หน้าแรก",
     "logo": "Credit Port",
-    "products": "สินค้า"
+    "products": "สินค้า",
+    "submit": "ส่ง"
+  },
+  "error": {
+    "form": {
+      "required": "กรุณากรอกข้อมูล",
+      "email": "กรุณากรอกอีเมลให้ถูกต้อง",
+      "minLength": "กรุณากรอกข้อมูลอย่างน้อย {minLength} ตัวอักษร"
+    }
   },
   "menu": {
     "home": "หน้าแรก",
@@ -25,6 +33,16 @@
     "metadata": {
       "title": "สินค้าใน {name}",
       "description": "ดูสินค้าทั้งหมดที่มีอยู่ใน {name}"
+    }
+  },
+  "product": {
+    "title": "สินค้า",
+    "reviewForm": {
+      "title": "ให้ความคิดเห็น",
+      "description": "ให้ความคิดเห็นเกี่ยวกับสินค้านี้",
+      "name": "ชื่อ",
+      "email": "อีเมล",
+      "message": "ข้อความ"
     }
   },
   "footer": {
