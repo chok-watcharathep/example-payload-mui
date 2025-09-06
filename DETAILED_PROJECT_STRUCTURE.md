@@ -174,27 +174,34 @@ export * from './providers'
 
 ```
 features/
-├── category/        # Category feature module
-│   ├── components/  # Category-specific UI components
-│   ├── enums/      # Category-specific enumerations
-│   ├── hooks/      # Category-specific React hooks
-│   ├── interfaces/ # Category-specific TypeScript interfaces
-│   └── services/   # Category API service functions
-└── product/        # Product feature module
-    ├── components/ # Product-specific UI components
-    ├── enums/     # Product-specific enumerations
-    ├── hooks/     # Product-specific React hooks
-    ├── interfaces/# Product-specific TypeScript interfaces
-    └── services/  # Product API service functions
+├── category/
+│   ├── components/      # Category-specific components
+│   ├── hooks/          # Category-specific hooks
+│   ├── interfaces/     # Category-specific types
+│   ├── services/       # Category-specific API calls
+│   ├── enums/         # Category-specific enums
+│   ├── pages/         # Category page components (client components)
+│   └── index.ts       # Feature exports
+├── product/
+│   ├── components/      # Product-specific components
+│   ├── hooks/          # Product-specific hooks
+│   ├── interfaces/     # Product-specific types
+│   ├── services/       # Product-specific API calls
+│   ├── enums/         # Product-specific enums
+│   ├── pages/         # Product page components (client components)
+│   └── index.ts       # Feature exports
+└── index.ts           # All features export
 ```
 
 **Unit Folder Explanation:**
 
 - **`components/`**: Feature-specific UI components that are only used within this feature domain
-- **`enums/`**: Enumeration constants specific to this feature (query keys, status values, etc.)
 - **`hooks/`**: Custom React hooks for this feature, including data fetching hooks with React Query
 - **`interfaces/`**: TypeScript type definitions for API requests/responses and component props
 - **`services/`**: Pure functions that handle API calls and data transformation for this feature
+- **`enums/`**: Enumeration constants specific to this feature (query keys, status values, etc.)
+- **`pages/`**: **Client components** that represent complete pages for the feature
+- **`index.ts`**: Barrel exports for the entire feature
 
 #### Example: Feature Interface
 
@@ -206,7 +213,15 @@ import type { CategoriesSelect, Category } from '@/payload-types'
 import type { BaseAdminRequest } from '@/shared/interfaces'
 
 export interface GetCategoryListRequest
-  extends BaseAdminRequest<JoinQuery<'categories'>, CategoriesSelect> {}
+  extends BaseAdminRequest<JoinQuery<'categories'>, CategoriesSelect> {
+  query?: string // Optional search query
+  filters?: {
+    isActive?: boolean
+    parentId?: number
+    createdAfter?: string
+    createdBefore?: string
+  }
+}
 
 export interface GetCategoryListResponse extends PaginatedDocs<Category> {}
 
@@ -339,6 +354,103 @@ export const getCategoryList = async (request: GetCategoryListRequest) => {
 }
 ```
 
+#### Example: Product Detail Page Component
+
+**File**: `features/product/pages/ProductDetailPage/ProductDetailPage.tsx`
+
+```typescript
+'use client'
+import { Container, Stack, Typography } from '@mui/material'
+import { useTranslations } from 'next-intl'
+
+import { RichText } from '@/frontend/components'
+import { ReviewForm } from '@/frontend/features/product/components'
+import type { ReviewFormFields } from '@/frontend/features/product/interfaces'
+import type { Product } from '@/payload-types'
+
+interface ProductDetailPageProps {
+  // * Received from server component so still good for SEO
+  product: Product
+}
+
+const ProductDetailPage = ({ product }: ProductDetailPageProps) => {
+  const tProduct = useTranslations('product')
+
+  const handleSubmitReview = (formFields: ReviewFormFields) => {
+    console.log('submit review', formFields)
+  }
+
+  /**
+   * *Note: Do not return loading state if not using react-query prefetching
+   * *because it will be rendered by the client component that is not good for SEO
+   */
+  return (
+    <Container>
+      <Stack gap={2}>
+        <Typography variant="h1">{tProduct('title')}</Typography>
+        <Typography variant="h2">{product.name}</Typography>
+        {product.description && <RichText data={product.description} />}
+        <ReviewForm onSubmit={handleSubmitReview} />
+      </Stack>
+    </Container>
+  )
+}
+
+export default ProductDetailPage
+```
+
+#### Example: Category Detail Page Component
+
+**File**: `features/category/pages/CategoryDetailPage/CategoryDetailPage.tsx`
+
+```typescript
+'use client'
+import { Container, Typography } from '@mui/material'
+
+import { ProductList } from '@/frontend/features/product/components'
+import type { Category } from '@/payload-types'
+
+interface CategoryDetailPageProps {
+  // * Received from server component so still good for SEO
+  category: Category
+}
+
+const CategoryDetailPage = ({ category }: CategoryDetailPageProps) => {
+  /**
+   * *Note: Do not return loading state if not using react-query prefetching
+   * *because it will be rendered by the client component that is not good for SEO
+   */
+  return (
+    <Container>
+      <Typography variant="h1">{category.name}</Typography>
+      <ProductList categoryId={category.id} />
+    </Container>
+  )
+}
+
+export default CategoryDetailPage
+```
+
+#### Pages Folder Export Pattern
+
+**File**: `features/product/pages/index.ts`
+
+```typescript
+export { default as ProductDetailPage } from './ProductDetailPage'
+export { default as ProductListPage } from './ProductListPage'
+```
+
+**File**: `features/product/index.ts`
+
+```typescript
+export * from './components'
+export * from './hooks'
+export * from './interfaces'
+export * from './services'
+export * from './enums'
+export * from './pages'
+```
+
 ### 📂 Hooks (`/src/frontend/hooks`)
 
 #### Purpose & Structure
@@ -347,7 +459,7 @@ Global React hooks that can be used across multiple features in the frontend.
 
 **Unit Folder Explanation:**
 
-- Contains reusable hooks that don't belong to a specific feature
+- Admin-specific hooks that can be used across multiple payload features
 - Examples: URL state management, form handling, authentication, theme switching
 - Should be generic enough to be used in multiple places
 
@@ -1459,27 +1571,15 @@ import { Button, TextField, Modal } from '@/frontend/components/ui'
 
 **REQUIRED**: All imports must use the shortest possible barrel export path.
 
-| Import Type    | Correct Pattern         | Example                                                          |
-| -------------- | ----------------------- | ---------------------------------------------------------------- |
-| **Hooks**      | `@/{domain}/hooks`      | `import { useGetCategoryList } from '@/frontend/hooks'`          |
-| **Components** | `@/{domain}/components` | `import { CategoryCard } from '@/frontend/components'`           |
-| **Services**   | `@/{domain}/services`   | `import { getCategoryList } from '@/frontend/services'`          |
-| **Interfaces** | `@/{domain}/interfaces` | `import { GetCategoryListRequest } from '@/frontend/interfaces'` |
-| **Utils**      | `@/{domain}/utils`      | `import { isCollection } from '@/shared/utils'`                  |
-| **Constants**  | `@/{domain}/constants`  | `import { DEFAULT_PAGE_SIZE } from '@/frontend/constants'`       |
-| **Enums**      | `@/{domain}/enums`      | `import { CategoryQueryKey } from '@/frontend/enums'`            |
-
-#### Rule 5.4: Export Consistency Rules
-
-**REQUIRED**: Export patterns must be consistent within each file type.
-
-- **Hooks**: Always export as default, re-export as named in index
-- **Components**: Always export as default, re-export as named in index
-- **Services**: Always export as named functions
-- **Interfaces**: Always export as named exports
-- **Utils**: Always export as named functions
-- **Constants**: Always export as named constants
-- **Enums**: Always export as named enums
+| Import Type    | Convention              | File Suffix     | Example                                                          |
+| -------------- | ----------------------- | --------------- | ---------------------------------------------------------------- |
+| **Hooks**      | `@/{domain}/hooks`      | `.ts`           | `import { useGetCategoryList } from '@/frontend/hooks'`          |
+| **Components** | `@/{domain}/components` | `.tsx`          | `import { CategoryCard } from '@/frontend/components'`           |
+| **Services**   | `@/{domain}/services`   | `.service.ts`   | `import { getCategoryList } from '@/frontend/services'`          |
+| **Interfaces** | `@/{domain}/interfaces` | `.interface.ts` | `import { GetCategoryListRequest } from '@/frontend/interfaces'` |
+| **Utils**      | `@/{domain}/utils`      | `.util.ts`      | `import { isCollection } from '@/shared/utils'`                  |
+| **Constants**  | `@/{domain}/constants`  | `.constant.ts`  | `import { DEFAULT_PAGE_SIZE } from '@/frontend/constants'`       |
+| **Enums**      | `@/{domain}/enums`      | `.enum.ts`      | `import { CategoryQueryKey } from '@/frontend/enums'`            |
 
 #### Rule 6: Feature-Based Organization
 
@@ -1539,19 +1639,18 @@ hooks/
 
 ## 📋 Naming Conventions Summary
 
-| Type            | Convention                                             | File Suffix       | Example                                 |
-| --------------- | ------------------------------------------------------ | ----------------- | --------------------------------------- |
-| **Components**  | PascalCase                                             | `.tsx`            | `TheMainLayout.tsx`                     |
-| **Hooks**       | camelCase with `use` prefix                            | `.ts`             | `useUrlQueryState.ts`                   |
-| **Services**    | camelCase functions                                    | `.service.ts`     | `category.service.ts`                   |
-| **Interfaces**  | PascalCase                                             | `.interface.ts`   | `category.interface.ts`                 |
-| **Enums**       | PascalCase name, SCREAMING_SNAKE_CASE values           | `.enum.ts`        | `category.enum.ts`                      |
-| **Utils**       | camelCase functions                                    | `.util.ts`        | `collection.util.ts`                    |
-| **Constants**   | SCREAMING_SNAKE_CASE                                   | `.constant.ts`    | `config.constant.ts`                    |
-| **Style Files** | `ComponentName.style.ts` or `ComponentName.style.scss` | `.style.ts/.scss` | `RichText.style.ts`                     |
-| **Collections** | PascalCase                                             | `.collection.ts`  | `product.collection.ts`                 |
-| **Pages**       | PascalCase                                             | `.tsx`            | `ProductDetailPage.tsx`                 |
-| **Migrations**  | Timestamped                                            | `.ts`             | `20250903_021807_add_example_schema.ts` |
+| Type            | Convention                                   | File Suffix      | Example                                 |
+| --------------- | -------------------------------------------- | ---------------- | --------------------------------------- |
+| **Components**  | PascalCase                                   | `.tsx`           | `TheMainLayout.tsx`                     |
+| **Hooks**       | camelCase with `use` prefix                  | `.ts`            | `useUrlQueryState.ts`                   |
+| **Services**    | camelCase functions                          | `.service.ts`    | `category.service.ts`                   |
+| **Interfaces**  | PascalCase                                   | `.interface.ts`  | `category.interface.ts`                 |
+| **Enums**       | PascalCase name, SCREAMING_SNAKE_CASE values | `.enum.ts`       | `category.enum.ts`                      |
+| **Utils**       | camelCase functions                          | `.util.ts`       | `collection.util.ts`                    |
+| **Constants**   | SCREAMING_SNAKE_CASE                         | `.constant.ts`   | `config.constant.ts`                    |
+| **Collections** | PascalCase                                   | `.collection.ts` | `product.collection.ts`                 |
+| **Pages**       | PascalCase                                   | `.tsx`           | `ProductDetailPage.tsx`                 |
+| **Migrations**  | Timestamped                                  | `.ts`            | `20250903_021807_add_example_schema.ts` |
 
 **Note**: Hooks and Components don't require descriptive suffixes because their naming conventions (`use` prefix for hooks, PascalCase for components) already indicate their purpose.
 
@@ -1904,7 +2003,9 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const locale = await getLocale()
 
   // Fetch data on server for SEO
-  const category = await findOneCategoryBySlug(payload, params.categorySlug, { locale })
+  const category = await findOneCategoryBySlug(payload, params.categorySlug, {
+    locale,
+  })
 
   if (!category) {
     notFound()
@@ -2013,3 +2114,268 @@ export default environmentConfig
 ```
 
 This SEO implementation ensures your pages are optimized for search engines while leveraging Next.js App Router's powerful metadata API.
+
+```
+
+```
+
+````
+## Form Management Guide
+
+This section covers best practices for form management in the frontend, including schema translation, form separation for reusability, and form props patterns based on the project's existing `ReviewForm` implementation.
+
+### Hook for Schema with Translation Pattern
+
+Create hooks that combine form schema validation with internationalization for consistent form behavior across the application.
+
+#### Example: useReviewFormSchema Hook
+
+```typescript
+// src/frontend/features/product/hooks/useReviewFormSchema.ts
+import { useTranslations } from 'next-intl'
+import { z, type ZodType } from 'zod'
+
+import type { ReviewFormFields } from '@/frontend/features/product/interfaces'
+
+const useReviewFormSchema = () => {
+  const tError = useTranslations('error')
+
+  const schema: ZodType<ReviewFormFields> = z.object({
+    name: z
+      .string({
+        required_error: tError('form.required'),
+        invalid_type_error: tError('form.required'),
+      })
+      .trim()
+      .min(1, tError('form.required')),
+    email: z
+      .string({
+        required_error: tError('form.required'),
+        invalid_type_error: tError('form.required'),
+      })
+      .trim()
+      .email(tError('form.email')),
+    message: z
+      .string({
+        required_error: tError('form.required'),
+        invalid_type_error: tError('form.required'),
+      })
+      .trim()
+      .min(10, tError('form.minLength', { minLength: 10 })),
+  })
+
+  return schema
+}
+
+export default useReviewFormSchema
+````
+
+#### Example: Interface Definition
+
+```typescript
+// src/frontend/features/product/interfaces/product.interface.ts
+export interface ReviewFormFields {
+  name: string
+  email: string
+  message: string
+}
+```
+
+### Form Separation Pattern for Reusability
+
+Separate form fields into reusable components using `FormProvider` and `useFormContext` for clean component composition.
+
+#### Example: Main Form Component
+
+```typescript
+// src/frontend/features/product/components/ReviewForm/ReviewForm.tsx
+'use client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Box, Button, Stack, TextField, Typography } from '@mui/material'
+import { useTranslations } from 'next-intl'
+import { FormProvider, useController, useForm } from 'react-hook-form'
+
+import { useReviewFormSchema } from '@/frontend/features/product/hooks'
+import type { ReviewFormFields } from '@/frontend/features/product/interfaces'
+
+import ReviewInformationFields from './ReviewInformationFields'
+
+interface ReviewFormProps {
+  defaultValues?: Partial<ReviewFormFields>
+  onSubmit: (formFields: ReviewFormFields) => void
+}
+
+const ReviewForm = ({ defaultValues, onSubmit }: ReviewFormProps) => {
+  const tReviewForm = useTranslations('product.reviewForm')
+  const tCommon = useTranslations('common')
+  const reviewFormSchemaHook = useReviewFormSchema()
+
+  const formHook = useForm<ReviewFormFields>({
+    resolver: zodResolver(reviewFormSchemaHook),
+    defaultValues,
+  })
+
+  const messageField = useController({
+    name: 'message',
+    control: formHook.control,
+  })
+
+  return (
+    <FormProvider {...formHook}>
+      <Box component="form" noValidate onSubmit={formHook.handleSubmit(onSubmit)}>
+        <Stack gap={2}>
+          <Typography variant="h3">{tReviewForm('title')}</Typography>
+          <Typography variant="body1">{tReviewForm('description')}</Typography>
+          {/* Separated form fields component */}
+          <ReviewInformationFields />
+          <TextField
+            {...messageField.field}
+            label={tReviewForm('message')}
+            value={messageField.field.value ?? ''}
+            error={!!messageField.fieldState.error}
+            helperText={messageField.fieldState.error?.message}
+          />
+          <Box>
+            <Button variant="contained" type="submit">
+              {tCommon('submit')}
+            </Button>
+          </Box>
+        </Stack>
+      </Box>
+    </FormProvider>
+  )
+}
+
+export default ReviewForm
+```
+
+#### Example: Separated Form Fields Component
+
+```typescript
+// src/frontend/features/product/components/ReviewForm/ReviewInformationFields/ReviewInformationFields.tsx
+import { TextField } from '@mui/material'
+import { useTranslations } from 'next-intl'
+import { useController, useFormContext } from 'react-hook-form'
+
+import type { ReviewFormFields } from '@/frontend/features/product/interfaces'
+
+const ReviewInformationFields = () => {
+  const tReviewForm = useTranslations('product.reviewForm')
+  const { control } = useFormContext<ReviewFormFields>()
+
+  const nameField = useController({
+    name: 'name',
+    control,
+  })
+
+  const emailField = useController({
+    name: 'email',
+    control,
+  })
+
+  return (
+    <>
+      <TextField
+        {...nameField.field}
+        label={tReviewForm('name')}
+        value={nameField.field.value ?? ''}
+        error={!!nameField.fieldState.error}
+        helperText={nameField.fieldState.error?.message}
+      />
+      <TextField
+        {...emailField.field}
+        label={tReviewForm('email')}
+        value={emailField.field.value ?? ''}
+        error={!!emailField.fieldState.error}
+        helperText={emailField.fieldState.error?.message}
+      />
+    </>
+  )
+}
+
+export default ReviewInformationFields
+```
+
+### Form Props Pattern for Reusable Components
+
+Use flexible props to make form components reusable across different contexts while maintaining consistent behavior.
+
+#### Example: Usage in Product Detail Page
+
+```typescript
+// src/frontend/features/product/pages/ProductDetailPage/ProductDetailPage.tsx
+'use client'
+import React from 'react'
+import { Container, Typography } from '@mui/material'
+import { ReviewForm } from '../../components/ReviewForm'
+import type { ReviewFormFields } from '../../interfaces'
+
+interface ProductDetailPageProps {
+  productSlug: string
+}
+
+export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productSlug }) => {
+  const handleReviewSubmit = (formFields: ReviewFormFields) => {
+    // Handle form submission logic
+    console.log('Review submitted:', formFields)
+    // Could call API, show success message, etc.
+  }
+
+  return (
+    <Container>
+      <Typography variant="h1">Product Details</Typography>
+      {/* Other product content */}
+
+      <ReviewForm
+        onSubmit={handleReviewSubmit}
+        defaultValues={{
+          name: '',
+          email: '',
+          message: '',
+        }}
+      />
+    </Container>
+  )
+}
+```
+
+#### Example: Alternative Usage with Pre-filled Data
+
+```typescript
+// Example usage with user data pre-filled
+const ReviewFormWithUserData = ({ user }: { user: User }) => {
+  const handleSubmit = (formFields: ReviewFormFields) => {
+    // Submit review with user context
+    submitReview(formFields, user.id)
+  }
+
+  return (
+    <ReviewForm
+      onSubmit={handleSubmit}
+      defaultValues={{
+        name: user.name,
+        email: user.email,
+        message: '',
+      }}
+    />
+  )
+}
+```
+
+### Form Management Best Practices
+
+1. **Schema Translation**: Use `useTranslations` with consistent error message keys (`error.form.required`, `error.form.email`, etc.).
+
+2. **Component Separation**: Break complex forms into smaller, focused components using `FormProvider` and `useFormContext`.
+
+3. **Field Controllers**: Use `useController` for individual field management with proper error handling and value normalization.
+
+4. **Type Safety**: Define interfaces for form fields and use `ZodType<T>` for runtime validation that matches TypeScript types.
+
+5. **Default Export Pattern**: Use default exports for form components following the project's naming conventions.
+
+6. **Translation Keys**: Organize translation keys by feature (`product.reviewForm.title`, `product.reviewForm.name`).
+
+7. **Value Handling**: Always provide fallback values (`value ?? ''`) to prevent uncontrolled component warnings.
+
+8. **Form Validation**: Combine `zodResolver` with form schema hooks for consistent validation across the application.
