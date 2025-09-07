@@ -4,6 +4,8 @@ import { findOneCategoryIdentifier } from '@/shared/features/category/services'
 
 const Categories: CollectionConfig = {
   slug: 'categories',
+  // Enable trash to allow soft delete
+  trash: true,
   labels: {
     singular: {
       th: 'หมวดหมู่',

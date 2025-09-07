@@ -284,6 +284,8 @@ const Products: CollectionConfig = {
                 },
               },
             },
+            // TODO: Confirm with PO that we need to add updatedBy field to some collections or all collections
+            // if all create custom plugin to apply all see: https://payloadcms.com/docs/plugins/overview#example
             {
               name: 'updatedBy',
               label: 'แก้ไขโดย',

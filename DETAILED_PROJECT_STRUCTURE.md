@@ -1,5 +1,47 @@
 # Detailed Project Structure
 
+## � Table of Contents
+
+### �📁 Frontend Structure (`/src/frontend`)
+
+- [🎯 Purpose](#-purpose)
+- [📂 Components (`/src/frontend/components`)](#-components-srcfrontendcomponents)
+- [📂 Features (`/src/frontend/features`)](#-features-srcfrontendfeatures)
+- [📂 Hooks (`/src/frontend/hooks`)](#-hooks-srcfrontendhooks)
+- [📂 Utils (`/src/frontend/utils`)](#-utils-srcfrontendutils)
+- [📂 Other Frontend Folders](#-other-frontend-folders)
+
+### 📁 Payload Structure (`/src/payload`)
+
+- [🎯 Purpose](#-purpose-1)
+- [📂 Features (`/src/payload/features`)](#-features-srcpayloadfeatures)
+- [📂 Components (`/src/payload/components`)](#-components-srcpayloadcomponents)
+- [📂 Hooks (`/src/payload/hooks`)](#-hooks-srcpayloadhooks)
+- [📂 Migrations (`/src/payload/migrations`)](#-migrations-srcpayloadmigrations)
+- [📂 Seed (`/src/payload/seed`)](#-seed-srcpayloadseed)
+
+### 📁 Shared Structure (`/src/shared`)
+
+- [🎯 Purpose](#-purpose-2)
+- [📂 Utils (`/src/shared/utils`)](#-utils-srcsharedutils)
+- [📂 Interfaces (`/src/shared/interfaces`)](#-interfaces-srcsharedinterfaces)
+- [📂 Constants (`/src/shared/constants`)](#-constants-srcsharedconstants)
+- [📂 Features (`/src/shared/features`)](#-features-srcsharedfeatures)
+
+### 📋 Project Guidelines
+
+- [🏗️ Naming Conventions](#️-naming-conventions)
+- [📦 Barrel Exports (Rule 5)](#-barrel-exports-rule-5)
+- [🔄 Import Rules](#-import-rules)
+- [🧪 Testing Rules](#-testing-rules)
+- [📋 Naming Conventions Summary](#-naming-conventions-summary)
+- [🧪 Testing Guidelines](#-testing-guidelines)
+- [📊 API Interface Naming Conventions](#-api-interface-naming-conventions)
+- [🔍 SEO & Next.js App Router](#-seo--nextjs-app-router)
+- [📝 Form Management Guide](#-form-management-guide)
+
+---
+
 ## 📁 Frontend Structure (`/src/frontend`)
 
 ### 🎯 Purpose
