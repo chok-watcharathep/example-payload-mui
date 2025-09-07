@@ -40,7 +40,7 @@ components/ui/RichText/
 **File**: `components/ui/RichText/RichText.tsx`
 
 ```typescript
-import { Typography } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import type { DefaultNodeTypes } from '@payloadcms/richtext-lexical'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import type { JSXConverters, JSXConvertersFunction } from '@payloadcms/richtext-lexical/react'
@@ -82,9 +82,9 @@ const RichText = (props: RichTextProps) => {
   const styles = useStyles()
 
   return (
-    <div sx={styles.container}>
+    <Box sx={styles.container}>
       <RichTextConverter {...restProps} className={className} converters={jsxConverter} />
-    </div>
+    </Box>
   )
 }
 
@@ -1284,14 +1284,15 @@ const MyComponent = () => {
 
 ```typescript
 // MyComponent.tsx
+import { Box } from '@mui/material'
 import useStyles from './MyComponent.style'
 
 const MyComponent = () => {
   const styles = useStyles()
   return (
-    <div sx={styles.container}>
+    <Box sx={styles.container}>
       Content
-    </div>
+    </Box>
   )
 }
 
