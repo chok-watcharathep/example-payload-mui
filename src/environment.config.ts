@@ -8,7 +8,10 @@ const environmentSchema = z.object({
   // private
   DATABASE_URI: z.string().optional().readonly(),
   PAYLOAD_SECRET: z.string().optional().readonly(),
-  BLOB_READ_WRITE_TOKEN: z.string().optional().readonly(),
+  S3_ACCESS_KEY_ID: z.string().optional().readonly(),
+  S3_SECRET_ACCESS_KEY: z.string().optional().readonly(),
+  S3_BUCKET_NAME: z.string().optional().readonly(),
+  S3_REGION: z.string().optional().readonly(),
 })
 
 const environmentConfig = (() => {

@@ -1,13 +1,13 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { th } from '@payloadcms/translations/languages/th'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { s3Storage } from '@payloadcms/storage-s3'
 
 import { Users } from './payload/features/user/collections'
 import { Media } from './payload/features/media/collections'
@@ -81,12 +81,18 @@ const config = buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    vercelBlobStorage({
-      enabled: true,
+    s3Storage({
       collections: {
         media: true,
       },
-      token: environmentConfig.BLOB_READ_WRITE_TOKEN,
+      bucket: environmentConfig.S3_BUCKET_NAME || '',
+      config: {
+        credentials: {
+          accessKeyId: environmentConfig.S3_ACCESS_KEY_ID || '',
+          secretAccessKey: environmentConfig.S3_SECRET_ACCESS_KEY || '',
+        },
+        region: environmentConfig.S3_REGION || '',
+      },
     }),
     seoPlugin({
       collections: ['categories', 'products'],

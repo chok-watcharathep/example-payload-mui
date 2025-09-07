@@ -35,7 +35,7 @@ import { ProductDetailPage as ProductDetailPage_809704ea6bde94a708d91c6528dc6105
 import { LogoutButton as LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { FontProvider as FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { QueryClientProvider as QueryClientProvider_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
-import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
+import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -75,5 +75,5 @@ export const importMap = {
   "@/payload/components#LogoutButton": LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/components#FontProvider": FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/components#QueryClientProvider": QueryClientProvider_7b44fae237f1bb4a85c9f128ec7ca6c1,
-  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }
