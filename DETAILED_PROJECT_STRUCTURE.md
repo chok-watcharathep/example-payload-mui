@@ -82,7 +82,7 @@ const RichText = (props: RichTextProps) => {
   const styles = useStyles()
 
   return (
-    <div style={styles.container}>
+    <div sx={styles.container}>
       <RichTextConverter {...restProps} className={className} converters={jsxConverter} />
     </div>
   )
@@ -1289,7 +1289,7 @@ import useStyles from './MyComponent.style'
 const MyComponent = () => {
   const styles = useStyles()
   return (
-    <div style={styles.container}>
+    <div sx={styles.container}>
       Content
     </div>
   )
