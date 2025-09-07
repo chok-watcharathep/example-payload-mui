@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { findOneCategoryById, findOneCategoryBySlug } from '@/shared/features/category/services'
+import { findOneCategoryIdentifier } from '@/shared/features/category/services'
 
 const Categories: CollectionConfig = {
   slug: 'categories',
@@ -56,23 +56,15 @@ const Categories: CollectionConfig = {
       handler: async (req) => {
         const idOrSlug = req.routeParams?.idOrSlug as string
 
-        const categoryById = await findOneCategoryById(req.payload, idOrSlug, {
+        const category = await findOneCategoryIdentifier(req.payload, idOrSlug, {
           locale: req.locale,
         })
 
-        if (categoryById) {
-          return Response.json(categoryById)
+        if (!category) {
+          return Response.json({ error: 'Category not found' }, { status: 404 })
         }
 
-        const categoryBySlug = await findOneCategoryBySlug(req.payload, idOrSlug, {
-          locale: req.locale,
-        })
-
-        if (categoryBySlug) {
-          return Response.json(categoryBySlug)
-        }
-
-        return Response.json({ error: 'Category not found' }, { status: 404 })
+        return Response.json(category)
       },
     },
   ],

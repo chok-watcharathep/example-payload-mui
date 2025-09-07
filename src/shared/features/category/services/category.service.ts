@@ -3,31 +3,26 @@ import type { JoinQuery, Payload } from 'payload'
 import type { CategoriesSelect } from '@/payload-types'
 import type { BaseAdminRequest } from '@/shared/interfaces'
 
-export const findOneCategoryById = async (
+export const findOneCategoryIdentifier = async (
   payload: Payload,
-  id: string,
-  options: BaseAdminRequest<JoinQuery<'categories'>, CategoriesSelect>,
-) => {
-  const category = await payload.findByID({
-    collection: 'categories',
-    id,
-    ...options,
-  })
-
-  return category
-}
-
-export const findOneCategoryBySlug = async (
-  payload: Payload,
-  slug: string,
+  identifier: string | number,
   options: BaseAdminRequest<JoinQuery<'categories'>, CategoriesSelect>,
 ) => {
   const paginatedCategories = await payload.find({
     collection: 'categories',
     where: {
-      slug: {
-        equals: slug,
-      },
+      or: [
+        {
+          slug: {
+            equals: identifier,
+          },
+        },
+        {
+          id: {
+            equals: identifier,
+          },
+        },
+      ],
     },
     ...options,
   })

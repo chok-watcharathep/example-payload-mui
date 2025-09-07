@@ -2100,11 +2100,6 @@ export default environmentConfig
 
 This SEO implementation ensures your pages are optimized for search engines while leveraging Next.js App Router's powerful metadata API.
 
-```
-
-```
-
-````
 ## Form Management Guide
 
 This section covers best practices for form management in the frontend, including schema translation, form separation for reusability, and form props patterns based on the project's existing `ReviewForm` implementation.
@@ -2153,7 +2148,7 @@ const useReviewFormSchema = () => {
 }
 
 export default useReviewFormSchema
-````
+```
 
 #### Example: Interface Definition
 
