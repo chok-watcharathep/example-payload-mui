@@ -6,6 +6,7 @@ const useStyles = () => {
 
   const footer: SxProps = {
     borderTop: `1px solid ${palette.grey[200]}`,
+    mt: 'auto',
   }
 
   const footerInfo: SxProps = {
@@ -47,7 +48,7 @@ const useStyles = () => {
     flexDirection: { mobile: 'column', desktop: 'row' },
     justifyContent: 'space-between',
     alignItems: 'center',
-    pt: 1.5,
+    py: 1.5,
     gap: { mobile: 1.5, desktop: 0 },
   }
 
