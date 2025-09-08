@@ -19,6 +19,9 @@ import {
 } from '@mui/material'
 import { useTranslations } from 'next-intl'
 
+import { Route } from '@/frontend/enums/route.enum'
+import { socialUrl } from '@/payload/constants/url.constant'
+
 import useStyles from './TheMainFooter.style'
 
 const TheMainFooter = () => {
@@ -27,21 +30,21 @@ const TheMainFooter = () => {
   const tCommon = useTranslations('common')
 
   const pages = [
-    { title: tFooter('nav.features'), href: '/' },
-    { title: tFooter('nav.pricing'), href: '/pricing' },
-    { title: tFooter('nav.caseStudies'), href: '/case-studies' },
-    { title: tFooter('nav.reviews'), href: '/reviews' },
-    { title: tFooter('nav.updates'), href: '/updates' },
-    { title: tFooter('nav.about'), href: '/about' },
-    { title: tFooter('nav.contactUs'), href: '/contact-us' },
-    { title: tFooter('nav.careers'), href: '/careers' },
-    { title: tFooter('nav.culture'), href: '/culture' },
-    { title: tFooter('nav.blog'), href: '/blog' },
-    { title: tFooter('nav.gettingStarted'), href: '/getting-started' },
-    { title: tFooter('nav.helpCenter'), href: '/help-center' },
-    { title: tFooter('nav.serverStatus'), href: '/server-status' },
-    { title: tFooter('nav.reportBug'), href: '/report-bug' },
-    { title: tFooter('nav.chatSupport'), href: '/chat-support' },
+    { title: tFooter('nav.features'), href: Route.FEATURES },
+    { title: tFooter('nav.pricing'), href: Route.PRICING },
+    { title: tFooter('nav.caseStudies'), href: Route.CASE_STUDIES },
+    { title: tFooter('nav.reviews'), href: Route.REVIEWS },
+    { title: tFooter('nav.updates'), href: Route.UPDATES },
+    { title: tFooter('nav.about'), href: Route.ABOUT },
+    { title: tFooter('nav.contactUs'), href: Route.CONTACT_US },
+    { title: tFooter('nav.careers'), href: Route.CAREERS },
+    { title: tFooter('nav.culture'), href: Route.CULTURE },
+    { title: tFooter('nav.blog'), href: Route.BLOG },
+    { title: tFooter('nav.gettingStarted'), href: Route.GETTING_STARTED },
+    { title: tFooter('nav.helpCenter'), href: Route.HELP_CENTER },
+    { title: tFooter('nav.serverStatus'), href: Route.SERVER_STATUS },
+    { title: tFooter('nav.reportBug'), href: Route.REPORT_BUG },
+    { title: tFooter('nav.chatSupport'), href: Route.CHAT_SUPPORT },
   ]
 
   return (
@@ -61,27 +64,27 @@ const TheMainFooter = () => {
           </Typography>
           <List sx={styles.footerInfoSocialList} disablePadding>
             <ListItem disablePadding>
-              <ListItemButton component={Link} href={'https://www.facebook.com/'} target="_blank">
+              <ListItemButton component={Link} href={socialUrl.facebook} target="_blank">
                 <FacebookIcon />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component={Link} href={'https://www.twitter.com/'} target="_blank">
+              <ListItemButton component={Link} href={socialUrl.twitter} target="_blank">
                 <TwitterIcon />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component={Link} href={'https://www.instagram.com/'} target="_blank">
+              <ListItemButton component={Link} href={socialUrl.instagram} target="_blank">
                 <InstagramIcon />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component={Link} href={'https://www.linkedin.com/'} target="_blank">
+              <ListItemButton component={Link} href={socialUrl.linkedin} target="_blank">
                 <LinkedInIcon />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component={Link} href={'https://www.youtube.com/'} target="_blank">
+              <ListItemButton component={Link} href={socialUrl.youtube} target="_blank">
                 <YoutubeIcon />
               </ListItemButton>
             </ListItem>
@@ -141,7 +144,7 @@ const TheMainFooter = () => {
           </Stack>
         </Box>
       </Container>
-      <Container sx={styles.footerCopyright} disableGutters={true} maxWidth="desktop">
+      <Container disableGutters={true} maxWidth="desktop">
         <Stack sx={styles.footerCopyrightInner} direction="row">
           <Box>
             {' '}
@@ -157,7 +160,7 @@ const TheMainFooter = () => {
               variant="body1"
               color="text.secondary"
               component={Link}
-              href="/terms-and-conditions"
+              href={Route.TERMS_AND_CONDITIONS}
             >
               {tFooter('termsAndConditions')}
             </Typography>
@@ -165,7 +168,7 @@ const TheMainFooter = () => {
               variant="body1"
               color="text.secondary"
               component={Link}
-              href="/privacy-policy"
+              href={Route.PRIVACY_POLICY}
             >
               {tFooter('privacyPolicy')}
             </Typography>

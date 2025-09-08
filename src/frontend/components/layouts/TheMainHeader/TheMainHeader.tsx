@@ -24,6 +24,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
+import { Route } from '@/frontend/enums/route.enum'
+
 import useStyles from './TheMainHeader.style'
 
 const TheMainHeader = () => {
@@ -34,18 +36,18 @@ const TheMainHeader = () => {
   const pathname = usePathname()
 
   const pages = [
-    { title: tMenu('home'), href: '/' },
-    { title: tMenu('profile'), href: '/profile', isAuthenticated: true },
-    { title: tMenu('career'), href: '/career' },
-    { title: tMenu('eLearning'), href: '/e-learning' },
-    { title: tMenu('jobs'), href: '/jobs' },
-    { title: tMenu('ePortfolio'), href: '/e-portfolio' },
-    { title: tMenu('files'), href: '/files' },
+    { title: tMenu('home'), href: Route.HOME },
+    { title: tMenu('profile'), href: Route.PROFILE, isAuthenticated: true },
+    { title: tMenu('careers'), href: Route.CAREERS },
+    { title: tMenu('eLearning'), href: Route.E_LEARNING },
+    { title: tMenu('jobs'), href: Route.JOBS },
+    { title: tMenu('ePortfolio'), href: Route.E_PORTFOLIO },
+    { title: tMenu('files'), href: Route.FILES },
   ]
   const settings = [
-    { title: tProfileSettings('profile'), href: '/profile' },
-    { title: tProfileSettings('settings'), href: '/settings' },
-    { title: tProfileSettings('logout'), href: '/logout' },
+    { title: tProfileSettings('profile'), href: Route.PROFILE },
+    { title: tProfileSettings('settings'), href: Route.SETTINGS },
+    { title: tProfileSettings('logout'), href: Route.LOGOUT },
   ]
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState<HTMLButtonElement | null>(null)

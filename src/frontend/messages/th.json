@@ -7,7 +7,7 @@
   "menu": {
     "home": "หน้าแรก",
     "profile": "โปรไฟล์ของฉัน",
-    "career": "แนะนำอาชีพ",
+    "careers": "แนะนำอาชีพ",
     "eLearning": "e-Learning",
     "jobs": "หางาน",
     "ePortfolio": "e-Portfolio",
@@ -36,7 +36,6 @@
     "nav": {
       "features": "Features",
       "pricing": "Pricing",
-      "career": "Career",
       "caseStudies": "Case Studies",
       "reviews": "Reviews",
       "updates": "Updates",

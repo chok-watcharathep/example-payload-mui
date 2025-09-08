@@ -5,7 +5,7 @@ const useStyles = () => {
   const { palette } = theme
 
   const footer: SxProps = {
-    borderTop: `1px solid ${theme.palette.grey[200]}`,
+    borderTop: `1px solid ${palette.grey[200]}`,
   }
 
   const footerInfo: SxProps = {
@@ -41,10 +41,8 @@ const useStyles = () => {
     },
   }
 
-  const footerCopyright: SxProps = {}
-
   const footerCopyrightInner: SxProps = {
-    borderTop: `1px solid ${theme.palette.grey[200]}`,
+    borderTop: `1px solid ${palette.grey[200]}`,
     display: 'flex',
     flexDirection: { mobile: 'column', desktop: 'row' },
     justifyContent: 'space-between',
@@ -60,7 +58,7 @@ const useStyles = () => {
     textAlign: { mobile: 'center', desktop: 'left' },
 
     '& a': {
-      color: theme.palette.grey[500],
+      color: palette.grey[500],
 
       '&:before': {
         content: '"|"',
@@ -142,7 +140,6 @@ const useStyles = () => {
     footerInfoSocial,
     footerInfoNavigation,
     footerInfoContact,
-    footerCopyright,
     footerCopyrightInner,
     footerCopyrightInnerLinks,
     footerInfoSocialList,
