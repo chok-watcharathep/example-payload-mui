@@ -20,7 +20,6 @@ const Media: CollectionConfig = {
       name: 'videoPreview',
       type: 'ui',
       admin: {
-        condition: (_, { mimeType }) => mimeType.startsWith('video'),
         components: {
           Field: {
             path: '@/payload/features/media/components',
