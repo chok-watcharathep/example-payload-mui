@@ -69,7 +69,7 @@ const TheMainHeader = () => {
   }
 
   return (
-    <AppBar elevation={0} color="transparent" sx={{ py: 1 }} position="static" component="div">
+    <AppBar elevation={0} color="transparent" sx={{ py: 1 }} position="static" component="header">
       <Container maxWidth="desktop">
         <Toolbar disableGutters>
           <LogoDevIcon sx={styles.logo} />
