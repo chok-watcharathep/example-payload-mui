@@ -17,6 +17,19 @@ const Media: CollectionConfig = {
   },
   fields: [
     {
+      name: 'videoPreview',
+      type: 'ui',
+      admin: {
+        condition: (_, { mimeType }) => mimeType.startsWith('video'),
+        components: {
+          Field: {
+            path: '@/payload/features/media/components',
+            exportName: 'VideoPreviewField',
+          },
+        },
+      },
+    },
+    {
       name: 'alt',
       type: 'text',
       required: true,

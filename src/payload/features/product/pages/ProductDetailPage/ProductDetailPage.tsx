@@ -16,6 +16,7 @@ const ProductDetailPage = () => {
   const paramsHook = useParams()
   const stepNavHook = useStepNav()
 
+  // We use react-query instead of payloadcms/ui usePayloadAPI to make it more flexible and consistent with frontend
   const { data: productDetail, isLoading } = useAdminGetProductDetail({
     id: Number(paramsHook.segments?.[2]),
     draft: true,

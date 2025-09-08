@@ -87,6 +87,7 @@ const Products: CollectionConfig = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+      displayPreview: true,
     },
     {
       type: 'tabs',
