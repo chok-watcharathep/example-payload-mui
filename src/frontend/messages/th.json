@@ -15,7 +15,7 @@
   "menu": {
     "home": "หน้าแรก",
     "profile": "โปรไฟล์ของฉัน",
-    "career": "แนะนำอาชีพ",
+    "careers": "แนะนำอาชีพ",
     "eLearning": "e-Learning",
     "jobs": "หางาน",
     "ePortfolio": "e-Portfolio",
@@ -46,6 +46,32 @@
     }
   },
   "footer": {
-    "copyright": "Copyright © The Website {year}."
+    "copyright": "Copyright © {year} Credit Port.",
+    "allRightsReserved": "All Rights Reserved",
+    "termsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "social": "Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam",
+    "nav": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "caseStudies": "Case Studies",
+      "reviews": "Reviews",
+      "updates": "Updates",
+      "about": "About",
+      "contactUs": "Contact Us",
+      "careers": "Careers",
+      "culture": "Culture",
+      "blog": "Blog",
+      "gettingStarted": "Getting Started",
+      "helpCenter": "Help Center",
+      "serverStatus": "Server Status",
+      "reportBug": "Report Bug",
+      "chatSupport": "Chat Support"
+    },
+    "contact": {
+      "email": "contact@company.com",
+      "phone": "(414) 687 - 5892",
+      "address": "794 Mcallister St San Francisco, 94102"
+    }
   }
 }
