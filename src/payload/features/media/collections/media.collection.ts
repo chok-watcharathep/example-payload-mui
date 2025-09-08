@@ -27,6 +27,7 @@ const Media: CollectionConfig = {
             exportName: 'VideoPreviewField',
           },
         },
+        disableListColumn: true,
       },
     },
     {
