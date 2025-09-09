@@ -26,4 +26,11 @@ export enum Route {
   JOBS = '/jobs',
   E_PORTFOLIO = '/e-portfolio',
   FILES = '/files',
+
+  EXAMPLE_STATIC_PAGE = '/example-static-page',
+}
+
+// Use to get page collection for SEO purpose
+export enum RouteSlug {
+  EXAMPLE_STATIC_PAGE = 'example-static-page',
 }

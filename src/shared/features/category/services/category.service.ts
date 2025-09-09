@@ -3,7 +3,7 @@ import type { JoinQuery, Payload } from 'payload'
 import type { CategoriesSelect } from '@/payload-types'
 import type { BaseAdminRequest } from '@/shared/interfaces'
 
-export const findOneCategoryIdentifier = async (
+export const findOneCategoryByIdentifier = async (
   payload: Payload,
   identifier: string | number,
   options: BaseAdminRequest<JoinQuery<'categories'>, CategoriesSelect>,

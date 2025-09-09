@@ -1,4 +1,9 @@
 import { VideoPreviewField as VideoPreviewField_7efeaa7e6db44c65d7b635d30e0d6a57 } from '@/payload/features/media/components'
+import { OverviewComponent as OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
+import { MetaTitleComponent as MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
+import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
+import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
+import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { LexicalDiffComponent as LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -27,11 +32,6 @@ import { PriceCell as PriceCell_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/paylo
 import { LinkCurriculumSummaryUiField as LinkCurriculumSummaryUiField_7bcf24e6fefd56863a80d31ef37b045b } from '@/payload/features/product/components'
 import { NavigationAfterChangeField as NavigationAfterChangeField_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { LinkToViewCell as LinkToViewCell_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
-import { OverviewComponent as OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
-import { MetaTitleComponent as MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
-import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
-import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
-import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { ProductDetailPage as ProductDetailPage_809704ea6bde94a708d91c6528dc6105 } from '@/payload/features/product/pages'
 import { LogoutButton as LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
 import { FontProvider as FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1 } from '@/payload/components'
@@ -40,6 +40,11 @@ import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc056
 
 export const importMap = {
   "@/payload/features/media/components#VideoPreviewField": VideoPreviewField_7efeaa7e6db44c65d7b635d30e0d6a57,
+  "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
+  "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField": RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#LexicalDiffComponent": LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -68,11 +73,6 @@ export const importMap = {
   "@/payload/features/product/components#LinkCurriculumSummaryUiField": LinkCurriculumSummaryUiField_7bcf24e6fefd56863a80d31ef37b045b,
   "@/payload/components#NavigationAfterChangeField": NavigationAfterChangeField_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/components#LinkToViewCell": LinkToViewCell_7b44fae237f1bb4a85c9f128ec7ca6c1,
-  "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
-  "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
-  "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
-  "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,
-  "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/payload/features/product/pages#ProductDetailPage": ProductDetailPage_809704ea6bde94a708d91c6528dc6105,
   "@/payload/components#LogoutButton": LogoutButton_7b44fae237f1bb4a85c9f128ec7ca6c1,
   "@/payload/components#FontProvider": FontProvider_7b44fae237f1bb4a85c9f128ec7ca6c1,

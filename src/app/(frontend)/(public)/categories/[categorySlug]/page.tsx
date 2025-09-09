@@ -14,7 +14,7 @@ import type { BaseSearchRequest } from '@/frontend/interfaces'
 import { getQueryClient } from '@/frontend/libs'
 import { getUrlQueryState } from '@/frontend/utils'
 import config from '@/payload.config'
-import { findOneCategoryIdentifier } from '@/shared/features/category/services'
+import { findOneCategoryByIdentifier } from '@/shared/features/category/services'
 import { isMedia } from '@/shared/utils'
 
 interface CategoryPageProps {
@@ -29,7 +29,7 @@ export async function generateMetadata({
   const payload = await getPayload({ config })
   const locale = await getLocale()
 
-  const category = await findOneCategoryIdentifier(payload, params.categorySlug, {
+  const category = await findOneCategoryByIdentifier(payload, params.categorySlug, {
     locale,
   })
 
@@ -92,7 +92,7 @@ const CategoryPage = async ({
   const payload = await getPayload({ config })
   const locale = await getLocale()
 
-  const category = await findOneCategoryIdentifier(
+  const category = await findOneCategoryByIdentifier(
     payload,
     decodeURIComponent(params.categorySlug),
     {

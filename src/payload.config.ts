@@ -21,6 +21,7 @@ import Faculties from './payload/features/product/collections/faculty.collection
 import Universities from './payload/features/product/collections/university.collection'
 import { ADMIN_ROUTE } from './payload/constants'
 import { DEFAULT_LOCALE } from './shared/constants'
+import { Pages } from './payload/features/page/collections'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -57,6 +58,7 @@ const config = buildConfig({
   collections: [
     Users,
     Media,
+    Pages,
     Products,
     Categories,
     Configs,
@@ -95,7 +97,7 @@ const config = buildConfig({
       },
     }),
     seoPlugin({
-      collections: ['categories', 'products'],
+      collections: ['categories', 'products', 'pages'],
       uploadsCollection: 'media',
       // TODO: Change generateTitle and generateDescription when we have real data
       generateTitle: ({ doc }) => `Credit Port — ${doc.name} | The Ultimate Collection`,

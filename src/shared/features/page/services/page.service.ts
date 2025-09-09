@@ -1,15 +1,15 @@
 import type { JoinQuery, Payload } from 'payload'
 
-import type { ProductsSelect } from '@/payload-types'
+import type { PagesSelect } from '@/payload-types'
 import type { BaseAdminRequest } from '@/shared/interfaces'
 
-export const findOneProductByIdentifier = async (
+export const findOnePageByIdentifier = async (
   payload: Payload,
   identifier: string | number,
-  options: BaseAdminRequest<JoinQuery<'products'>, ProductsSelect>,
+  options: BaseAdminRequest<JoinQuery<'pages'>, PagesSelect>,
 ) => {
-  const paginatedProducts = await payload.find({
-    collection: 'products',
+  const paginatedPages = await payload.find({
+    collection: 'pages',
     where: {
       or: [
         {
@@ -27,9 +27,9 @@ export const findOneProductByIdentifier = async (
     ...options,
   })
 
-  if (!paginatedProducts.docs.length) {
+  if (!paginatedPages.docs.length) {
     return
   }
 
-  return paginatedProducts.docs[0]
+  return paginatedPages.docs[0]
 }

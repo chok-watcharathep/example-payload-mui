@@ -8,7 +8,7 @@ import { Route } from '@/frontend/enums'
 import { ProductDetailPage } from '@/frontend/features/product/pages'
 import type { BaseSearchRequest } from '@/frontend/interfaces'
 import config from '@/payload.config'
-import { findOneProductIdentifier } from '@/shared/features/product/services'
+import { findOneProductByIdentifier } from '@/shared/features/product/services'
 import { isMedia } from '@/shared/utils'
 
 interface ProductPageProps {
@@ -23,7 +23,7 @@ export async function generateMetadata({
   const payload = await getPayload({ config })
   const locale = await getLocale()
 
-  const product = await findOneProductIdentifier(payload, params.productSlug, {
+  const product = await findOneProductByIdentifier(payload, params.productSlug, {
     locale,
   })
 
@@ -83,9 +83,13 @@ const ProductPage = async ({ params: paramsPromise }: ProductPageProps) => {
   const payload = await getPayload({ config })
   const locale = await getLocale()
 
-  const product = await findOneProductIdentifier(payload, decodeURIComponent(params.productSlug), {
-    locale,
-  })
+  const product = await findOneProductByIdentifier(
+    payload,
+    decodeURIComponent(params.productSlug),
+    {
+      locale,
+    },
+  )
 
   if (!product) {
     notFound()

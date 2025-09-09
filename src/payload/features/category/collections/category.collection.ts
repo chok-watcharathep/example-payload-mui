@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { findOneCategoryIdentifier } from '@/shared/features/category/services'
+import { findOneCategoryByIdentifier } from '@/shared/features/category/services'
 
 const Categories: CollectionConfig = {
   slug: 'categories',
@@ -58,7 +58,7 @@ const Categories: CollectionConfig = {
       handler: async (req) => {
         const idOrSlug = req.routeParams?.idOrSlug as string
 
-        const category = await findOneCategoryIdentifier(req.payload, idOrSlug, {
+        const category = await findOneCategoryByIdentifier(req.payload, idOrSlug, {
           locale: req.locale,
         })
 
