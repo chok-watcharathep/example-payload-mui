@@ -4,6 +4,7 @@ import * as migration_20250903_090844_add_category_status from './20250903_09084
 import * as migration_20250904_062642_add_updated_by_field_to_product from './20250904_062642_add_updated_by_field_to_product';
 import * as migration_20250907_144110_remove_user_session from './20250907_144110_remove_user_session';
 import * as migration_20250907_151843_add_soft_delete_to_category from './20250907_151843_add_soft_delete_to_category';
+import * as migration_20250909_064947_add_page_collection from './20250909_064947_add_page_collection';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20250907_151843_add_soft_delete_to_category.up,
     down: migration_20250907_151843_add_soft_delete_to_category.down,
-    name: '20250907_151843_add_soft_delete_to_category'
+    name: '20250907_151843_add_soft_delete_to_category',
+  },
+  {
+    up: migration_20250909_064947_add_page_collection.up,
+    down: migration_20250909_064947_add_page_collection.down,
+    name: '20250909_064947_add_page_collection'
   },
 ];
